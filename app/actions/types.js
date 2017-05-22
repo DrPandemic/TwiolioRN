@@ -1,0 +1,2 @@
+// Account
+export const SET_ACCOUNT_NUMBERS = 'SET_ACCOUNT_NUMBERS';
