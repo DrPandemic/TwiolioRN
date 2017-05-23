@@ -1,12 +1,9 @@
 import createReducer from '../lib/createReducer'
 import * as types from '../actions/types'
 
-export const fetchAccountNumbers = createReducer({}, {
-  [types.SET_ACCOUNT_NUMBER] (state, action) {
-    return {
-      ...state,
-      accountNumbers: action.accountNumbers,
-    };
+export const accountNumbers = createReducer([], {
+  [types.SET_ACCOUNT_NUMBERS] (state, action) {
+    return action.accountNumbers;
   },
 });
 
