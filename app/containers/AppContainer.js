@@ -14,7 +14,7 @@ class AppContainer extends Component {
     return (
       <View>
         <Text>
-          {this.props.accountNumbers.join(' ')}
+          {this.props.accountNumbers.map(n => n.friendlyName).join(', ')}
         </Text>
         <TouchableHighlight style={{marginTop:20}} onPress={this.props.fetchAccountNumbers}>
           <Text>

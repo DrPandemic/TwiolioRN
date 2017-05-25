@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import {
   AppRegistry,
 } from 'react-native';
-import Config from 'react-native-config';
 
 import AppContainer from './app/containers/AppContainer'
 import { Provider } from 'react-redux'
