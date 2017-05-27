@@ -1,26 +1,28 @@
-import React, { Component, PropTypes } from 'react';
+// @flow
+
+import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { ActionCreators } from '../actions';
 import {
   View,
   Text,
   TouchableHighlight,
 } from 'react-native';
 
+import { ActionCreators } from '../actions';
+import { PhoneNumber } from '../actions/types';
 
 class AppContainer extends Component {
+  props: {
+    accountNumbers: Array<PhoneNumber>,
+  };
+
   render() {
     return (
       <View>
         <Text>
           {this.props.accountNumbers.map(n => n.friendlyName).join(', ')}
         </Text>
-        <TouchableHighlight style={{marginTop:20}} onPress={this.props.fetchAccountNumbers}>
-          <Text>
-            asd
-          </Text>
-        </TouchableHighlight>
       </View>
     );
   }
