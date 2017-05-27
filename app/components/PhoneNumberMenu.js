@@ -4,10 +4,9 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import {
-  View,
   Text,
 } from 'react-native';
-import { Actions } from 'react-native-router-flux';
+import Menu, { MenuOptions, MenuOption, MenuTrigger } from 'react-native-popup-menu';
 
 import { ActionCreators } from '../actions';
 import { PhoneNumber } from '../actions/types';
@@ -18,13 +17,21 @@ class AppContainer extends Component {
   };
 
   render() {
+    // {this.props.accountNumbers.map(n => n.friendlyName).join(', ')}
     return (
-      <View style={{ paddingTop: 60 }}>
-        <Text onPress={Actions.conversation}>
-          asd
-          {this.props.accountNumbers.map(n => n.friendlyName).join(', ')}
-        </Text>
-      </View>
+      <Menu onSelect={(value) => alert(`User selected the number ${value}`)}>
+        <MenuTrigger>
+          <Text style={{ fontSize: 20 }}>&#8942;</Text>
+        </MenuTrigger>
+        <MenuOptions>
+          <MenuOption value={1}>
+            <Text>One</Text>
+          </MenuOption>
+          <MenuOption value={2}>
+            <Text>Two</Text>
+          </MenuOption>
+        </MenuOptions>
+      </Menu>
     );
   }
 }

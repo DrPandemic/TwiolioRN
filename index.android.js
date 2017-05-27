@@ -4,13 +4,13 @@ import React, { Component } from 'react';
 import {
   AppRegistry,
 } from 'react-native';
+import { Provider, connect } from 'react-redux';
+import { createStore, applyMiddleware, compose, bindActionCreators } from 'redux';
+import thunkMiddleware from 'redux-thunk';
+import { MenuContext } from 'react-native-popup-menu';
 
-import { Provider, connect } from 'react-redux'
-import { createStore, applyMiddleware, compose, bindActionCreators } from 'redux'
-import thunkMiddleware from 'redux-thunk'
-
-import AppContainer from './app/containers/AppContainer'
-import reducer from './app/reducers'
+import AppContainer from './app/containers/AppContainer';
+import reducer from './app/reducers';
 import { ActionCreators } from './app/actions';
 
 function configureStore(initialState) {
@@ -40,16 +40,24 @@ class LoggedApp extends Component {
   }
 }
 
+function mapStateToProps(state) {
+  return {
+    accountNumbers: state.accountNumbers,
+  };
+}
+
 function mapDispatchToProps(dispatch) {
   return bindActionCreators(ActionCreators, dispatch);
 }
 
-const ConnectLoggedApp = connect(() => {return {};}, mapDispatchToProps)(LoggedApp);
+const ConnectLoggedApp = connect(mapStateToProps, mapDispatchToProps)(LoggedApp);
 
 const App = () => (
   <Provider store={store}>
-    <ConnectLoggedApp />
+    <MenuContext style={{ flex: 1 }}>
+      <ConnectLoggedApp />
+    </MenuContext>
   </Provider>
-)
+);
 
 AppRegistry.registerComponent('TwilioRN', () => App);
