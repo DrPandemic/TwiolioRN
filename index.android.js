@@ -1,3 +1,5 @@
+// @flow
+
 import React, { Component } from 'react';
 import {
   AppRegistry,
@@ -10,7 +12,6 @@ import thunkMiddleware from 'redux-thunk'
 import AppContainer from './app/containers/AppContainer'
 import reducer from './app/reducers'
 import { ActionCreators } from './app/actions';
-
 
 function configureStore(initialState) {
   const enhancer = compose(
