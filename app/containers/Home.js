@@ -10,28 +10,23 @@ import {
 import { Actions } from 'react-native-router-flux';
 
 import { ActionCreators } from '../actions';
-import { PhoneNumber } from '../actions/types';
 
 class AppContainer extends Component {
-  props: {
-    accountNumbers: Array<PhoneNumber>,
-  };
+  props: {};
 
   render() {
     return (
       <View style={{ paddingTop: 60 }}>
         <Text onPress={Actions.conversation}>
-          {this.props.accountNumbers.map(n => n.friendlyName).join(', ')}
+          asd
         </Text>
       </View>
     );
   }
 }
 
-function mapStateToProps(state) {
-  return {
-    accountNumbers: state.accountNumbers,
-  };
+function mapStateToProps() {
+  return {};
 }
 
 function mapDispatchToProps(dispatch) {

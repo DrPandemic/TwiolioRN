@@ -13,24 +13,40 @@ import { PhoneNumber } from '../actions/types';
 
 class AppContainer extends Component {
   props: {
-    accountNumbers: Array<PhoneNumber>,
+    fetchedAccountNumbers: Array<PhoneNumber>,
   };
 
-  render() {
-    // {this.props.accountNumbers.map(n => n.friendlyName).join(', ')}
+  renderNumbers() {
+    if (this.props.fetchedAccountNumbers.length > 0) {
+      return (
+        <MenuOptions>
+          {this.props.fetchedAccountNumbers.map(n => AppContainer.renderNumber(n))}
+        </MenuOptions>
+      );
+    }
     return (
-      <Menu onSelect={(value) => alert(`User selected the number ${value}`)}>
+      <MenuOptions>
+        <MenuOption disabled={true} text={'You have no number'}>
+        </MenuOption>
+      </MenuOptions>
+    );
+  }
+
+  static renderNumber(number: PhoneNumber) {
+    return (
+      <MenuOption value={number.sid} key={number.sid}>
+        <Text>{number.friendlyName}</Text>
+      </MenuOption>
+    );
+  }
+
+  render() {
+    return (
+      <Menu onSelect={value => alert(`User selected the number ${value}`)}>
         <MenuTrigger>
           <Text style={{ fontSize: 20 }}>&#8942;</Text>
         </MenuTrigger>
-        <MenuOptions>
-          <MenuOption value={1}>
-            <Text>One</Text>
-          </MenuOption>
-          <MenuOption value={2}>
-            <Text>Two</Text>
-          </MenuOption>
-        </MenuOptions>
+        {this.renderNumbers()}
       </Menu>
     );
   }
@@ -38,7 +54,7 @@ class AppContainer extends Component {
 
 function mapStateToProps(state) {
   return {
-    accountNumbers: state.accountNumbers,
+    fetchedAccountNumbers: state.fetchedAccountNumbers,
   };
 }
 

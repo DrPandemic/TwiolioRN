@@ -41,9 +41,7 @@ class LoggedApp extends Component {
 }
 
 function mapStateToProps(state) {
-  return {
-    accountNumbers: state.accountNumbers,
-  };
+  return {};
 }
 
 function mapDispatchToProps(dispatch) {

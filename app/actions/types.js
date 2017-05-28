@@ -13,12 +13,4 @@ export class PhoneNumber {
   }
 }
 
-export type Dispatch = (action: Action) => void;
-export type ActionCreator = (Dispatch) => Promise<Action>;
-
-export type Action = {
-  type: 'SET_ACCOUNT_NUMBERS',
-  accountNumbers: Array<PhoneNumber>,
-};
-
-export const SET_ACCOUNT_NUMBERS = 'SET_ACCOUNT_NUMBERS';
+export const SET_FETCHED_ACCOUNT_NUMBERS = 'SET_FETCHED_ACCOUNT_NUMBERS';

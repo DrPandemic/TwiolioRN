@@ -12,9 +12,7 @@ import { ActionCreators } from '../actions';
 import { PhoneNumber } from '../actions/types';
 
 class AppContainer extends Component {
-  props: {
-    accountNumbers: Array<PhoneNumber>,
-  };
+  props: {};
 
   render() {
     return (
@@ -28,9 +26,7 @@ class AppContainer extends Component {
 }
 
 function mapStateToProps(state) {
-  return {
-    accountNumbers: state.accountNumbers,
-  };
+  return {};
 }
 
 function mapDispatchToProps(dispatch) {
