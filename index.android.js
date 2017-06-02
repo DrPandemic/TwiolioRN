@@ -1,28 +1,30 @@
 // @flow
 
+import 'es6-symbol/implement';
 import React, { Component } from 'react';
 import {
   AppRegistry,
+  View,
 } from 'react-native';
 import { Provider, connect } from 'react-redux';
-import { createStore, applyMiddleware, compose, bindActionCreators } from 'redux';
-import thunkMiddleware from 'redux-thunk';
+import { applyMiddleware, bindActionCreators, compose, createStore } from 'redux';
+import { install } from 'redux-loop';
 import { MenuContext } from 'react-native-popup-menu';
 
 import AppContainer from './app/containers/AppContainer';
-import reducer from './app/reducers';
+import { initialState, reducer } from './app/reducers';
 import { ActionCreators } from './app/actions';
 
-function configureStore(initialState) {
-  const enhancer = compose(
-    applyMiddleware(
-      thunkMiddleware,
-    ),
-  );
-  return createStore(reducer, initialState, enhancer);
-}
+const enhancer = compose(
+  applyMiddleware(...[]),
+  install(),
+);
 
-const store = configureStore({});
+const store = createStore(
+  reducer,
+  initialState,
+  enhancer,
+);
 
 class LoggedApp extends Component {
   props: {
@@ -40,7 +42,7 @@ class LoggedApp extends Component {
   }
 }
 
-function mapStateToProps(state) {
+function mapStateToProps() {
   return {};
 }
 

@@ -17,10 +17,10 @@ class AppContainer extends Component {
   };
 
   renderNumbers() {
-    if (this.props.fetchedAccountNumbers.length > 0) {
+    if (this.props.fetchedAccountNumbers.numbers.length > 0) {
       return (
         <MenuOptions>
-          {this.props.fetchedAccountNumbers.map(n => AppContainer.renderNumber(n))}
+          {this.props.fetchedAccountNumbers.numbers.map(n => AppContainer.renderNumber(n))}
         </MenuOptions>
       );
     }

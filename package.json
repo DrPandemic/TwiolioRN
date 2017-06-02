@@ -10,6 +10,7 @@
 	},
 	"dependencies": {
 		"buffer": "^5.0.6",
+		"es6-symbol": "^3.1.1",
 		"eslint-config-airbnb": "^15.0.1",
 		"eslint-plugin-import": "^2.3.0",
 		"react": "16.0.0-alpha.6",
@@ -19,14 +20,15 @@
 		"react-native-router-flux": "^3.39.1",
 		"react-redux": "^5.0.5",
 		"redux": "^3.6.0",
-		"redux-thunk": "^2.2.0"
+		"redux-act": "^1.2.0",
+		"redux-loop": "^2.2.2"
 	},
 	"devDependencies": {
 		"babel-eslint": "^7.2.3",
 		"babel-jest": "20.0.3",
 		"babel-preset-react-native": "1.9.2",
 		"eslint": "^3.19.0",
-		"eslint-plugin-flowtype": "^2.33.0",
+		"eslint-plugin-flowtype": "^2.34.0",
 		"eslint-plugin-flowtype-errors": "^3.3.0",
 		"eslint-plugin-react": "^7.0.1",
 		"eslint-plugin-react-native": "^2.3.2",

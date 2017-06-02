@@ -1,6 +1,10 @@
-import { combineReducers } from 'redux';
-import * as AccountReducers from './account'
+import { combineReducers } from 'redux-loop';
+import * as AccountReducers from './account';
 
-export default combineReducers(Object.assign({},
-  AccountReducers,
-));
+export const reducer = combineReducers({
+  fetchedAccountNumbers: AccountReducers.reducer,
+});
+
+export const initialState = {
+  fetchedAccountNumbers: AccountReducers.initialState,
+};
