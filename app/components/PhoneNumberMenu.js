@@ -9,9 +9,14 @@ import {
 import Menu, { MenuOptions, MenuOption, MenuTrigger } from 'react-native-popup-menu';
 
 import { ActionCreators } from '../actions';
+import { T as AccountT } from '../reducers/account';
 import { PhoneNumber } from '../actions/types';
 
 class AppContainer extends Component {
+  props: {
+    fetchedAccountNumbers: AccountT,
+  }
+
   renderNumbers() {
     if (this.props.fetchedAccountNumbers.numbers.length > 0) {
       return (
@@ -28,7 +33,7 @@ class AppContainer extends Component {
     );
   }
 
-  static renderNumber(number) {
+  static renderNumber(number: PhoneNumber) {
     return (
       <MenuOption value={number.sid} key={number.sid}>
         <Text>{number.friendlyName}</Text>

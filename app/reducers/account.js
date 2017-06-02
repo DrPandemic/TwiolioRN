@@ -1,6 +1,11 @@
+// @flow
+
 import { loop, Effects } from 'redux-loop';
 import * as types from '../actions/types';
 import Api from '../lib/api';
+
+export const initialState = { loading: false, numbers: [], error: {} };
+export type T = { loading: boolean, numbers: Array<types.PhoneNumber>, error: any };
 
 function fetchNumbers() {
   return Api.get('/IncomingPhoneNumbers.json')
@@ -15,15 +20,10 @@ function fetchNumbers() {
     }));
 }
 
-export const initialState = { loading: false, numbers: [], error: {} };
-
-export const reducer = (state, action) => {
+export const reducer = (state: T, action) => {
   switch (action.type) {
     case types.FETCH_ACCOUNT_NUMBERS:
-      return loop(
-        { ...state, loading: true },
-        Effects.promise(fetchNumbers),
-      );
+      return loop({ ...state, loading: true }, Effects.promise(fetchNumbers));
     case types.SET_FETCHED_ACCOUNT_NUMBERS:
       return {
         ...state,
