@@ -2,11 +2,7 @@
 
 // Account
 export class PhoneNumber {
-  sid: string;
-  friendlyName: string;
-  number: string;
-
-  constructor(response: any) {
+  constructor(response) {
     this.sid = response.sid;
     this.friendlyName = response.friendly_name;
     this.number = response.phone_number;

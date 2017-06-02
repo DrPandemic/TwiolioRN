@@ -12,10 +12,6 @@ import { ActionCreators } from '../actions';
 import { PhoneNumber } from '../actions/types';
 
 class AppContainer extends Component {
-  props: {
-    fetchedAccountNumbers: Array<PhoneNumber>,
-  };
-
   renderNumbers() {
     if (this.props.fetchedAccountNumbers.numbers.length > 0) {
       return (
@@ -32,7 +28,7 @@ class AppContainer extends Component {
     );
   }
 
-  static renderNumber(number: PhoneNumber) {
+  static renderNumber(number) {
     return (
       <MenuOption value={number.sid} key={number.sid}>
         <Text>{number.friendlyName}</Text>
