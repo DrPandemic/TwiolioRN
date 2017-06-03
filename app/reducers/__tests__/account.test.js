@@ -2,6 +2,7 @@ import { Effects, loop } from 'redux-loop';
 
 import { reducer, initialState, fetchNumbers } from '../account';
 import * as actions from '../../actions/account';
+import LibApi from '../../lib/api';
 import * as types from '../../actions/types';
 
 test('reducer.FETCH_ACCOUNT_NUMBERS', () => {
@@ -11,7 +12,7 @@ test('reducer.FETCH_ACCOUNT_NUMBERS', () => {
 
   expect(result).toEqual(loop(
     { ...initialState, loading: true },
-    Effects.promise(fetchNumbers)
+    Effects.promise(fetchNumbers, LibApi)
   ));
 });
 
@@ -33,7 +34,7 @@ test('reducer.FETCH_ACCOUNT_NUMBER_ERROR', () => {
   expect(result).toEqual({ ...initialState, error: s });
 });
 
-test('reducer.SET_FETCHED_ACCOUNT_NUMBERS followed by reducer.FETCH_ACCOUNT_NUMBER_ERROR', () => {
+test('success followed by an error', () => {
   const state0 = { ...initialState };
   const s0 = Symbol('fetched numbers');
   const s1 = Symbol('error');
@@ -42,4 +43,46 @@ test('reducer.SET_FETCHED_ACCOUNT_NUMBERS followed by reducer.FETCH_ACCOUNT_NUMB
   const state2 = reducer(state1, actions.failFetchAccountNumbers(s1));
 
   expect(state2).toEqual({ ...initialState, numbers: s0, error: s1 });
+});
+
+test('fetchNumbers success', async () => {
+  const number = {
+    sid: '123',
+    friendly_name: '123',
+    phone_number: '123',
+  };
+  const ApiMock = {
+    get: jest.fn().mockReturnValueOnce(
+      Promise.resolve({
+        json: () => Promise.resolve({
+          incoming_phone_numbers: [number]
+        })
+      })
+    ),
+  };
+
+  const result = await fetchNumbers(ApiMock);
+
+  expect(ApiMock.get).toBeCalled();
+  expect(result).toEqual({
+    type: types.SET_FETCHED_ACCOUNT_NUMBERS,
+    fetchedAccountNumbers: [
+      new types.PhoneNumber(number)
+    ],
+  });
+});
+
+test('fetchNumbers failure', async () => {
+  const error = Symbol('error');
+  const ApiMock = {
+    get: jest.fn().mockReturnValueOnce(Promise.reject(error)),
+  };
+
+  const result = await fetchNumbers(ApiMock);
+
+  expect(ApiMock.get).toBeCalled();
+  expect(result).toEqual({
+    type: types.FETCH_ACCOUNT_NUMBER_ERROR,
+    error,
+  });
 });

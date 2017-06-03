@@ -4,7 +4,6 @@ import 'es6-symbol/implement';
 import React, { Component } from 'react';
 import {
   AppRegistry,
-  View,
 } from 'react-native';
 import { Provider, connect } from 'react-redux';
 import { applyMiddleware, bindActionCreators, compose, createStore } from 'redux';
