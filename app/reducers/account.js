@@ -2,42 +2,42 @@
 
 import { loop, Effects } from 'redux-loop';
 import * as types from '../actions/types';
+import * as actions from '../actions/account';
 import Api from '../lib/api';
+import createReducer from '../lib/createReducer';
 
-export const initialState = { loading: false, numbers: [], error: {} };
-export type T = { loading: boolean, numbers: Array<types.PhoneNumber>, error: any };
+export type T = {| loading: boolean, numbers: Array<types.PhoneNumber>, error: any |};
+export const initialState: T = { loading: false, numbers: [], error: {} };
 
-function fetchNumbers() {
+export function fetchNumbers() {
   return Api.get('/IncomingPhoneNumbers.json')
     .then(r => r.json())
-    .then(r => ({
-      type: types.SET_FETCHED_ACCOUNT_NUMBERS,
-      fetchedAccountNumbers: r.incoming_phone_numbers.map(number => new types.PhoneNumber(number)),
-    }))
-    .catch(e => ({
-      type: types.FETCH_ACCOUNT_NUMBER_ERROR,
-      error: e,
-    }));
+    .then(r => actions.successFetchAccountNumbers(
+      r.incoming_phone_numbers.map(number => new types.PhoneNumber(number))
+    ))
+    .catch(e => actions.failFetchAccountNumbers(e));
 }
 
-export const reducer = (state: T, action) => {
-  switch (action.type) {
-    case types.FETCH_ACCOUNT_NUMBERS:
-      return loop({ ...state, loading: true }, Effects.promise(fetchNumbers));
-    case types.SET_FETCHED_ACCOUNT_NUMBERS:
-      return {
-        ...state,
-        numbers: action.fetchedAccountNumbers,
-        error: {},
-        loading: false,
-      };
-    case types.FETCH_ACCOUNT_NUMBER_ERROR:
-      return {
-        ...state,
-        error: action.error,
-        loading: false,
-      };
-    default:
-      return { ...state };
-  }
-};
+export const reducer = createReducer({
+  [types.FETCH_ACCOUNT_NUMBERS](state) {
+    return loop(
+      { ...state, loading: true },
+      Effects.promise(fetchNumbers)
+    );
+  },
+  [types.SET_FETCHED_ACCOUNT_NUMBERS](state, action) {
+    return {
+      ...state,
+      numbers: action.fetchedAccountNumbers,
+      error: {},
+      loading: false,
+    };
+  },
+  [types.FETCH_ACCOUNT_NUMBER_ERROR](state, action) {
+    return {
+      ...state,
+      error: action.error,
+      loading: false,
+    };
+  },
+});

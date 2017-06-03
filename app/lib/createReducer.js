@@ -1,9 +1,14 @@
-export default function createReducer(initialState, handlers) {
-  return function reducer(state = initialState, action) {
+// @flow
+
+type Handlers = {
+  [string]: (any, any) => any,
+};
+
+export default function createReducer(handlers: Handlers) {
+  return function reducer(state: any, action: any) {
     if (handlers.hasOwnProperty(action.type)) {
       return handlers[action.type](state, action);
-    } else {
-      return state;
     }
-  }
+    return { ...state };
+  };
 }
