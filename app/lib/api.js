@@ -1,14 +1,18 @@
+// @flow
+
 import Config from 'react-native-config';
 import { Buffer } from 'buffer';
 
-class Api {
+export default class Api {
   static headers() {
-    const auth = new Buffer(Config.TWILIO_ACCOUNT_SID + ":" + Config.TWILIO_AUTH_TOKEN);
+    const auth = new Buffer(
+      `${Config.TWILIO_ACCOUNT_SID}:${Config.TWILIO_AUTH_TOKEN}`
+    );
     return {
-      'Accept': 'application/json',
+      Accept: 'application/json',
       'Content-Type': 'application/json',
-      'dataType': 'json',
-      'Authorization': 'Basic ' + auth.toString('base64'),
+      dataType: 'json',
+      Authorization: `Basic ${auth.toString('base64')}`,
     };
   }
 
@@ -38,7 +42,7 @@ class Api {
     const options = Object.assign(
       { method: verb },
       params ? { body: JSON.stringify(params) } : null,
-      {headers: Api.headers()}
+      { headers: Api.headers() }
     );
 
     return fetch(url, options).then(resp => {
@@ -49,5 +53,3 @@ class Api {
     });
   }
 }
-
-export default Api;

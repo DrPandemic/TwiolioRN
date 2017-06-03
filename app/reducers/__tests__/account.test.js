@@ -4,6 +4,8 @@ import { reducer, initialState, fetchNumbers } from '../account';
 import * as actions from '../../actions/account';
 import LibApi from '../../lib/api';
 import * as types from '../../actions/types';
+import phoneFixture from '../../test_helpers/fixtures/received_phone_number.json';
+import ApiMock from '../../test_helpers/api_helper';
 
 test('reducer.FETCH_ACCOUNT_NUMBERS', () => {
   const state = { ...initialState, loading: false };
@@ -46,41 +48,28 @@ test('success followed by an error', () => {
 });
 
 test('fetchNumbers success', async () => {
-  const number = {
-    sid: '123',
-    friendly_name: '123',
-    phone_number: '123',
-  };
-  const ApiMock = {
-    get: jest.fn().mockReturnValueOnce(
-      Promise.resolve({
-        json: () => Promise.resolve({
-          incoming_phone_numbers: [number]
-        })
-      })
-    ),
-  };
+  const api = (new ApiMock()).mock('get', true, {
+    incoming_phone_numbers: [phoneFixture.simple]
+  });
 
-  const result = await fetchNumbers(ApiMock);
+  const result = await fetchNumbers(api);
 
-  expect(ApiMock.get).toBeCalled();
+  expect(api.get).toBeCalled();
   expect(result).toEqual({
     type: types.SET_FETCHED_ACCOUNT_NUMBERS,
     fetchedAccountNumbers: [
-      new types.PhoneNumber(number)
+      new types.PhoneNumber(phoneFixture.simple)
     ],
   });
 });
 
 test('fetchNumbers failure', async () => {
   const error = Symbol('error');
-  const ApiMock = {
-    get: jest.fn().mockReturnValueOnce(Promise.reject(error)),
-  };
+  const api = (new ApiMock()).mock('get', false, error);
 
-  const result = await fetchNumbers(ApiMock);
+  const result = await fetchNumbers(api);
 
-  expect(ApiMock.get).toBeCalled();
+  expect(api.get).toBeCalled();
   expect(result).toEqual({
     type: types.FETCH_ACCOUNT_NUMBER_ERROR,
     error,
