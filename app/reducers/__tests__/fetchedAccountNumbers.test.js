@@ -1,7 +1,7 @@
 import { Effects, loop } from 'redux-loop';
 
-import { reducer, initialState, fetchNumbers } from '../account';
-import * as actions from '../../actions/account';
+import { reducer, initialState, fetchNumbers } from '../fetchedAccountNumbers';
+import * as actions from '../../actions/fetchedAccountNumbers';
 import LibApi from '../../lib/api';
 import * as types from '../../actions/types';
 import phoneFixture from '../../test_helpers/fixtures/received_phone_number.json';

@@ -7,7 +7,7 @@ import { Text } from 'react-native';
 import Menu, { MenuOptions, MenuOption, MenuTrigger } from 'react-native-popup-menu';
 
 import { ActionCreators } from '../actions';
-import type { T as AccountT } from '../reducers/account';
+import type { T as AccountT } from '../reducers/fetchedAccountNumbers';
 import { PhoneNumber } from '../actions/types';
 
 class PhoneNumberMenu extends Component {
@@ -19,6 +19,9 @@ class PhoneNumberMenu extends Component {
     if (this.props.fetchedAccountNumbers.numbers.length > 0) {
       return (
         <MenuOptions>
+          <MenuOption value={null} key={'all'}>
+            <Text>See all conversations</Text>
+          </MenuOption>
           {
             this.props.fetchedAccountNumbers.numbers.map(
               n => PhoneNumberMenu.renderNumber(n)

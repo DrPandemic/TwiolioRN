@@ -2,7 +2,7 @@
 
 import { loop, Effects } from 'redux-loop';
 import * as types from '../actions/types';
-import * as actions from '../actions/account';
+import * as actions from '../actions/fetchedAccountNumbers';
 import LibApi from '../lib/api';
 import createReducer from '../lib/createReducer';
 

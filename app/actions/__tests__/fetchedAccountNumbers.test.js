@@ -3,7 +3,7 @@ import {
   successFetchAccountNumbers,
   failFetchAccountNumbers,
   selectNumber,
-} from '../account';
+} from '../fetchedAccountNumbers';
 import * as types from '../types';
 
 test('fetchAccountNumbers', () => {

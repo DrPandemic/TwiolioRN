@@ -1,10 +1,10 @@
 import { combineReducers } from 'redux-loop';
-import * as AccountReducers from './account';
+import * as fetchedAccountNumbersReducers from './fetchedAccountNumbers';
 
 export const reducer = combineReducers({
-  fetchedAccountNumbers: AccountReducers.reducer,
+  fetchedAccountNumbers: fetchedAccountNumbersReducers.reducer,
 });
 
 export const initialState = {
-  fetchedAccountNumbers: AccountReducers.initialState,
+  fetchedAccountNumbers: fetchedAccountNumbersReducers.initialState,
 };

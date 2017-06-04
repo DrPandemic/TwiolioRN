@@ -1,5 +1,5 @@
-import * as AccountActions from './account';
+import * as fetchedAccountNumbersActions from './fetchedAccountNumbers';
 
 export const ActionCreators = Object.assign({},
-  AccountActions,
+  fetchedAccountNumbersActions,
 );
