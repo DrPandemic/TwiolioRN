@@ -4,15 +4,32 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { Text } from 'react-native';
-import Menu, { MenuOptions, MenuOption, MenuTrigger } from 'react-native-popup-menu';
+import Menu, {
+  MenuOptions,
+  MenuOption,
+  MenuTrigger
+} from 'react-native-popup-menu';
 
 import { ActionCreators } from '../actions';
-import type { T as AccountT } from '../reducers/fetchedAccountNumbers';
+import type { T as FetchedT } from '../reducers/fetchedAccountNumbers';
+import type { T as AccountT } from '../reducers/account';
 import { PhoneNumber } from '../actions/types';
 
 class PhoneNumberMenu extends Component {
   props: {
-    fetchedAccountNumbers: AccountT,
+    fetchedAccountNumbers: FetchedT,
+    account: AccountT,
+    selectNumber: (?string) => void,
+  }
+
+  constructor(props) {
+    super(props);
+
+    this.onSelectNumber = this.onSelectNumber.bind(this);
+  }
+
+  onSelectNumber(number: ?string) {
+    this.props.selectNumber(number);
   }
 
   renderNumbers() {
@@ -48,7 +65,7 @@ class PhoneNumberMenu extends Component {
 
   render() {
     return (
-      <Menu onSelect={value => alert(`User selected the number ${value}`)}>
+      <Menu onSelect={this.onSelectNumber}>
         <MenuTrigger>
           <Text style={{ fontSize: 20 }}>&#8942;</Text>
         </MenuTrigger>
@@ -61,6 +78,7 @@ class PhoneNumberMenu extends Component {
 function mapStateToProps(state) {
   return {
     fetchedAccountNumbers: state.fetchedAccountNumbers,
+    account: state.account,
   };
 }
 
