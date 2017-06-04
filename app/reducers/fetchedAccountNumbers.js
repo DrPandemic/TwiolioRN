@@ -10,13 +10,11 @@ export type T = {|
   loading: boolean,
   numbers: Array<types.PhoneNumber>,
   error: any,
-  selectedNumber: ?string,
 |};
 export const initialState: T = {
   loading: false,
   numbers: [],
   error: {},
-  selectedNumber: null,
 };
 
 export function fetchNumbers(Api: any) {
@@ -48,12 +46,6 @@ export const reducer = createReducer({
       ...state,
       error: action.error,
       loading: false,
-    };
-  },
-  [types.SELECT_NUMBER](state, action) {
-    return {
-      ...state,
-      selectedNumber: action.selectedNumber,
     };
   },
 });
