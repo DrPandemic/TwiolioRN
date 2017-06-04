@@ -2,9 +2,9 @@
 
 import { loop, Effects } from 'redux-loop';
 import * as types from '../actions/types';
-import * as actions from '../actions/fetchedAccountNumbers';
 import LibApi from '../lib/api';
 import createReducer from '../lib/createReducer';
+import { fetchNumbers } from '../effects/phoneNumbers';
 
 export type T = {|
   loading: boolean,
@@ -16,15 +16,6 @@ export const initialState: T = {
   numbers: [],
   error: {},
 };
-
-export function fetchNumbers(Api: any) {
-  return Api.get('/IncomingPhoneNumbers.json')
-    .then(r => r.json())
-    .then(r => actions.successFetchAccountNumbers(
-      r.incoming_phone_numbers.map(number => new types.PhoneNumber(number))
-    ))
-    .catch(e => actions.failFetchAccountNumbers(e));
-}
 
 export const reducer = createReducer({
   [types.FETCH_ACCOUNT_NUMBERS](state) {

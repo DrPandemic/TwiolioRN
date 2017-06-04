@@ -15,7 +15,7 @@ I'm doing this project to learn React Native. So feel free to open PRs to improv
   - [ ] Change the visual to more easily understand that's a dropdown
 - [ ] Display conversations by number
 - [ ] Display all conversations
-- [ ] Display SMS by receiving number
+- [ ] Display a conversation
 - [ ] Send SMS
 - [ ] Save already received messages
   - [ ] Display phone numbers with conversations but that wasn't received by the API
