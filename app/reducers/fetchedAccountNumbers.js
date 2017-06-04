@@ -4,7 +4,7 @@ import { loop, Effects } from 'redux-loop';
 import * as types from '../actions/types';
 import LibApi from '../lib/api';
 import createReducer from '../lib/createReducer';
-import { fetchNumbers } from '../effects/phoneNumbers';
+import effects from '../effects';
 
 export type T = {|
   loading: boolean,
@@ -21,7 +21,7 @@ export const reducer = createReducer({
   [types.FETCH_ACCOUNT_NUMBERS](state) {
     return loop(
       { ...state, loading: true },
-      Effects.promise(fetchNumbers, LibApi)
+      Effects.promise(effects.fetchNumbers, LibApi)
     );
   },
   [types.SET_FETCHED_ACCOUNT_NUMBERS](state, action) {

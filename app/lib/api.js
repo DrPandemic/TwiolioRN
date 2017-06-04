@@ -16,8 +16,8 @@ export default class Api {
     };
   }
 
-  static get(route) {
-    return this.xhr(route, null, 'GET');
+  static get(route, params = null) {
+    return this.xhr(route, params, 'GET');
   }
 
   static head(route) {

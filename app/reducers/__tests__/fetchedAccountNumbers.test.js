@@ -1,7 +1,7 @@
 import { Effects, loop } from 'redux-loop';
 
 import { reducer, initialState } from '../fetchedAccountNumbers';
-import { fetchNumbers } from '../../effects/phoneNumbers';
+import effects from '../../effects';
 import * as actions from '../../actions/fetchedAccountNumbers';
 import LibApi from '../../lib/api';
 
@@ -12,7 +12,7 @@ test('reducer.FETCH_ACCOUNT_NUMBERS', () => {
 
   expect(result).toEqual(loop(
     { ...initialState, loading: true },
-    Effects.promise(fetchNumbers, LibApi)
+    Effects.promise(effects.fetchNumbers, LibApi)
   ));
 });
 

@@ -16,6 +16,7 @@ I'm doing this project to learn React Native. So feel free to open PRs to improv
 - [ ] Display conversations by number
 - [ ] Display all conversations
 - [ ] Display a conversation
+- [ ] Manage multipart messages
 - [ ] Send SMS
 - [ ] Save already received messages
   - [ ] Display phone numbers with conversations but that wasn't received by the API
