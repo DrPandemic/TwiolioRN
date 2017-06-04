@@ -11,12 +11,14 @@ This application could also be "translated" to normal react and be used to acces
 I'm doing this project to learn React Native. So feel free to open PRs to improve the codebase.
 
 ## TODO
-- [ ] Manage phone numbers
+- [x] Be able to select phone numbers
+  - [ ] Change the visual to more easily understand that's a dropdown
 - [ ] Display conversations by number
 - [ ] Display all conversations
 - [ ] Display SMS by receiving number
 - [ ] Send SMS
 - [ ] Save already received messages
+  - [ ] Display phone numbers with conversations but that wasn't received by the API
 - [ ] Reduce network usage
   - [ ] Configurable fetch timeout
   - [ ] Don't ask twice for the same SMS
