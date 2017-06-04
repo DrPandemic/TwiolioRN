@@ -63,11 +63,33 @@ class PhoneNumberMenu extends Component {
     );
   }
 
+  renderSelectedNumber() {
+    const sid: ?string = this.props.account.selectedNumber;
+    const defaultValue = 'All conversations';
+    let displayName = defaultValue;
+
+    if (sid !== null) {
+      const foundNumber = this.props.fetchedAccountNumbers.numbers.find(
+        n => n.sid === sid
+      );
+
+      if (foundNumber === undefined) {
+        displayName = defaultValue;
+      } else {
+        displayName = foundNumber.friendlyName;
+      }
+    }
+
+    return displayName;
+  }
+
   render() {
     return (
       <Menu onSelect={this.onSelectNumber}>
         <MenuTrigger>
-          <Text style={{ fontSize: 20 }}>&#8942;</Text>
+          <Text style={{ fontSize: 20 }}>
+            {this.renderSelectedNumber()}...
+          </Text>
         </MenuTrigger>
         {this.renderNumbers()}
       </Menu>
