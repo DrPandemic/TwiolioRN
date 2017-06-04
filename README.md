@@ -13,6 +13,7 @@ I'm doing this project to learn React Native. So feel free to open PRs to improv
 ## TODO
 - [ ] Manage phone numbers
 - [ ] Display conversations by number
+- [ ] Display all conversations
 - [ ] Display SMS by receiving number
 - [ ] Send SMS
 - [ ] Save already received messages
@@ -46,8 +47,7 @@ If I'm wrong or if you think it could help me to use it, please open an issue.
 I chose redux-loop over others side effect management library because I like how I can write tests for it.
 
 ## Limitations
-With the current version of ReactNative (0.44.0), we can't use Hot Reload with redux-loop for some reason releated to Symbols.
-I tried to add polyfills, but I had other issues.
+With the current version of ReactNative (0.44.0), we can't use Hot Reload with redux-loop.
 
 You need to create yourself your Twilio account.
 

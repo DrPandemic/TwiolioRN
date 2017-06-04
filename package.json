@@ -20,7 +20,6 @@
 		"react-native-router-flux": "^3.39.1",
 		"react-redux": "^5.0.5",
 		"redux": "^3.6.0",
-		"redux-act": "^1.2.0",
 		"redux-loop": "^2.2.2"
 	},
 	"devDependencies": {
@@ -34,7 +33,7 @@
 		"eslint-plugin-react-native": "^2.3.2",
 		"flow-bin": "0.42.0",
 		"jest": "20.0.3",
-		"react-test-renderer": "16.0.0-alpha.6"
+		"react-test-renderer": "^15.5.4"
 	},
 	"jest": {
 		"preset": "react-native"

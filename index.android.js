@@ -22,7 +22,7 @@ const enhancer = compose(
 const store = createStore(
   reducer,
   initialState,
-  enhancer,
+  enhancer
 );
 
 class LoggedApp extends Component {

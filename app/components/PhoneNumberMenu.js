@@ -3,16 +3,14 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import {
-  Text,
-} from 'react-native';
+import { Text } from 'react-native';
 import Menu, { MenuOptions, MenuOption, MenuTrigger } from 'react-native-popup-menu';
 
 import { ActionCreators } from '../actions';
-import { T as AccountT } from '../reducers/account';
+import type { T as AccountT } from '../reducers/account';
 import { PhoneNumber } from '../actions/types';
 
-class AppContainer extends Component {
+class PhoneNumberMenu extends Component {
   props: {
     fetchedAccountNumbers: AccountT,
   }
@@ -21,7 +19,11 @@ class AppContainer extends Component {
     if (this.props.fetchedAccountNumbers.numbers.length > 0) {
       return (
         <MenuOptions>
-          {this.props.fetchedAccountNumbers.numbers.map(n => AppContainer.renderNumber(n))}
+          {
+            this.props.fetchedAccountNumbers.numbers.map(
+              n => PhoneNumberMenu.renderNumber(n)
+            )
+          }
         </MenuOptions>
       );
     }
@@ -63,4 +65,4 @@ function mapDispatchToProps(dispatch) {
   return bindActionCreators(ActionCreators, dispatch);
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(AppContainer);
+export default connect(mapStateToProps, mapDispatchToProps)(PhoneNumberMenu);

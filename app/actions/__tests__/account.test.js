@@ -2,6 +2,7 @@ import {
   fetchAccountNumbers,
   successFetchAccountNumbers,
   failFetchAccountNumbers,
+  selectNumber,
 } from '../account';
 import * as types from '../types';
 
@@ -24,5 +25,13 @@ test('failFetchAccountNumbers', () => {
   expect(failFetchAccountNumbers(s)).toEqual({
     type: types.FETCH_ACCOUNT_NUMBER_ERROR,
     error: s,
+  });
+});
+
+test('selectNumber', () => {
+  const s = Symbol('number');
+  expect(selectNumber(s)).toEqual({
+    type: types.SELECT_NUMBER,
+    selectedNumber: s,
   });
 });
