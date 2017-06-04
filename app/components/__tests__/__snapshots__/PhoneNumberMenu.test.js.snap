@@ -1,164 +1,169 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`renders a selected number 1`] = `
+<Text
+  accessible={true}
+  allowFontScaling={true}
+  ellipsizeMode="tail"
+>
+  (123) 123-1234
+</Text>
+`;
+
 exports[`renders an empty menu 1`] = `
 <View
-  onLayout={[Function]}
   style={
-    Object {
-      "flex": 1,
-    }
+    Array [
+      undefined,
+      undefined,
+    ]
   }
 >
   <View
     style={
       Array [
         Object {
+          "backgroundColor": "transparent",
           "flex": 1,
+          "padding": 5,
         },
         undefined,
         undefined,
       ]
     }
   >
-    <View
-      style={undefined}
+    <Text
+      accessible={true}
+      allowFontScaling={true}
+      ellipsizeMode="tail"
+      style={
+        Array [
+          Object {
+            "color": "#ccc",
+          },
+          undefined,
+        ]
+      }
     >
-      <View
-        collapsable={false}
-        style={undefined}
-      >
-        <View
-          accessibilityComponentType={undefined}
-          accessibilityLabel={undefined}
-          accessibilityTraits={undefined}
-          accessible={true}
-          hasTVPreferredFocus={undefined}
-          hitSlop={undefined}
-          isTVSelectable={true}
-          onLayout={undefined}
-          onResponderGrant={[Function]}
-          onResponderMove={[Function]}
-          onResponderRelease={[Function]}
-          onResponderTerminate={[Function]}
-          onResponderTerminationRequest={[Function]}
-          onStartShouldSetResponder={[Function]}
-          style={
-            Array [
-              Object {
-                "backgroundColor": "transparent",
-              },
-              undefined,
-            ]
-          }
-          testID={undefined}
-          tvParallaxProperties={undefined}
-        >
-          <View
-            menuName="menu-1"
-            style={
-              Array [
-                undefined,
-                undefined,
-              ]
-            }
-          >
-            <Text
-              accessible={true}
-              allowFontScaling={true}
-              ellipsizeMode="tail"
-              style={
-                Object {
-                  "fontSize": 20,
-                }
-              }
-            >
-              ⋮
-            </Text>
-          </View>
-        </View>
-      </View>
-    </View>
+      You have no number
+    </Text>
   </View>
 </View>
 `;
 
+exports[`renders an unselected number 1`] = `
+<Text
+  accessible={true}
+  allowFontScaling={true}
+  ellipsizeMode="tail"
+>
+  All conversations
+</Text>
+`;
+
 exports[`renders menu with a number 1`] = `
 <View
-  onLayout={[Function]}
   style={
-    Object {
-      "flex": 1,
-    }
+    Array [
+      undefined,
+      undefined,
+    ]
   }
 >
   <View
+    accessibilityComponentType={undefined}
+    accessibilityLabel={undefined}
+    accessibilityTraits={undefined}
+    accessible={true}
+    hasTVPreferredFocus={undefined}
+    hitSlop={undefined}
+    isTVSelectable={true}
+    onLayout={undefined}
+    onResponderGrant={[Function]}
+    onResponderMove={[Function]}
+    onResponderRelease={[Function]}
+    onResponderTerminate={[Function]}
+    onResponderTerminationRequest={[Function]}
+    onStartShouldSetResponder={[Function]}
     style={
       Array [
         Object {
-          "flex": 1,
+          "backgroundColor": "transparent",
         },
-        undefined,
         undefined,
       ]
     }
+    testID={undefined}
+    tvParallaxProperties={undefined}
   >
     <View
-      style={undefined}
+      style={
+        Array [
+          Object {
+            "backgroundColor": "transparent",
+            "flex": 1,
+            "padding": 5,
+          },
+          undefined,
+          undefined,
+        ]
+      }
     >
-      <View
-        collapsable={false}
-        style={undefined}
+      <Text
+        accessible={true}
+        allowFontScaling={true}
+        ellipsizeMode="tail"
       >
-        <View
-          accessibilityComponentType={undefined}
-          accessibilityLabel={undefined}
-          accessibilityTraits={undefined}
-          accessible={true}
-          hasTVPreferredFocus={undefined}
-          hitSlop={undefined}
-          isTVSelectable={true}
-          onLayout={undefined}
-          onResponderGrant={[Function]}
-          onResponderMove={[Function]}
-          onResponderRelease={[Function]}
-          onResponderTerminate={[Function]}
-          onResponderTerminationRequest={[Function]}
-          onStartShouldSetResponder={[Function]}
-          style={
-            Array [
-              Object {
-                "backgroundColor": "transparent",
-              },
-              undefined,
-            ]
-          }
-          testID={undefined}
-          tvParallaxProperties={undefined}
-        >
-          <View
-            menuName="menu-2"
-            style={
-              Array [
-                undefined,
-                undefined,
-              ]
-            }
-          >
-            <Text
-              accessible={true}
-              allowFontScaling={true}
-              ellipsizeMode="tail"
-              style={
-                Object {
-                  "fontSize": 20,
-                }
-              }
-            >
-              ⋮
-            </Text>
-          </View>
-        </View>
-      </View>
+        See all conversations
+      </Text>
+    </View>
+  </View>
+  <View
+    accessibilityComponentType={undefined}
+    accessibilityLabel={undefined}
+    accessibilityTraits={undefined}
+    accessible={true}
+    hasTVPreferredFocus={undefined}
+    hitSlop={undefined}
+    isTVSelectable={true}
+    onLayout={undefined}
+    onResponderGrant={[Function]}
+    onResponderMove={[Function]}
+    onResponderRelease={[Function]}
+    onResponderTerminate={[Function]}
+    onResponderTerminationRequest={[Function]}
+    onStartShouldSetResponder={[Function]}
+    style={
+      Array [
+        Object {
+          "backgroundColor": "transparent",
+        },
+        undefined,
+      ]
+    }
+    testID={undefined}
+    tvParallaxProperties={undefined}
+  >
+    <View
+      style={
+        Array [
+          Object {
+            "backgroundColor": "transparent",
+            "flex": 1,
+            "padding": 5,
+          },
+          undefined,
+          undefined,
+        ]
+      }
+    >
+      <Text
+        accessible={true}
+        allowFontScaling={true}
+        ellipsizeMode="tail"
+      >
+        (123) 123-1234
+      </Text>
     </View>
   </View>
 </View>

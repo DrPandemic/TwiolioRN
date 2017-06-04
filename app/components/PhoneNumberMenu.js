@@ -15,14 +15,14 @@ import type { T as FetchedT } from '../reducers/fetchedAccountNumbers';
 import type { T as AccountT } from '../reducers/account';
 import { PhoneNumber } from '../actions/types';
 
-class PhoneNumberMenu extends Component {
+export class PhoneNumberMenu extends Component {
   props: {
     fetchedAccountNumbers: FetchedT,
     account: AccountT,
     selectNumber: (?string) => void,
   }
 
-  constructor(props) {
+  constructor(props: any) {
     super(props);
 
     this.onSelectNumber = this.onSelectNumber.bind(this);

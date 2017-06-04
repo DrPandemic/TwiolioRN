@@ -1,6 +1,6 @@
 import {
   selectNumber,
-} from '../fetchedAccountNumbers';
+} from '../account';
 import * as types from '../types';
 
 test('selectNumber', () => {

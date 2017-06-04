@@ -1,5 +1,5 @@
-import { reducer, initialState } from '../fetchedAccountNumbers';
-import * as actions from '../../actions/fetchedAccountNumbers';
+import { reducer, initialState } from '../account';
+import * as actions from '../../actions/account';
 
 test('selectNumber selecting a number', () => {
   const state = { ...initialState, selectedNumber: 'foo' };
