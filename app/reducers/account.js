@@ -11,7 +11,7 @@ export const initialState: T = {
 };
 
 export const reducer = createReducer({
-  [types.SELECT_NUMBER](state, action) {
+  [types.SELECT_NUMBER](state: T, action: types.SelectNumberT) {
     return {
       ...state,
       selectedNumber: action.selectedNumber,

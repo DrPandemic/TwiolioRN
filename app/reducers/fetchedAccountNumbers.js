@@ -19,13 +19,16 @@ export const initialState: T = {
 };
 
 export const reducer = createReducer({
-  [types.FETCH_ACCOUNT_NUMBERS](state) {
+  [types.FETCH_ACCOUNT_NUMBERS](state: T) {
     return loop(
       { ...state, loading: true },
       Effects.promise(effects.fetchNumbers, LibApi)
     );
   },
-  [types.SET_FETCHED_ACCOUNT_NUMBERS](state, action) {
+  [types.SET_FETCHED_ACCOUNT_NUMBERS](
+    state: T,
+    action: types.SuccessFetchAccountNumbersT
+  ) {
     return {
       ...state,
       numbers: action.fetchedAccountNumbers,
@@ -33,7 +36,10 @@ export const reducer = createReducer({
       loading: false,
     };
   },
-  [types.FETCH_ACCOUNT_NUMBER_ERROR](state, action) {
+  [types.FETCH_ACCOUNT_NUMBER_ERROR](
+    state: T,
+    action: types.FailFetchAccountNumbersT
+  ) {
     return {
       ...state,
       error: action.error,
