@@ -4,7 +4,7 @@ import { Text } from 'react-native';
 
 import { PhoneNumberMenu } from '../PhoneNumberMenu';
 import phoneFixture from '../../test_helpers/fixtures/received_phone_number.json';
-import { PhoneNumber } from '../../actions/types';
+import { PhoneNumber } from '../../types';
 import { initialState as nInitial } from '../../reducers/fetchedAccountNumbers';
 import { initialState as aInitial } from '../../reducers/account';
 

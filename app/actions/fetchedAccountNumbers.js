@@ -1,6 +1,7 @@
 // @flow
 
 import * as types from './types';
+import { PhoneNumber } from '../types';
 
 export function fetchAccountNumbers() {
   return {
@@ -8,7 +9,7 @@ export function fetchAccountNumbers() {
   };
 }
 
-export function successFetchAccountNumbers(numbers: Array<types.PhoneNumber>) {
+export function successFetchAccountNumbers(numbers: Array<PhoneNumber>) {
   return {
     type: types.SET_FETCHED_ACCOUNT_NUMBERS,
     fetchedAccountNumbers: numbers,

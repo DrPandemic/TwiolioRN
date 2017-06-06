@@ -5,10 +5,11 @@ import * as types from '../actions/types';
 import LibApi from '../lib/api';
 import createReducer from '../lib/createReducer';
 import effects from '../effects';
+import { PhoneNumber } from '../types';
 
 export type T = {|
   loading: boolean,
-  numbers: Array<types.PhoneNumber>,
+  numbers: Array<PhoneNumber>,
   error: any,
 |};
 export const initialState: T = {

@@ -13,7 +13,7 @@ import Menu, {
 import { ActionCreators } from '../actions';
 import type { T as FetchedT } from '../reducers/fetchedAccountNumbers';
 import type { T as AccountT } from '../reducers/account';
-import { PhoneNumber } from '../actions/types';
+import { PhoneNumber } from '../types';
 
 export class PhoneNumberMenu extends Component {
   props: {

@@ -1,6 +1,7 @@
 // @flow
 
 import * as types from './types';
+import { Message } from '../types';
 
 export function fetchMessages() {
   return {
@@ -8,7 +9,7 @@ export function fetchMessages() {
   };
 }
 
-export function successFetchMessages(messages: Array<types.Message>) {
+export function successFetchMessages(messages: Array<Message>) {
   return {
     type: types.SET_FETCHED_MESSAGES,
     fetchedMessages: messages,

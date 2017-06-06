@@ -2,6 +2,7 @@ import * as types from '../../actions/types';
 import fixtures from '../../test_helpers/fixtures/received_message.json';
 import ApiMock from '../../test_helpers/api_helper';
 import { fetchMessages } from '../messages';
+import { Message } from '../../types';
 
 test('fetchNumbers success', async () => {
   const api = (new ApiMock()).mock('get', true, {
@@ -14,7 +15,7 @@ test('fetchNumbers success', async () => {
   expect(result).toEqual({
     type: types.SET_FETCHED_MESSAGES,
     fetchedMessages: [
-      new types.Message(fixtures.simple)
+      new Message(fixtures.simple)
     ],
   });
 });
