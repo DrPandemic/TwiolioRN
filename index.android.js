@@ -27,11 +27,13 @@ const store = createStore(
 
 class LoggedApp extends Component {
   props: {
-    fetchAccountNumbers: () => void,
+    fetchAccountNumbers: () => Promise<void>,
+    fetchMessages: () => Promise<void>,
   };
 
   componentDidMount() {
     this.props.fetchAccountNumbers();
+    this.props.fetchMessages();
   }
 
   render() {

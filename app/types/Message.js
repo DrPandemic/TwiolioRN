@@ -22,5 +22,11 @@ export default class Message {
     this.status = response.status;
     this.direction = response.direction;
   }
+
+  getConversationId(): string {
+    const ids = [this.to, this.from];
+    ids.sort();
+    return ids.join('');
+  }
 }
 
