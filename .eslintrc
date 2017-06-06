@@ -33,6 +33,7 @@
         "functions": "ignore",
     }],
     "arrow-parens": ["error", "as-needed"],
-    "no-cond-assign": 0
+    "no-cond-assign": 0,
+    "no-useless-computed-key": 0
   }
 }

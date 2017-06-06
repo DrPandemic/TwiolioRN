@@ -2,39 +2,32 @@
 
 import { Message } from './';
 import type { ConversationUsers } from './Message';
+import match from '../lib/match';
 
-type Entries = {
+export type ConversationStoreT = {
   [conversationId: string]: Array<Message>
 };
 
-export default class ConversationStore {
-  entries: Entries;
+export function addMessage(store: ConversationStoreT, message: Message):
+ConversationStoreT {
+  const id = message.conversationId;
 
-  constructor() {
-    this.entries = {};
-  }
+  return {
+    ...store,
+    [id]: [message, ...(store[id] || []).filter(m => m.sid !== message.sid)]
+  };
+}
 
-  addMessage(message: Message): void {
-    let entry: ?Array<Message>;
-    if ((entry = this.entries[message.getConversationId()]) !== undefined) {
-      // This number was already used
-      if (!entry.some(m => m.sid === message.sid)) {
-        // New message
-        entry.push(message);
-      }
-    } else {
-      // New number
-      this.entries[message.getConversationId()] = [message];
-    }
-  }
+export function addMessages(
+  store: ConversationStoreT,
+  messages: Array<Message>
+): ConversationStoreT {
+  return messages.reduce((s, m) => addMessage(s, m), store);
+}
 
-  addMessages(messages: Array<Message>): void {
-    for (const message of messages) {
-      this.addMessage(message);
-    }
-  }
-
-  getMessages(conversationUsers: ConversationUsers): Array<Message> {
-    return this.entries[Message.getConversationId(conversationUsers)];
-  }
+export function getMessages(
+  store: ConversationStoreT,
+  conversationUsers: ConversationUsers
+): Array<Message> {
+  return store[Message.getConversationId(conversationUsers)];
 }

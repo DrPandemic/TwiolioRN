@@ -3,7 +3,7 @@
 import phoneFixture from '../../test_helpers/fixtures/received_message.json';
 import Message from '../Message';
 
-test('getConversationId', () => {
+test('conversationId', () => {
   const m0 = new Message(phoneFixture.simple);
   const m1 = new Message(phoneFixture.simpleInverse);
   const m2 = new Message(phoneFixture.simpleOtherFrom);
@@ -11,13 +11,13 @@ test('getConversationId', () => {
   const m4 = new Message(phoneFixture.simpleOtherFromTo);
   const m5 = new Message(phoneFixture.simpleOutbound);
 
-  expect(m0.getConversationId()).toEqual(m0.getConversationId());
-  expect(m0.getConversationId()).not.toEqual(m1.getConversationId());
-  expect(m0.getConversationId()).not.toEqual(m2.getConversationId());
-  expect(m0.getConversationId()).not.toEqual(m3.getConversationId());
-  expect(m2.getConversationId()).not.toEqual(m3.getConversationId());
-  expect(m0.getConversationId()).not.toEqual(m4.getConversationId());
-  expect(m0.getConversationId()).toEqual(m5.getConversationId());
+  expect(m0.conversationId).toEqual(m0.conversationId);
+  expect(m0.conversationId).not.toEqual(m1.conversationId);
+  expect(m0.conversationId).not.toEqual(m2.conversationId);
+  expect(m0.conversationId).not.toEqual(m3.conversationId);
+  expect(m2.conversationId).not.toEqual(m3.conversationId);
+  expect(m0.conversationId).not.toEqual(m4.conversationId);
+  expect(m0.conversationId).toEqual(m5.conversationId);
 });
 
 test('conversationUsers', () => {

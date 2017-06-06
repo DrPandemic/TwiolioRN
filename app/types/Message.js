@@ -46,7 +46,7 @@ export default class Message {
     return [conversationUsers.us, conversationUsers.other].join('');
   }
 
-  getConversationId(): string {
+  get conversationId(): string {
     return Message.getConversationId(this.conversationUsers);
   }
 }
