@@ -1,3 +1,5 @@
+// @flow
+
 import { combineReducers } from 'redux-loop';
 import * as fetchedAccountNumbersReducers from './fetchedAccountNumbers';
 import * as accountReducers from './account';
@@ -7,7 +9,12 @@ export const reducer = combineReducers({
   account: accountReducers.reducer,
 });
 
-export const initialState = {
+export type StateT = {
+  fetchedAccountNumbers: fetchedAccountNumbersReducers.T,
+  account: accountReducers.T,
+};
+
+export const initialState: StateT = {
   fetchedAccountNumbers: fetchedAccountNumbersReducers.initialState,
   account: accountReducers.initialState,
 };
