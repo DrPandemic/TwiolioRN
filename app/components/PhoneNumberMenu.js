@@ -13,13 +13,14 @@ import Menu, {
 import { ActionCreators } from '../actions';
 import type { T as FetchedT } from '../reducers/fetchedAccountNumbers';
 import type { T as AccountT } from '../reducers/account';
+import type { StateT } from '../reducers';
 import { PhoneNumber } from '../types';
 
 export class PhoneNumberMenu extends Component {
   props: {
     fetchedAccountNumbers: FetchedT,
     account: AccountT,
-    selectNumber: (?string) => void,
+    selectNumber: ?string => void,
   }
 
   constructor(props: any) {
@@ -97,7 +98,7 @@ export class PhoneNumberMenu extends Component {
   }
 }
 
-function mapStateToProps(state) {
+function mapStateToProps(state: StateT) {
   return {
     fetchedAccountNumbers: state.fetchedAccountNumbers,
     account: state.account,
