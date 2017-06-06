@@ -1,32 +1,40 @@
 // @flow
 
-import { Message, PhoneNumber } from './';
-
-type Entry = Array<Message>;
+import { Message } from './';
+import type { ConversationUsers } from './Message';
 
 type Entries = {
-  [conversationId: string]: Entry
+  [conversationId: string]: Array<Message>
 };
 
 export default class ConversationStore {
   entries: Entries;
 
   constructor() {
+    this.entries = {};
   }
 
-  addMessage(message: Message) {
-    let entry: ?Entry;
-    if (entry = this.entries[message.sid]) {
+  addMessage(message: Message): void {
+    let entry: ?Array<Message>;
+    if ((entry = this.entries[message.getConversationId()]) !== undefined) {
       // This number was already used
+      if (!entry.some(m => m.sid === message.sid)) {
+        // New message
+        entry.push(message);
+      }
     } else {
       // New number
-      this.entries[message.fr];
+      this.entries[message.getConversationId()] = [message];
     }
   }
 
-  addMessages(messages: Array<Message>) {
+  addMessages(messages: Array<Message>): void {
     for (const message of messages) {
       this.addMessage(message);
     }
+  }
+
+  getMessages(conversationUsers: ConversationUsers): Array<Message> {
+    return this.entries[Message.getConversationId(conversationUsers)];
   }
 }

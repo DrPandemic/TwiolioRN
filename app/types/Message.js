@@ -1,5 +1,10 @@
 // @flow
 
+export type ConversationUsers = {|
+  us: string,
+  other: string
+|};
+
 export default class Message {
   sid: string;
   body: string;
@@ -23,10 +28,26 @@ export default class Message {
     this.direction = response.direction;
   }
 
+  /*
+     According to twilio doc:
+     The direction of this SMS message. inbound for incoming messages,
+      outbound-api for messages initiated via the REST API,
+      outbound-call for messages initiated during a call
+      or outbound-reply for messages initiated in response to an incoming SMS
+   */
+  get conversationUsers(): ConversationUsers {
+    return {
+      us: this.direction === 'inbound' ? this.to : this.from,
+      other: this.direction === 'inbound' ? this.from : this.to
+    };
+  }
+
+  static getConversationId(conversationUsers: ConversationUsers): string {
+    return [conversationUsers.us, conversationUsers.other].join('');
+  }
+
   getConversationId(): string {
-    const ids = [this.to, this.from];
-    ids.sort();
-    return ids.join('');
+    return Message.getConversationId(this.conversationUsers);
   }
 }
 
