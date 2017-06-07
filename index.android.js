@@ -1,6 +1,7 @@
 // @flow
 
 import 'es6-symbol/implement';
+import 'es7-object-polyfill';
 import React, { Component } from 'react';
 import {
   AppRegistry,
