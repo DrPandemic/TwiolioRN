@@ -3,6 +3,8 @@
 import Config from 'react-native-config';
 import { Buffer } from 'buffer';
 
+import mockedFetch from '../test_helpers/dev_mock';
+
 export default class Api {
   static headers() {
     const auth = new Buffer(
@@ -45,7 +47,7 @@ export default class Api {
       { headers: Api.headers() }
     );
 
-    return fetch(url, options).then(resp => {
+    return mockedFetch(url, options).then(resp => {
       if (resp.ok) {
         return resp;
       }

@@ -1,6 +1,6 @@
 // @flow
 
-import React from 'react';
+import React, { Component } from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 
@@ -22,14 +22,14 @@ const styles = StyleSheet.create({
   },
 });
 
-export default class Row {
+export default class Row extends Component {
   render() {
-    alert(JSON.stringify(this.props));
+    console.log(this.props);
     return (
       <View style={styles.container}>
         <Icon name='face' style={styles.icon} />
         <Text style={styles.text}>
-          {this.props[0]}
+          {this.props.entry[0]}
         </Text>
       </View>
     );
