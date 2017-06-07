@@ -7,6 +7,7 @@ export type ConversationStoreT = {
   [conversationId: string]: Array<Message>
 };
 
+// Should never produce an empty conversation.
 export function addMessage(store: ConversationStoreT, message: Message):
 ConversationStoreT {
   const id = message.conversationId;
@@ -29,4 +30,19 @@ export function getMessages(
   conversationUsers: ConversationUsers
 ): Array<Message> {
   return store[Message.getConversationId(conversationUsers)];
+}
+
+// For this function to work, we need to have non-empty conversations.
+export function filterByUs(
+  store: ConversationStoreT,
+  us: string
+): ConversationStoreT {
+  return Object.entries(store)
+               .filter(
+                 ([k: string, [v: Message]]) =>
+                   v.conversationUsers.us === us)
+               .reduce(
+                 (acc, [k: string, v: Array<Message>]) => ({ ...acc, [k]: v }),
+                 {}
+               );
 }
