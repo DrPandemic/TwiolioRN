@@ -1,0 +1,75 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders menu with a number 1`] = `
+<Menu
+  onSelect={[Function]}
+>
+  <MenuTrigger>
+    <Text
+      accessible={true}
+      allowFontScaling={true}
+      ellipsizeMode="tail"
+      style={
+        Object {
+          "fontSize": 20,
+        }
+      }
+    >
+      All conversations
+      ...
+    </Text>
+  </MenuTrigger>
+  <MenuOptions>
+    <MenuOption
+      value={null}
+    >
+      <Text
+        accessible={true}
+        allowFontScaling={true}
+        ellipsizeMode="tail"
+      >
+        See all conversations
+      </Text>
+    </MenuOption>
+    <MenuOption
+      value="sid"
+    >
+      <Text
+        accessible={true}
+        allowFontScaling={true}
+        ellipsizeMode="tail"
+      >
+        (123) 123-1234
+      </Text>
+    </MenuOption>
+  </MenuOptions>
+</Menu>
+`;
+
+exports[`renders with an empty menu 1`] = `
+<Menu
+  onSelect={[Function]}
+>
+  <MenuTrigger>
+    <Text
+      accessible={true}
+      allowFontScaling={true}
+      ellipsizeMode="tail"
+      style={
+        Object {
+          "fontSize": 20,
+        }
+      }
+    >
+      All conversations
+      ...
+    </Text>
+  </MenuTrigger>
+  <MenuOptions>
+    <MenuOption
+      disabled={true}
+      text="You have no number"
+    />
+  </MenuOptions>
+</Menu>
+`;

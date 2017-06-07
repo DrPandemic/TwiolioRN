@@ -4,7 +4,8 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { Text } from 'react-native';
-import Menu, {
+import {
+  Menu,
   MenuOptions,
   MenuOption,
   MenuTrigger
