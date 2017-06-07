@@ -2,14 +2,14 @@ import React from 'react';
 import renderer from 'react-test-renderer';
 import { Text } from 'react-native';
 
-import { PhoneNumberMenu } from '../PhoneNumberMenu';
+import { PPhoneNumberMenu } from '../PhoneNumberMenu';
 import phoneFixture from '../../test_helpers/fixtures/received_phone_number.json';
 import { PhoneNumber } from '../../types';
 import { initialState as nInitial } from '../../reducers/fetchedAccountNumbers';
 import { initialState as aInitial } from '../../reducers/account';
 
 test('renders an empty menu', () => {
-  const menu = new PhoneNumberMenu({
+  const menu = new PPhoneNumberMenu({
     fetchedAccountNumbers: { ...nInitial },
     account: { ...aInitial },
     selectNumber: () => {},
@@ -18,7 +18,7 @@ test('renders an empty menu', () => {
 });
 
 test('renders menu with a number', () => {
-  const menu = new PhoneNumberMenu({
+  const menu = new PPhoneNumberMenu({
     fetchedAccountNumbers: {
       ...nInitial,
       numbers: [new PhoneNumber(phoneFixture.simple)],
@@ -30,7 +30,7 @@ test('renders menu with a number', () => {
 });
 
 test('renders a selected number', () => {
-  const menu = new PhoneNumberMenu({
+  const menu = new PPhoneNumberMenu({
     fetchedAccountNumbers: {
       ...nInitial,
       numbers: [new PhoneNumber(phoneFixture.simple)],
@@ -49,7 +49,7 @@ test('renders a selected number', () => {
 });
 
 test('renders an unselected number', () => {
-  const menu = new PhoneNumberMenu({
+  const menu = new PPhoneNumberMenu({
     fetchedAccountNumbers: {
       ...nInitial,
       numbers: [new PhoneNumber(phoneFixture.simple)],

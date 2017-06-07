@@ -11,7 +11,7 @@ jest.mock('react-native-popup-menu', () => ({
   MenuTrigger: 'MenuTrigger',
 }));
 
-import { PhoneNumberMenu } from '../PhoneNumberMenu';
+import { PPhoneNumberMenu } from '../PhoneNumberMenu';
 
 import renderer from 'react-test-renderer';
 
@@ -22,12 +22,12 @@ import { initialState as aInitial } from '../../reducers/account';
 
 test('renders with an empty menu', () => {
   const menu = renderer.create(
-      <PhoneNumberMenu
+      <PPhoneNumberMenu
         fetchedAccountNumbers={{ ...nInitial }}
         account={{ ...aInitial }}
         selectNumber={() => {}}
       >
-      </PhoneNumberMenu>
+      </PPhoneNumberMenu>
   ).toJSON();
 
   expect(menu).toMatchSnapshot();
@@ -35,7 +35,7 @@ test('renders with an empty menu', () => {
 
 test('renders menu with a number', () => {
   const menu = renderer.create(
-      <PhoneNumberMenu
+      <PPhoneNumberMenu
         fetchedAccountNumbers={{
           ...nInitial,
           numbers: [new PhoneNumber(phoneFixture.simple)],
@@ -43,7 +43,7 @@ test('renders menu with a number', () => {
         account={{ ...aInitial }}
         selectNumber={() => {}}
       >
-      </PhoneNumberMenu>
+      </PPhoneNumberMenu>
   ).toJSON();
 
   expect(menu).toMatchSnapshot();

@@ -17,7 +17,7 @@ import type { T as AccountT } from '../reducers/account';
 import type { StateT } from '../reducers';
 import { PhoneNumber } from '../types';
 
-export class PhoneNumberMenu extends Component {
+export class PPhoneNumberMenu extends Component {
   props: {
     fetchedAccountNumbers: FetchedT,
     account: AccountT,
@@ -43,7 +43,7 @@ export class PhoneNumberMenu extends Component {
           </MenuOption>
           {
             this.props.fetchedAccountNumbers.numbers.map(
-              n => PhoneNumberMenu.renderNumber(n)
+              n => PPhoneNumberMenu.renderNumber(n)
             )
           }
         </MenuOptions>
@@ -110,4 +110,4 @@ function mapDispatchToProps(dispatch) {
   return bindActionCreators(ActionCreators, dispatch);
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(PhoneNumberMenu);
+export default connect(mapStateToProps, mapDispatchToProps)(PPhoneNumberMenu);
