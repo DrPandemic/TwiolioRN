@@ -2,7 +2,6 @@
 
 import { Message } from './';
 import type { ConversationUsers } from './Message';
-import match from '../lib/match';
 
 export type ConversationStoreT = {
   [conversationId: string]: Array<Message>
