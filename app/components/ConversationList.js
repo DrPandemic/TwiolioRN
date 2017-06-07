@@ -18,6 +18,11 @@ const styles = StyleSheet.create({
     flex: 1,
     marginTop: 60,
   },
+  separator: {
+    flex: 1,
+    height: StyleSheet.hairlineWidth,
+    backgroundColor: '#8E8E8E',
+  },
 });
 
 type PropsT = {
@@ -54,11 +59,15 @@ export class PConversationList extends Component {
 
   render() {
     return (
-      <ListView
-        style={styles.container}
-        dataSource={this.state.dataSource}
-        renderRow={entry => <Row entry={entry}/>}
-      />
+      <View style={styles.container}>
+        <ListView
+          dataSource={this.state.dataSource}
+          renderRow={entry => <Row entry={entry}/>}
+          renderSeparator={
+            (sectionId, rowId) => <View key={rowId} style={styles.separator} />
+          }
+        />
+      </View>
     );
   }
 }
