@@ -1,4 +1,3 @@
 {
-  "plugins": ["transform-runtime"],
-  "presets": ["react-native", "es2017"]
+  "presets": ["react-native"]
 }

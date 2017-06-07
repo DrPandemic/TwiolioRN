@@ -22,7 +22,9 @@ export class ConversationList extends Component {
 
   render() {
     return (
-      <Text>123</Text>
+      <Text style={{ paddingTop: 60 }}>
+        123
+      </Text>
     );
   }
 }
