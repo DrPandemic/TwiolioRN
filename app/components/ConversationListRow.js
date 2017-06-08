@@ -2,7 +2,6 @@
 
 import React, { Component } from 'react';
 import { View, Text, StyleSheet } from 'react-native';
-import Icon from 'react-native-vector-icons/MaterialIcons';
 
 const styles = StyleSheet.create({
   container: {
@@ -15,11 +14,6 @@ const styles = StyleSheet.create({
     marginLeft: 12,
     fontSize: 16,
   },
-  icon: {
-    height: 40,
-    width: 40,
-    borderRadius: 20,
-  },
 });
 
 export default class Row extends Component {
@@ -27,7 +21,6 @@ export default class Row extends Component {
     console.log(this.props);
     return (
       <View style={styles.container}>
-        <Icon name='face' style={styles.icon} />
         <Text style={styles.text}>
           {this.props.entry[0]}
         </Text>
