@@ -2,6 +2,7 @@
 
 import { Message } from './';
 import type { ConversationUsers } from './Message';
+import type { NestedArray } from '../types';
 
 export type ConversationStoreT = {
   [conversationId: string]: Array<Message>
@@ -30,6 +31,12 @@ export function getMessages(
   conversationUsers: ConversationUsers
 ): Array<Message> {
   return store[Message.getConversationId(conversationUsers)];
+}
+
+export function getConversations(
+  store: ConversationStoreT
+): NestedArray<Message> {
+  return Object.values(store);
 }
 
 // For this function to work, we need to have non-empty conversations.

@@ -1,13 +1,14 @@
 // @flow
 
 import React, { Component } from 'react';
-import { View, ListView, StyleSheet, Text } from 'react-native';
-import { List, ListItem } from 'react-native-elements'
+import { View, ListView, StyleSheet } from 'react-native';
+import { List, ListItem } from 'react-native-elements';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
 import { ActionCreators } from '../actions';
 import { Message } from '../types';
+import { getConversations } from '../types/ConversationStore';
 import type { ConversationStoreT } from '../types/ConversationStore';
 import type { StateT } from '../reducers';
 import type { T as AccountT } from '../reducers/account';
@@ -29,9 +30,9 @@ export class PConversationList extends Component {
   props: PropsT;
 
   state: {|
-          messages: ConversationStoreT,
-          dataSource: any,
-                     |};
+    messages: ConversationStoreT,
+    dataSource: any,
+  |};
 
   constructor(props: PropsT) {
     super(props);
@@ -48,11 +49,11 @@ export class PConversationList extends Component {
     this.setState({
       messages: nextProps.messages.messages,
       dataSource: this.state.dataSource
-                      .cloneWithRows(Object.entries(nextProps.messages.messages))
+                      .cloneWithRows(getConversations(nextProps.messages.messages))
     });
   }
 
-  static renderRow([key, [message]]: [string, Array<Message>], sectionId: string) {
+  static renderRow([message]: Array<Message>, sectionId: string) {
     return (
       <ListItem
         key={sectionId}
