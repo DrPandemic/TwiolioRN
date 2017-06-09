@@ -35,3 +35,23 @@ test('renders rows', () => {
     renderer.create(<View>{PConversationList.renderRows(store, null)}</View>)
   ).toMatchSnapshot();
 });
+
+test('renders rows with selected number', () => {
+  const message = new Message(messageFixture.simple);
+  const store = addMessages({}, [
+    message,
+    new Message(messageFixture.simpleInverse),
+    new Message(messageFixture.simpleOtherFrom),
+    new Message(messageFixture.simpleOutbound),
+  ]);
+
+  expect(
+    renderer.create(
+      <View>
+        {PConversationList.renderRows(
+           store,
+           message.conversationUsers.us
+         )}
+      </View>)
+  ).toMatchSnapshot();
+});
