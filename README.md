@@ -13,8 +13,9 @@ I'm doing this project to learn React Native. So feel free to open PRs to improv
 ## TODO
 - [x] Be able to select phone numbers
   - [ ] Change the visual to more easily understand that's a dropdown
-- [ ] Display conversations by number
-- [ ] Display all conversations
+- [x] Display conversations by number
+- [x] Display all conversations
+- [ ] Good errors when env is not loaded
 - [ ] Display a conversation
 - [ ] Manage multipart messages
 - [ ] Send SMS
