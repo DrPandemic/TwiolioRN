@@ -1,5 +1,7 @@
 // @flow
 
+import React from 'react';
+import { View } from 'react-native';
 import renderer from 'react-test-renderer';
 
 import { PConversationList } from '../ConversationList';
@@ -18,5 +20,18 @@ test('renders a row', () => {
 
   expect(
     renderer.create(PConversationList.renderRow(row))
+  ).toMatchSnapshot();
+});
+
+test('renders rows', () => {
+  const store = addMessages({}, [
+    new Message(messageFixture.simple),
+    new Message(messageFixture.simpleInverse),
+    new Message(messageFixture.simpleOtherFrom),
+    new Message(messageFixture.simpleOutbound),
+  ]);
+
+  expect(
+    renderer.create(<View>{PConversationList.renderRows(store)}</View>)
   ).toMatchSnapshot();
 });

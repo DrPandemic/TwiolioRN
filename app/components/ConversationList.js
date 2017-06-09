@@ -9,6 +9,7 @@ import { bindActionCreators } from 'redux';
 import { ActionCreators } from '../actions';
 import { Message } from '../types';
 import { getConversations } from '../types/ConversationStore';
+import type { ConversationStoreT } from '../types/ConversationStore';
 import type { StateT } from '../reducers';
 import type { T as AccountT } from '../reducers/account';
 import type { T as MessagesT } from '../reducers/messages';
@@ -37,12 +38,15 @@ export class PConversationList extends Component {
     );
   }
 
+  static renderRows(store: ConversationStoreT) {
+    return getConversations(store).map(c => PConversationList.renderRow(c));
+  }
+
   render() {
     return (
       <View style={styles.container}>
         <List>
-          {getConversations(this.props.messages.messages)
-            .map(c => PConversationList.renderRow(c))}
+          {PConversationList.renderRows(this.props.messages.messages)}
         </List>
       </View>
     );
