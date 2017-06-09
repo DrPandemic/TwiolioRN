@@ -1,7 +1,7 @@
 // @flow
 
 import React, { Component } from 'react';
-import { View, ListView, StyleSheet } from 'react-native';
+import { View, StyleSheet } from 'react-native';
 import { List, ListItem } from 'react-native-elements';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
@@ -9,7 +9,6 @@ import { bindActionCreators } from 'redux';
 import { ActionCreators } from '../actions';
 import { Message } from '../types';
 import { getConversations } from '../types/ConversationStore';
-import type { ConversationStoreT } from '../types/ConversationStore';
 import type { StateT } from '../reducers';
 import type { T as AccountT } from '../reducers/account';
 import type { T as MessagesT } from '../reducers/messages';
@@ -29,36 +28,11 @@ type PropsT = {
 export class PConversationList extends Component {
   props: PropsT;
 
-  state: {|
-    messages: ConversationStoreT,
-    dataSource: any,
-  |};
-
-  constructor(props: PropsT) {
-    super(props);
-
-    this.state = {
-      messages: props.messages.messages,
-      dataSource: new ListView.DataSource({
-        rowHasChanged: (r1, r2) => r1 !== r2
-      }),
-    };
-  }
-
-  componentWillReceiveProps(nextProps: PropsT) {
-    this.setState({
-      messages: nextProps.messages.messages,
-      dataSource: this.state.dataSource
-                      .cloneWithRows(getConversations(nextProps.messages.messages))
-    });
-  }
-
-  static renderRow([message]: Array<Message>, sectionId: string) {
+  static renderRow([message]: Array<Message>) {
     return (
       <ListItem
-        key={sectionId}
+        key={message.conversationId}
         title={message.conversationUsers.other}
-        icon={{ name: 'fingerprint' }}
       />
     );
   }
@@ -67,10 +41,8 @@ export class PConversationList extends Component {
     return (
       <View style={styles.container}>
         <List>
-          <ListView
-            dataSource={this.state.dataSource}
-            renderRow={PConversationList.renderRow}
-          />
+          {getConversations(this.props.messages.messages)
+            .map(c => PConversationList.renderRow(c))}
         </List>
       </View>
     );

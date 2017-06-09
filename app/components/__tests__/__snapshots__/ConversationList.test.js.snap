@@ -1,50 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`renders a list 1`] = `
-<View
-  style={
-    Object {
-      "flex": 1,
-      "marginTop": 30,
-    }
-  }
->
-  <View
-    style={
-      Array [
-        Object {
-          "backgroundColor": "#ffffff",
-          "borderBottomWidth": 1,
-          "borderColor": "#cbd2d9",
-          "borderTopWidth": 1,
-          "marginTop": 20,
-        },
-        undefined,
-      ]
-    }
-  >
-    <RCTScrollView
-      dataSource={
-        ListViewDataSource {
-          "items": "unknown",
-        }
-      }
-      renderRow={[Function]}
-      renderScrollComponent={[Function]}
-    >
-      <View />
-    </RCTScrollView>
-  </View>
-</View>
-`;
-
 exports[`renders a row 1`] = `
 <View
-  icon={
-    Object {
-      "name": "fingerprint",
-    }
-  }
   onLongPress={undefined}
   onPress={undefined}
   style={

@@ -46,7 +46,7 @@ export function filterByUs(
 ): ConversationStoreT {
   return Object.entries(store)
                .filter(
-                 ([k: string, [v: Message]]) =>
+                 ([k, [v]]: [string, Array<Message>]) =>
                    v.conversationUsers.us === us)
                .reduce(
                  (acc, [k: string, v: Array<Message>]) => ({ ...acc, [k]: v }),
