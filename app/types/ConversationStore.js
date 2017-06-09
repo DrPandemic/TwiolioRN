@@ -42,8 +42,12 @@ export function getConversations(
 // For this function to work, we need to have non-empty conversations.
 export function filterByUs(
   store: ConversationStoreT,
-  us: string
+  us: ?string
 ): ConversationStoreT {
+  if (us === null) {
+    return { ...store };
+  }
+
   return Object.entries(store)
                .filter(
                  ([k, [v]]: [string, Array<Message>]) =>

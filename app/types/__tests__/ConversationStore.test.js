@@ -60,3 +60,20 @@ test('filterByUs', () => {
     m1.conversationId,
   ]));
 });
+
+test('filterByUs with null us', () => {
+  const m0 = new Message(phoneFixture.simple);
+  const m1 = new Message(phoneFixture.simpleInverse);
+  const m2 = new Message(phoneFixture.simpleOtherFrom);
+  const m3 = new Message(phoneFixture.simpleOutbound);
+  const store0 = addMessages({}, [m0, m1, m2, m3]);
+
+  const store1 = filterByUs(store0, null);
+
+  expect(Object.keys(store1)).toHaveLength(3);
+  expect(Object.keys(store1)).toEqual(expect.arrayContaining([
+    m0.conversationId,
+    m1.conversationId,
+    m2.conversationId,
+  ]));
+});

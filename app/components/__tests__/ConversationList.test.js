@@ -32,6 +32,6 @@ test('renders rows', () => {
   ]);
 
   expect(
-    renderer.create(<View>{PConversationList.renderRows(store)}</View>)
+    renderer.create(<View>{PConversationList.renderRows(store, null)}</View>)
   ).toMatchSnapshot();
 });

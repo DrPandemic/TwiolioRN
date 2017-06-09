@@ -7,8 +7,8 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
 import { ActionCreators } from '../actions';
-import { Message } from '../types';
-import { getConversations } from '../types/ConversationStore';
+import { Message, PhoneNumber } from '../types';
+import { getConversations, filterByUs } from '../types/ConversationStore';
 import type { ConversationStoreT } from '../types/ConversationStore';
 import type { StateT } from '../reducers';
 import type { T as AccountT } from '../reducers/account';
@@ -38,15 +38,22 @@ export class PConversationList extends Component {
     );
   }
 
-  static renderRows(store: ConversationStoreT) {
-    return getConversations(store).map(c => PConversationList.renderRow(c));
+  static renderRows(store: ConversationStoreT, selectedNumber: ?string) {
+    return getConversations(
+      filterByUs(store, selectedNumber)
+    ).map(c => PConversationList.renderRow(c));
   }
 
   render() {
     return (
       <View style={styles.container}>
         <List>
-          {PConversationList.renderRows(this.props.messages.messages)}
+          {
+            PConversationList.renderRows(
+              this.props.messages.messages,
+              this.props.account.selectedNumber
+            )
+          }
         </List>
       </View>
     );

@@ -59,20 +59,21 @@ export class PPhoneNumberMenu extends Component {
 
   static renderNumber(number: PhoneNumber) {
     return (
-      <MenuOption value={number.sid} key={number.sid}>
+      <MenuOption value={number.number} key={number.sid}>
         <Text>{number.friendlyName}</Text>
       </MenuOption>
     );
   }
 
   renderSelectedNumber() {
-    const sid: ?string = this.props.account.selectedNumber;
+    const number: ?string = this.props.account.selectedNumber;
     const defaultValue = 'All conversations';
     let displayName = defaultValue;
 
-    if (sid !== null) {
+    if (number !== null) {
+      console.log(number);
       const foundNumber = this.props.fetchedAccountNumbers.numbers.find(
-        n => n.sid === sid
+        n => n.number === number
       );
 
       if (foundNumber === undefined) {

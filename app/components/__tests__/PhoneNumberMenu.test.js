@@ -37,7 +37,7 @@ test('renders a selected number', () => {
     },
     account: {
       ...aInitial,
-      selectedNumber: phoneFixture.simple.sid,
+      selectedNumber: phoneFixture.simple.phone_number,
     },
     selectNumber: () => {},
   });

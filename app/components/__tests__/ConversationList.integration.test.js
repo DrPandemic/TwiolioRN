@@ -51,3 +51,29 @@ test('renders an non-empty list', () => {
 
   expect(list).toMatchSnapshot();
 });
+
+test('renders an non-empty list with a selected number', () => {
+  const message = new Message(messageFixture.simple);
+  const store = addMessages({}, [
+    message,
+    new Message(messageFixture.simpleInverse),
+    new Message(messageFixture.simpleOtherFrom),
+    new Message(messageFixture.simpleOutbound),
+  ]);
+
+  const list = renderer.create(
+      <PConversationList
+        account={{
+          ...aInitial,
+          selectedNumber: message.conversationUsers.us
+        }}
+        messages={{
+          ...mInitial,
+          messages: store,
+        }}
+      >
+      </PConversationList>
+  ).toJSON();
+
+  expect(list).toMatchSnapshot();
+});
