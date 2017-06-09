@@ -2,12 +2,12 @@
 
 import React, { Component } from 'react';
 import { View, ListView, StyleSheet, Text } from 'react-native';
+import { List, ListItem } from 'react-native-elements'
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
-import Row from './ConversationListRow';
 import { ActionCreators } from '../actions';
-import { PhoneNumber, Message } from '../types';
+import { Message } from '../types';
 import type { ConversationStoreT } from '../types/ConversationStore';
 import type { StateT } from '../reducers';
 import type { T as AccountT } from '../reducers/account';
@@ -16,12 +16,7 @@ import type { T as MessagesT } from '../reducers/messages';
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    marginTop: 60,
-  },
-  separator: {
-    flex: 1,
-    height: StyleSheet.hairlineWidth,
-    backgroundColor: '#8E8E8E',
+    marginTop: 30,
   },
 });
 
@@ -34,9 +29,9 @@ export class PConversationList extends Component {
   props: PropsT;
 
   state: {|
-    messages: ConversationStoreT,
-    dataSource: any,
-  |};
+          messages: ConversationStoreT,
+          dataSource: any,
+                     |};
 
   constructor(props: PropsT) {
     super(props);
@@ -57,16 +52,25 @@ export class PConversationList extends Component {
     });
   }
 
+  static renderRow([key, [message]]: [string, Array<Message>], sectionId: string) {
+    return (
+      <ListItem
+        key={sectionId}
+        title={message.conversationUsers.other}
+        icon={{ name: 'fingerprint' }}
+      />
+    );
+  }
+
   render() {
     return (
       <View style={styles.container}>
-        <ListView
-          dataSource={this.state.dataSource}
-          renderRow={entry => <Row entry={entry}/>}
-          renderSeparator={
-            (sectionId, rowId) => <View key={rowId} style={styles.separator} />
-          }
-        />
+        <List>
+          <ListView
+            dataSource={this.state.dataSource}
+            renderRow={PConversationList.renderRow}
+          />
+        </List>
       </View>
     );
   }
