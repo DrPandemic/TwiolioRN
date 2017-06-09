@@ -7,7 +7,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
 import { ActionCreators } from '../actions';
-import { Message, PhoneNumber } from '../types';
+import { Message } from '../types';
 import { getConversations, filterByUs } from '../types/ConversationStore';
 import type { ConversationStoreT } from '../types/ConversationStore';
 import type { StateT } from '../reducers';

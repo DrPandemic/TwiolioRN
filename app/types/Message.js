@@ -28,6 +28,10 @@ export default class Message {
     this.direction = response.direction;
   }
 
+  get isInbound(): boolean {
+    return this.direction === 'inbound';
+  }
+
   /*
      According to twilio doc:
      The direction of this SMS message. inbound for incoming messages,
@@ -37,8 +41,8 @@ export default class Message {
    */
   get conversationUsers(): ConversationUsers {
     return {
-      us: this.direction === 'inbound' ? this.to : this.from,
-      other: this.direction === 'inbound' ? this.from : this.to
+      us: this.isInbound ? this.to : this.from,
+      other: this.isInbound ? this.from : this.to
     };
   }
 
