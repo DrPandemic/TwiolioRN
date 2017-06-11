@@ -12,12 +12,12 @@ I'm doing this project to learn React Native. So feel free to open PRs to improv
 
 ## TODO
 - [x] Be able to select phone numbers
-  - [ ] Change the visual to more easily understand that's a dropdown
+  - [x] Change the visual to more easily understand that's a dropdown
 - [x] Display conversations by number
 - [x] Display all conversations
 - [ ] Order messages
 - [ ] Good errors when env is not loaded
-- [ ] Display a conversation
+- [x] Display a conversation
 - [ ] Manage multipart messages
 - [ ] Send SMS
 - [ ] Start new conversation

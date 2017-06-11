@@ -8,8 +8,8 @@ import { Route, withRouter } from 'react-router-native';
 
 import { ActionCreators } from '../actions';
 import Conversation from './Conversation';
-import PhoneNumberMenu from '../components/PhoneNumberMenu';
-import ConversationList from '../components/ConversationList';
+import PhoneNumberMenu from './PhoneNumberMenu';
+import ConversationList from './ConversationList';
 import { colors } from '../constants';
 
 const styles = StyleSheet.create({

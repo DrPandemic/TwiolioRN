@@ -8,11 +8,15 @@ import { bindActionCreators } from 'redux';
 
 import { ActionCreators } from '../actions';
 import { Message } from '../types';
+import type { StateT } from '../reducers';
+import type { T as MessagesT } from '../reducers/messages';
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    marginTop: 30,
+    flexDirection: 'column',
+  },
+  list: {
+    marginTop: 0,
   },
   ourMessage: {
     flex: 1,
@@ -25,7 +29,9 @@ const styles = StyleSheet.create({
 });
 
 type PropsT = {
-  messages: Array<Message>,
+  messages: MessagesT,
+  selectedConversation: string,
+  location: { state: any }
 }
 
 export class PConversation extends Component {
@@ -34,9 +40,8 @@ export class PConversation extends Component {
   static renderUs(message: Message) {
     return (
       <ListItem
-        style={styles.ourMessage}
-        key={message.conversationId}
-        title={message.conversationUsers.other}
+        key={message.sid}
+        title={message.body}
       />
     );
   }
@@ -44,9 +49,8 @@ export class PConversation extends Component {
   static renderOther(message: Message) {
     return (
       <ListItem
-        style={styles.otherMessage}
-        key={message.conversationId}
-        title={message.conversationUsers.other}
+        key={message.sid}
+        title={message.body}
       />
     );
   }
@@ -63,9 +67,11 @@ export class PConversation extends Component {
   render() {
     return (
       <View style={styles.container}>
-        <List>
+        <List style={styles.list}>
           {
-            PConversation.renderRows(this.props.messages)
+            PConversation.renderRows(
+              this.props.messages.messages[this.props.location.state]
+            )
           }
         </List>
       </View>
@@ -73,8 +79,10 @@ export class PConversation extends Component {
   }
 }
 
-function mapStateToProps() {
-  return {};
+function mapStateToProps(state: StateT) {
+  return {
+    messages: state.messages,
+  };
 }
 
 function mapDispatchToProps(dispatch) {
