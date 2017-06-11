@@ -16,9 +16,11 @@ import type { T as MessagesT } from '../reducers/messages';
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    marginTop: 30,
+    flexDirection: 'column',
   },
+  list: {
+    marginTop: 0,
+  }
 });
 
 type PropsT = {
@@ -47,10 +49,9 @@ export class PConversationList extends Component {
   }
 
   render() {
-    console.log(this.props.account);
     return (
       <View style={styles.container}>
-        <List>
+        <List containerStyle={styles.list}>
           {this.renderRows()}
         </List>
       </View>

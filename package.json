@@ -18,9 +18,9 @@
 		"react-native-config": "^0.4.2",
 		"react-native-elements": "^0.12.2",
 		"react-native-popup-menu": "^0.7.5",
-		"react-native-router-flux": "^3.39.1",
 		"react-native-vector-icons": "^4.2.0",
 		"react-redux": "^5.0.5",
+		"react-router-native": "^4.1.1",
 		"redux": "^3.6.0",
 		"redux-loop": "^2.2.2"
 	},

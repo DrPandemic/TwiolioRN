@@ -1,6 +1,5 @@
 // @flow
 
-import { ActionConst, ActionMap } from 'react-native-router-flux';
 import createReducer from '../lib/createReducer';
 
 export type T = {|
@@ -11,7 +10,7 @@ export const initialState: T = {
 };
 
 export const reducer = createReducer({
-  [ActionConst.FOCUS](state: T, action: ActionMap) {
+  [""](state: T, action: any) {
     return {
       ...state,
       scene: action.scene,

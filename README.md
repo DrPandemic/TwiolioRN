@@ -44,7 +44,6 @@ I'm doing this project to learn React Native. So feel free to open PRs to improv
 - React
 - Redux
 - Redux-loop
-- React-native-router-flux
 - Flow (a little bit)
 - Jest
 

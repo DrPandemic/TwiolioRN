@@ -3,9 +3,7 @@
 import 'es6-symbol/implement';
 import 'es7-object-polyfill';
 import React, { Component } from 'react';
-import {
-  AppRegistry,
-} from 'react-native';
+import { AppRegistry } from 'react-native';
 import { Provider, connect } from 'react-redux';
 import { applyMiddleware, bindActionCreators, compose, createStore } from 'redux';
 import { install } from 'redux-loop';
