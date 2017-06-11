@@ -8,21 +8,13 @@ import { Provider, connect } from 'react-redux';
 import { applyMiddleware, bindActionCreators, compose, createStore } from 'redux';
 import { install } from 'redux-loop';
 import { MenuContext } from 'react-native-popup-menu';
+import createHistory from 'history/createMemoryHistory';
+import { ConnectedRouter, routerMiddleware } from 'react-router-redux';
+import { withRouter } from 'react-router-native';
 
 import AppContainer from './app/containers/AppContainer';
 import { initialState, reducer } from './app/reducers';
 import { ActionCreators } from './app/actions';
-
-const enhancer = compose(
-  applyMiddleware(...[]),
-  install(),
-);
-
-const store = createStore(
-  reducer,
-  initialState,
-  enhancer
-);
 
 class LoggedApp extends Component {
   props: {
@@ -41,22 +33,22 @@ class LoggedApp extends Component {
     );
   }
 }
-
-function mapStateToProps() {
-  return {};
-}
-
 function mapDispatchToProps(dispatch) {
   return bindActionCreators(ActionCreators, dispatch);
 }
+const ConnectLoggedApp = withRouter(connect(() => ({}), mapDispatchToProps) (LoggedApp));
 
-const ConnectLoggedApp = connect(mapStateToProps, mapDispatchToProps)(LoggedApp);
+const history = createHistory();
+const enhancer = compose(applyMiddleware(routerMiddleware(history)), install());
+const store = createStore(reducer, initialState, enhancer);
 
 const App = () => (
   <Provider store={store}>
-    <MenuContext>
-      <ConnectLoggedApp />
-    </MenuContext>
+    <ConnectedRouter history={history}>
+      <MenuContext>
+        <ConnectLoggedApp />
+      </MenuContext>
+    </ConnectedRouter>
   </Provider>
 );
 

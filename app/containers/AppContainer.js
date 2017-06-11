@@ -1,10 +1,10 @@
 // @flow
 
-import React from 'react';
+import React, { Component } from 'react';
 import { View, StyleSheet } from 'react-native';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { NativeRouter, Route } from 'react-router-native';
+import { Route, withRouter } from 'react-router-native';
 
 import { ActionCreators } from '../actions';
 import Conversation from './Conversation';
@@ -23,18 +23,20 @@ const styles = StyleSheet.create({
   },
 });
 
-const AppContainer = () => (
-  <NativeRouter>
-    <View style={styles.container}>
-      <View style={styles.nav}>
-        <PhoneNumberMenu/>
-      </View>
+class AppContainer extends Component {
+  render() {
+    return (
+      <View style={styles.container}>
+        <View style={styles.nav}>
+          <PhoneNumberMenu/>
+        </View>
 
-      <Route exact path="/" component={ConversationList}/>
-      <Route path="/conversation" component={Conversation}/>
-    </View>
-  </NativeRouter>
-);
+        <Route exact path="/" component={ConversationList}/>
+        <Route path="/conversation" component={Conversation}/>
+      </View>
+    );
+  }
+}
 
 function mapStateToProps() {
   return {};
@@ -44,4 +46,4 @@ function mapDispatchToProps(dispatch) {
   return bindActionCreators(ActionCreators, dispatch);
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(AppContainer);
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(AppContainer));

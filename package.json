@@ -13,6 +13,7 @@
 		"deep-equal": "^1.0.1",
 		"es6-symbol": "^3.1.1",
 		"es7-object-polyfill": "^0.0.5",
+		"history": "^4.6.1",
 		"react": "^16.0.0-alpha.12",
 		"react-native": "^0.45.1",
 		"react-native-config": "^0.4.2",
@@ -21,6 +22,7 @@
 		"react-native-vector-icons": "^4.2.0",
 		"react-redux": "^5.0.5",
 		"react-router-native": "^4.1.1",
+		"react-router-redux": "^5.0.0-alpha.6",
 		"redux": "^3.6.0",
 		"redux-loop": "^2.2.2"
 	},
