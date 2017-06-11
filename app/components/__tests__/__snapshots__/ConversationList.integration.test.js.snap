@@ -4,8 +4,7 @@ exports[`renders an empty list 1`] = `
 <View
   style={
     Object {
-      "flex": 1,
-      "marginTop": 30,
+      "flexDirection": "column",
     }
   }
 >
@@ -19,7 +18,9 @@ exports[`renders an empty list 1`] = `
           "borderTopWidth": 1,
           "marginTop": 20,
         },
-        undefined,
+        Object {
+          "marginTop": 0,
+        },
       ]
     }
   />
@@ -30,8 +31,7 @@ exports[`renders an non-empty list 1`] = `
 <View
   style={
     Object {
-      "flex": 1,
-      "marginTop": 30,
+      "flexDirection": "column",
     }
   }
 >
@@ -45,7 +45,9 @@ exports[`renders an non-empty list 1`] = `
           "borderTopWidth": 1,
           "marginTop": 20,
         },
-        undefined,
+        Object {
+          "marginTop": 0,
+        },
       ]
     }
   >
@@ -525,8 +527,7 @@ exports[`renders an non-empty list with a selected number 1`] = `
 <View
   style={
     Object {
-      "flex": 1,
-      "marginTop": 30,
+      "flexDirection": "column",
     }
   }
 >
@@ -540,7 +541,9 @@ exports[`renders an non-empty list with a selected number 1`] = `
           "borderTopWidth": 1,
           "marginTop": 20,
         },
-        undefined,
+        Object {
+          "marginTop": 0,
+        },
       ]
     }
   >

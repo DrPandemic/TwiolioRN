@@ -20,11 +20,11 @@ const styles = StyleSheet.create({
   },
   ourMessage: {
     flex: 1,
-    color: '#111111'
+    backgroundColor: '#111111'
   },
   otherMessage: {
     flex: 1,
-    color: '#aaaaaa'
+    backgroundColor: '#aaaaaa'
   },
 });
 

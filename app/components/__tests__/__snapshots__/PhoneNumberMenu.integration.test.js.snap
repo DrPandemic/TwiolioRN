@@ -5,20 +5,64 @@ exports[`renders menu with a number 1`] = `
   onSelect={[Function]}
 >
   <MenuTrigger>
-    <Text
-      accessible={true}
-      allowFontScaling={true}
-      disabled={false}
-      ellipsizeMode="tail"
+    <View
       style={
         Object {
-          "fontSize": 20,
+          "flexDirection": "row",
         }
       }
     >
-      All conversations
-      ...
-    </Text>
+      <Text
+        accessible={true}
+        allowFontScaling={true}
+        disabled={false}
+        ellipsizeMode="tail"
+        style={
+          Object {
+            "color": "#ffffff",
+            "fontSize": 20,
+          }
+        }
+      >
+        All conversations
+      </Text>
+      <Text
+        accessible={true}
+        allowFontScaling={true}
+        disabled={false}
+        ellipsizeMode="tail"
+        style={
+          Object {
+            "marginTop": 3,
+          }
+        }
+      >
+        <Text
+          accessible={true}
+          allowFontScaling={false}
+          disabled={false}
+          ellipsizeMode="tail"
+          style={
+            Array [
+              Object {
+                "color": "#ffffff",
+                "fontSize": 25,
+              },
+              Object {
+                "marginTop": 3,
+              },
+              Object {
+                "fontFamily": "Material Icons",
+                "fontStyle": "normal",
+                "fontWeight": "normal",
+              },
+            ]
+          }
+        >
+          
+        </Text>
+      </Text>
+    </View>
   </MenuTrigger>
   <MenuOptions>
     <MenuOption
@@ -54,20 +98,64 @@ exports[`renders with an empty menu 1`] = `
   onSelect={[Function]}
 >
   <MenuTrigger>
-    <Text
-      accessible={true}
-      allowFontScaling={true}
-      disabled={false}
-      ellipsizeMode="tail"
+    <View
       style={
         Object {
-          "fontSize": 20,
+          "flexDirection": "row",
         }
       }
     >
-      All conversations
-      ...
-    </Text>
+      <Text
+        accessible={true}
+        allowFontScaling={true}
+        disabled={false}
+        ellipsizeMode="tail"
+        style={
+          Object {
+            "color": "#ffffff",
+            "fontSize": 20,
+          }
+        }
+      >
+        All conversations
+      </Text>
+      <Text
+        accessible={true}
+        allowFontScaling={true}
+        disabled={false}
+        ellipsizeMode="tail"
+        style={
+          Object {
+            "marginTop": 3,
+          }
+        }
+      >
+        <Text
+          accessible={true}
+          allowFontScaling={false}
+          disabled={false}
+          ellipsizeMode="tail"
+          style={
+            Array [
+              Object {
+                "color": "#ffffff",
+                "fontSize": 25,
+              },
+              Object {
+                "marginTop": 3,
+              },
+              Object {
+                "fontFamily": "Material Icons",
+                "fontStyle": "normal",
+                "fontWeight": "normal",
+              },
+            ]
+          }
+        >
+          
+        </Text>
+      </Text>
+    </View>
   </MenuTrigger>
   <MenuOptions>
     <MenuOption

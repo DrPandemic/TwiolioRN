@@ -15,9 +15,11 @@ I'm doing this project to learn React Native. So feel free to open PRs to improv
   - [x] Change the visual to more easily understand that's a dropdown
 - [x] Display conversations by number
 - [x] Display all conversations
+- [ ] Change navigation bar when in a conversation
 - [ ] Order messages
 - [ ] Good errors when env is not loaded
 - [x] Display a conversation
+- [ ] Router animation
 - [ ] Manage multipart messages
 - [ ] Send SMS
 - [ ] Start new conversation

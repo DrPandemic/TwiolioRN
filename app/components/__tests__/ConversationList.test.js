@@ -1,6 +1,5 @@
 // @flow
 
-import React from 'react';
 import renderer from 'react-test-renderer';
 
 import { PConversationList } from '../ConversationList';
@@ -24,6 +23,7 @@ test('renders a row', () => {
       messages: store,
     },
     selectConversation: () => {},
+    push: () => {},
   });
 
   expect(
@@ -45,6 +45,7 @@ test('renders rows', () => {
       messages: store,
     },
     selectConversation: () => {},
+    push: () => {},
   });
 
   expect(
@@ -70,9 +71,32 @@ test('renders rows with selected number', () => {
       messages: store,
     },
     selectConversation: () => {},
+    push: () => {},
   });
 
   expect(
     renderer.create(conversationList.renderRows())
   ).toMatchSnapshot();
+});
+
+test('renders a row with correct redirect', () => {
+  const store = addMessages({}, [
+    new Message(messageFixture.simple),
+  ]);
+  const row = getConversations(store)[0];
+  const spy = jest.fn();
+  const conversationList = new PConversationList({
+    account: { ...initialState.account },
+    messages: {
+      ...initialState.messages,
+      messages: store,
+    },
+    selectConversation: () => {},
+    push: spy,
+  });
+
+  const renderedRow = conversationList.renderRow(row);
+  renderedRow.props.onPress();
+
+  expect(spy).toBeCalledWith('/conversation', row[0].conversationId);
 });
