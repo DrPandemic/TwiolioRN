@@ -5,6 +5,7 @@ import { View, StyleSheet } from 'react-native';
 import { List, ListItem } from 'react-native-elements';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
+import { withRouter } from 'react-router-native';
 
 import { ActionCreators } from '../actions';
 import { Message } from '../types';
@@ -26,6 +27,9 @@ type PropsT = {
   account: AccountT,
   messages: MessagesT,
   selectConversation: ?string => void,
+  history: {
+    push: (string, any) => void,
+  },
 };
 
 export class PConversationList extends Component {
@@ -33,11 +37,14 @@ export class PConversationList extends Component {
 
   renderRow([message]: Array<Message>) {
     return (
-      <ListItem
-        key={message.conversationId}
-        title={message.conversationUsers.other}
-        onPress={() => this.props.selectConversation(message.conversationId)}
-      />
+        <ListItem
+          key={message.conversationId}
+          title={message.conversationUsers.other}
+          onPress={() => this.props.history.push(
+            '/conversation',
+            message.conversationId
+          )}
+        />
     );
   }
 
@@ -69,4 +76,4 @@ function mapDispatchToProps(dispatch) {
   return bindActionCreators(ActionCreators, dispatch);
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(PConversationList);
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(PConversationList));
