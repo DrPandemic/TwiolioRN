@@ -24,6 +24,16 @@ const styles = StyleSheet.create({
 });
 
 class AppContainer extends Component {
+  props: {
+    fetchAccountNumbers: () => Promise<void>,
+    fetchMessages: () => Promise<void>,
+  };
+
+  componentDidMount(): void {
+    this.props.fetchAccountNumbers();
+    this.props.fetchMessages();
+  }
+
   render() {
     return (
       <View style={styles.container}>
