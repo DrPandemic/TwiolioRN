@@ -4,6 +4,7 @@ exports[`renders a selected number 1`] = `
 <Text
   accessible={true}
   allowFontScaling={true}
+  disabled={false}
   ellipsizeMode="tail"
 >
   (123) 123-1234
@@ -35,6 +36,7 @@ exports[`renders an empty menu 1`] = `
     <Text
       accessible={true}
       allowFontScaling={true}
+      disabled={false}
       ellipsizeMode="tail"
       style={
         Array [
@@ -55,6 +57,7 @@ exports[`renders an unselected number 1`] = `
 <Text
   accessible={true}
   allowFontScaling={true}
+  disabled={false}
   ellipsizeMode="tail"
 >
   All conversations
@@ -78,6 +81,7 @@ exports[`renders menu with a number 1`] = `
     hasTVPreferredFocus={undefined}
     hitSlop={undefined}
     isTVSelectable={true}
+    nativeID={undefined}
     onLayout={undefined}
     onResponderGrant={[Function]}
     onResponderMove={[Function]}
@@ -112,6 +116,7 @@ exports[`renders menu with a number 1`] = `
       <Text
         accessible={true}
         allowFontScaling={true}
+        disabled={false}
         ellipsizeMode="tail"
       >
         See all conversations
@@ -126,6 +131,7 @@ exports[`renders menu with a number 1`] = `
     hasTVPreferredFocus={undefined}
     hitSlop={undefined}
     isTVSelectable={true}
+    nativeID={undefined}
     onLayout={undefined}
     onResponderGrant={[Function]}
     onResponderMove={[Function]}
@@ -160,6 +166,7 @@ exports[`renders menu with a number 1`] = `
       <Text
         accessible={true}
         allowFontScaling={true}
+        disabled={false}
         ellipsizeMode="tail"
       >
         (123) 123-1234

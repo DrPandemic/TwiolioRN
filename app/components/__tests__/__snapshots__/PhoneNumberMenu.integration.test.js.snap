@@ -8,6 +8,7 @@ exports[`renders menu with a number 1`] = `
     <Text
       accessible={true}
       allowFontScaling={true}
+      disabled={false}
       ellipsizeMode="tail"
       style={
         Object {
@@ -26,6 +27,7 @@ exports[`renders menu with a number 1`] = `
       <Text
         accessible={true}
         allowFontScaling={true}
+        disabled={false}
         ellipsizeMode="tail"
       >
         See all conversations
@@ -37,6 +39,7 @@ exports[`renders menu with a number 1`] = `
       <Text
         accessible={true}
         allowFontScaling={true}
+        disabled={false}
         ellipsizeMode="tail"
       >
         (123) 123-1234
@@ -54,6 +57,7 @@ exports[`renders with an empty menu 1`] = `
     <Text
       accessible={true}
       allowFontScaling={true}
+      disabled={false}
       ellipsizeMode="tail"
       style={
         Object {

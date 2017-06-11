@@ -9,7 +9,7 @@ import { bindActionCreators } from 'redux';
 import { ActionCreators } from '../actions';
 import { Message } from '../types';
 import { getConversations, filterByUs } from '../types/ConversationStore';
-import type { ConversationStoreT } from '../types/ConversationStore';
+import * as types from '../actions/types';
 import type { StateT } from '../reducers';
 import type { T as AccountT } from '../reducers/account';
 import type { T as MessagesT } from '../reducers/messages';
@@ -24,36 +24,34 @@ const styles = StyleSheet.create({
 type PropsT = {
   account: AccountT,
   messages: MessagesT,
-}
+  selectConversation: ?string => void,
+};
 
 export class PConversationList extends Component {
   props: PropsT;
 
-  static renderRow([message]: Array<Message>) {
+  renderRow([message]: Array<Message>) {
     return (
       <ListItem
         key={message.conversationId}
         title={message.conversationUsers.other}
+        onPress={() => this.props.selectConversation(message.conversationId)}
       />
     );
   }
 
-  static renderRows(store: ConversationStoreT, selectedNumber: ?string) {
+  renderRows() {
     return getConversations(
-      filterByUs(store, selectedNumber)
-    ).map(c => PConversationList.renderRow(c));
+      filterByUs(this.props.messages.messages, this.props.account.selectedNumber)
+    ).map(c => this.renderRow(c));
   }
 
   render() {
+    console.log(this.props.account);
     return (
       <View style={styles.container}>
         <List>
-          {
-            PConversationList.renderRows(
-              this.props.messages.messages,
-              this.props.account.selectedNumber
-            )
-          }
+          {this.renderRows()}
         </List>
       </View>
     );

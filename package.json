@@ -14,7 +14,7 @@
 		"es6-symbol": "^3.1.1",
 		"es7-object-polyfill": "^0.0.5",
 		"react": "^16.0.0-alpha.12",
-		"react-native": "^0.45.0",
+		"react-native": "^0.45.1",
 		"react-native-config": "^0.4.2",
 		"react-native-elements": "^0.12.2",
 		"react-native-popup-menu": "^0.7.5",
@@ -40,8 +40,8 @@
 		"eslint-plugin-react-native": "^2.3.2",
 		"flow-bin": "0.47.0",
 		"flow-typed": "^2.1.2",
-		"jest": "20.0.3",
-		"react-test-renderer": "^15.5.4"
+		"jest": "^20.0.3",
+		"react-test-renderer": "^16.0.0-alpha.12"
 	},
 	"jest": {
 		"preset": "react-native"
