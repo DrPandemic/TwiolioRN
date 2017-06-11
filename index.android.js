@@ -54,7 +54,7 @@ const ConnectLoggedApp = connect(mapStateToProps, mapDispatchToProps)(LoggedApp)
 
 const App = () => (
   <Provider store={store}>
-    <MenuContext style={{ flex: 1 }}>
+    <MenuContext>
       <ConnectLoggedApp />
     </MenuContext>
   </Provider>

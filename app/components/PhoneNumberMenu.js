@@ -3,19 +3,31 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { Text } from 'react-native';
+import { Text, StyleSheet, View } from 'react-native';
 import {
   Menu,
   MenuOptions,
   MenuOption,
   MenuTrigger
 } from 'react-native-popup-menu';
+import Icon from 'react-native-vector-icons/MaterialIcons';
 
 import { ActionCreators } from '../actions';
 import type { T as FetchedT } from '../reducers/fetchedAccountNumbers';
 import type { T as AccountT } from '../reducers/account';
 import type { StateT } from '../reducers';
 import { PhoneNumber } from '../types';
+import { colors } from '../constants';
+
+const styles = StyleSheet.create({
+  text: {
+    color: colors.primary.text,
+    fontSize: 20,
+  },
+  icon: {
+    marginTop: 3,
+  }
+});
 
 export class PPhoneNumberMenu extends Component {
   props: {
@@ -71,7 +83,6 @@ export class PPhoneNumberMenu extends Component {
     let displayName = defaultValue;
 
     if (number !== null) {
-      console.log(number);
       const foundNumber = this.props.fetchedAccountNumbers.numbers.find(
         n => n.number === number
       );
@@ -90,9 +101,19 @@ export class PPhoneNumberMenu extends Component {
     return (
       <Menu onSelect={this.onSelectNumber}>
         <MenuTrigger>
-          <Text style={{ fontSize: 20 }}>
-            {this.renderSelectedNumber()}...
-          </Text>
+          <View style={{flexDirection: 'row'}}>
+            <Text style={styles.text}>
+              {this.renderSelectedNumber()}
+            </Text>
+            <Text style={styles.icon}>
+              <Icon
+                name="arrow-drop-down"
+                size={25}
+                color={colors.primary.text}
+                style={styles.icon}
+              />
+            </Text>
+          </View>
         </MenuTrigger>
         {this.renderNumbers()}
       </Menu>
