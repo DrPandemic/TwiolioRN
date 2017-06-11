@@ -24,13 +24,13 @@ export class PPhoneNumberMenu extends Component {
     selectNumber: ?string => void,
   }
 
-  constructor(props: any) {
+  constructor(props: any): void {
     super(props);
 
     this.onSelectNumber = this.onSelectNumber.bind(this);
   }
 
-  onSelectNumber(number: ?string) {
+  onSelectNumber(number: ?string): void {
     this.props.selectNumber(number);
   }
 

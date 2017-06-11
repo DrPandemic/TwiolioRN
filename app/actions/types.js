@@ -7,6 +7,7 @@ export const FETCH_ACCOUNT_NUMBERS = 'FETCH_ACCOUNT_NUMBERS';
 export const FETCH_ACCOUNT_NUMBER_ERROR = 'FETCH_ACCOUNT_NUMBER_ERROR';
 
 export const SELECT_NUMBER = 'SELECT_NUMBER';
+export const SELECT_CONVERSATION = 'SELECT_CONVERSATION';
 
 export const FETCH_MESSAGES = 'FETCH_MESSAGES';
 export const SET_FETCHED_MESSAGES = 'SET_FETCHED_MESSAGES';
@@ -28,6 +29,10 @@ export type SelectNumberT = {|
   type: 'SELECT_NUMBER',
   selectedNumber: ?string,
 |}
+export type SelectConversationT = {|
+  type: 'SELECT_CONVERSATION',
+  selectedConversation: ?string,
+|}
 
 export type FetchMessagesT = {|
   type: 'FETCH_MESSAGES',
@@ -46,6 +51,7 @@ export type ActionT =
   | SuccessFetchAccountNumbersT
   | FailFetchAccountNumbersT
   | SelectNumberT
+  | SelectConversationT
   | FetchMessagesT
   | SuccessFetchMessagesT
   | FailFetchMessagesT;
