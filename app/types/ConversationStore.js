@@ -26,11 +26,18 @@ export function addMessages(
   return messages.reduce((s, m) => addMessage(s, m), store);
 }
 
+export function getMessagesById(
+  store: ConversationStoreT,
+  conversationId: string
+): Array<Message> {
+  return store[conversationId] || [];
+}
+
 export function getMessages(
   store: ConversationStoreT,
   conversationUsers: ConversationUsers
 ): Array<Message> {
-  return store[Message.getConversationId(conversationUsers)];
+  return getMessagesById(store, Message.getConversationId(conversationUsers));
 }
 
 export function getConversations(

@@ -1,6 +1,6 @@
 // @flow
 
-import { addMessages, getMessages, filterByUs } from '../ConversationStore';
+import { addMessages, getMessages, getMessagesById, filterByUs } from '../ConversationStore';
 import phoneFixture from '../../test_helpers/fixtures/received_message.json';
 import Message from '../Message';
 
@@ -13,6 +13,25 @@ test('is able to get back a single message', () => {
 
   expect(messages).toHaveLength(1);
   expect(messages).toContainEqual(m0);
+});
+
+test('is able to get back a single message by id', () => {
+  const m0 = new Message(phoneFixture.simple);
+
+  const store = addMessages({}, [m0]);
+  const messages = getMessagesById(store, m0.conversationId);
+
+  expect(messages).toHaveLength(1);
+  expect(messages).toContainEqual(m0);
+});
+
+test('is able to fetch an unexisting messages', () => {
+  const m0 = new Message(phoneFixture.simple);
+
+  const store = addMessages({}, [m0]);
+  const messages = getMessagesById(store, `${m0.conversationId}foo`);
+
+  expect(messages).toHaveLength(0);
 });
 
 test('is able to get back a single message after many saves', () => {
