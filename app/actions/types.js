@@ -29,10 +29,6 @@ export type SelectNumberT = {|
   type: 'SELECT_NUMBER',
   selectedNumber: ?string,
 |}
-export type SelectConversationT = {|
-  type: 'SELECT_CONVERSATION',
-  selectedConversation: ?string,
-|}
 
 export type FetchMessagesT = {|
   type: 'FETCH_MESSAGES',

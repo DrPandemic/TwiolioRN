@@ -9,11 +9,3 @@ export function selectNumber(selectedNumber: ?string)
     selectedNumber,
   };
 }
-
-export function selectConversation(selectedConversation: ?string)
-: types.SelectConversationT {
-  return {
-    type: types.SELECT_CONVERSATION,
-    selectedConversation,
-  };
-}
