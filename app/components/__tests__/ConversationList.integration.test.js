@@ -3,14 +3,6 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
 
-jest.mock('react-native-popup-menu', () => ({
-  Menu: 'Menu',
-  MenuContext: 'MenuContext',
-  MenuOptions: 'MenuOptions',
-  MenuOption: 'MenuOption',
-  MenuTrigger: 'MenuTrigger',
-}));
-
 import { PConversationList } from '../ConversationList';
 import messageFixture from '../../test_helpers/fixtures/received_message.json';
 import { Message } from '../../types';

@@ -24,11 +24,14 @@ I'm doing this project to learn React Native. So feel free to open PRs to improv
 - [ ] Send SMS
 - [ ] Start new conversation
 - [ ] Use contacts to display names
+- [ ] System notifications
 - [ ] Save already received messages
   - [ ] Display phone numbers with conversations but that wasn't received by the API
 - [ ] Reduce network usage
   - [ ] Configurable fetch timeout
   - [ ] Don't ask twice for the same SMS
+- [ ] Delete messages
+- [ ] Delete conversations
 - [ ] Login page to replace configs
 
 ### Evolution (If I finished the project and want to sell an easier experience)
