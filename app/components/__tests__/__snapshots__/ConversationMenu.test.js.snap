@@ -1,0 +1,97 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders a menu with an id 1`] = `
+<View
+  style={
+    Object {
+      "flexDirection": "row",
+    }
+  }
+>
+  <Text
+    accessible={true}
+    allowFontScaling={false}
+    disabled={false}
+    ellipsizeMode="tail"
+    onPress={[Function]}
+    style={
+      Array [
+        Object {
+          "color": "#ffffff",
+          "fontSize": 25,
+        },
+        Object {},
+        Object {
+          "fontFamily": "Material Icons",
+          "fontStyle": "normal",
+          "fontWeight": "normal",
+        },
+      ]
+    }
+  >
+    
+  </Text>
+  <Text
+    accessible={true}
+    allowFontScaling={true}
+    disabled={false}
+    ellipsizeMode="tail"
+    style={
+      Object {
+        "color": "#ffffff",
+        "fontSize": 20,
+        "marginLeft": 10,
+      }
+    }
+  >
+    foo
+  </Text>
+</View>
+`;
+
+exports[`renders a menu without an id 1`] = `
+<View
+  style={
+    Object {
+      "flexDirection": "row",
+    }
+  }
+>
+  <Text
+    accessible={true}
+    allowFontScaling={false}
+    disabled={false}
+    ellipsizeMode="tail"
+    onPress={[Function]}
+    style={
+      Array [
+        Object {
+          "color": "#ffffff",
+          "fontSize": 25,
+        },
+        Object {},
+        Object {
+          "fontFamily": "Material Icons",
+          "fontStyle": "normal",
+          "fontWeight": "normal",
+        },
+      ]
+    }
+  >
+    
+  </Text>
+  <Text
+    accessible={true}
+    allowFontScaling={true}
+    disabled={false}
+    ellipsizeMode="tail"
+    style={
+      Object {
+        "color": "#ffffff",
+        "fontSize": 20,
+        "marginLeft": 10,
+      }
+    }
+  />
+</View>
+`;

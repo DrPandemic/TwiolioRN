@@ -9,6 +9,7 @@ import { Route, withRouter } from 'react-router-native';
 import { ActionCreators } from '../actions';
 import Conversation from './Conversation';
 import PhoneNumberMenu from './PhoneNumberMenu';
+import ConversationMenu from './ConversationMenu';
 import ConversationList from './ConversationList';
 import { colors } from '../constants';
 
@@ -38,7 +39,8 @@ class AppContainer extends Component {
     return (
       <View style={styles.container}>
         <View style={styles.nav}>
-          <PhoneNumberMenu/>
+          <Route exact path="/" component={PhoneNumberMenu}/>
+          <Route path="/conversation" component={ConversationMenu}/>
         </View>
 
         <Route exact path="/" component={ConversationList}/>
