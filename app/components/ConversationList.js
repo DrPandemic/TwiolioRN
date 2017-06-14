@@ -1,7 +1,12 @@
 // @flow
 
 import React, { Component } from 'react';
-import { View, StyleSheet } from 'react-native';
+import {
+  Dimensions,
+  FlatList,
+  View,
+  StyleSheet
+} from 'react-native';
 import { List, ListItem } from 'react-native-elements';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
@@ -9,17 +14,31 @@ import { bindActionCreators } from 'redux';
 import { ActionCreators } from '../actions';
 import { Message } from '../types';
 import { getConversations, filterByUs } from '../types/ConversationStore';
+import { colors } from '../constants';
 import type { StateT } from '../reducers';
 import type { T as AccountT } from '../reducers/account';
 import type { T as MessagesT } from '../reducers/messages';
 
+const screenHeight = Dimensions.get(`window`).height;
+
 const styles = StyleSheet.create({
   container: {
     flexDirection: 'column',
+    backgroundColor: colors.background,
+    height: screenHeight,
   },
   list: {
     marginTop: 0,
-  }
+    borderBottomWidth: 0,
+    backgroundColor: colors.background,
+  },
+  item: {
+    paddingTop: 10,
+    paddingBottom: 10,
+  },
+  flatList: {
+    marginBottom: 30,
+  },
 });
 
 type PropsT = {
@@ -44,25 +63,30 @@ export class PConversationList extends Component {
 
   renderRow([message]: Array<Message>) {
     return (
-        <ListItem
-          key={message.conversationId}
-          title={message.conversationUsers.other}
-          onPress={() => this.onSelectConversation(message.conversationId)}
-        />
+      <ListItem
+        key={message.conversationId}
+        title={message.conversationUsers.other}
+        onPress={() => this.onSelectConversation(message.conversationId)}
+        containerStyle={styles.item}
+        underlayColor={'#dedede'}
+      />
     );
   }
 
-  renderRows() {
-    return getConversations(
-      filterByUs(this.props.messages.messages, this.props.account.selectedNumber)
-    ).map(c => this.renderRow(c));
-  }
-
   render() {
+    const messages = getConversations(filterByUs(
+      this.props.messages.messages,
+      this.props.account.selectedNumber
+    ));
     return (
       <View style={styles.container}>
         <List containerStyle={styles.list}>
-          {this.renderRows()}
+          <FlatList
+            data={messages}
+            renderItem={({item}) => this.renderRow(item)}
+            keyExtractor={([message]) => message.sid}
+            style={styles.flatList}
+          />
         </List>
       </View>
     );

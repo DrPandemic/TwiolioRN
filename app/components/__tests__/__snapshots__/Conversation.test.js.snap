@@ -6,7 +6,8 @@ exports[`renders a message 1`] = `
   onPress={undefined}
   style={
     Object {
-      "backgroundColor": "#aaaaaa",
+      "margin": 10,
+      "marginRight": 50,
     }
   }
   underlayColor="white"
@@ -33,99 +34,37 @@ exports[`renders a message 1`] = `
       <View
         style={undefined}
       >
-        <Text
-          accessible={true}
-          allowFontScaling={true}
-          disabled={false}
-          ellipsizeMode="tail"
-          style={
-            Array [
-              Object {},
-              undefined,
-              undefined,
-              undefined,
-              undefined,
-              undefined,
-              undefined,
-              undefined,
-              undefined,
-              undefined,
-              Array [
+        <View>
+          <View
+            style={
+              Object {
+                "alignSelf": "flex-start",
+                "backgroundColor": "#d05ce3",
+                "borderRadius": 10,
+                "padding": 10,
+              }
+            }
+          >
+            <Text
+              accessible={true}
+              allowFontScaling={true}
+              disabled={false}
+              ellipsizeMode="tail"
+              style={
                 Object {
-                  "color": "#43484d",
-                  "fontSize": 17.5,
-                },
-                Object {
-                  "marginLeft": 10,
-                },
-                undefined,
-                undefined,
-              ],
-            ]
-          }
-        >
-          foo
-        </Text>
+                  "color": "#ffffff",
+                }
+              }
+            >
+              foo
+            </Text>
+          </View>
+        </View>
       </View>
       <View
         style={undefined}
       >
         <View />
-      </View>
-    </View>
-    <View
-      style={
-        Object {
-          "alignItems": "flex-end",
-          "flex": 0.15,
-          "justifyContent": "center",
-        }
-      }
-    >
-      <View
-        onPress={undefined}
-        style={
-          Array [
-            false,
-            false,
-            false,
-            Object {
-              "alignItems": "center",
-              "backgroundColor": "transparent",
-              "justifyContent": "center",
-            },
-            undefined,
-          ]
-        }
-        underlayColor="white"
-      >
-        <Text
-          accessible={true}
-          allowFontScaling={false}
-          disabled={false}
-          ellipsizeMode="tail"
-          style={
-            Array [
-              Object {
-                "color": "#bdc6cf",
-                "fontSize": 28,
-              },
-              Array [
-                Object {
-                  "backgroundColor": "transparent",
-                },
-                undefined,
-              ],
-              Object {
-                "fontFamily": "Material Icons",
-                "fontStyle": "normal",
-                "fontWeight": "normal",
-              },
-            ]
-          }
-        >
-          
-        </Text>
       </View>
     </View>
   </View>
@@ -138,7 +77,9 @@ exports[`renders a message 2`] = `
   onPress={undefined}
   style={
     Object {
-      "backgroundColor": "#111111",
+      "margin": 10,
+      "marginLeft": 50,
+      "marginRight": 30,
     }
   }
   underlayColor="white"
@@ -165,99 +106,37 @@ exports[`renders a message 2`] = `
       <View
         style={undefined}
       >
-        <Text
-          accessible={true}
-          allowFontScaling={true}
-          disabled={false}
-          ellipsizeMode="tail"
-          style={
-            Array [
-              Object {},
-              undefined,
-              undefined,
-              undefined,
-              undefined,
-              undefined,
-              undefined,
-              undefined,
-              undefined,
-              undefined,
-              Array [
+        <View>
+          <View
+            style={
+              Object {
+                "alignSelf": "flex-end",
+                "backgroundColor": "#fff",
+                "borderRadius": 10,
+                "padding": 10,
+              }
+            }
+          >
+            <Text
+              accessible={true}
+              allowFontScaling={true}
+              disabled={false}
+              ellipsizeMode="tail"
+              style={
                 Object {
-                  "color": "#43484d",
-                  "fontSize": 17.5,
-                },
-                Object {
-                  "marginLeft": 10,
-                },
-                undefined,
-                undefined,
-              ],
-            ]
-          }
-        >
-          foo
-        </Text>
+                  "textAlign": "right",
+                }
+              }
+            >
+              foo
+            </Text>
+          </View>
+        </View>
       </View>
       <View
         style={undefined}
       >
         <View />
-      </View>
-    </View>
-    <View
-      style={
-        Object {
-          "alignItems": "flex-end",
-          "flex": 0.15,
-          "justifyContent": "center",
-        }
-      }
-    >
-      <View
-        onPress={undefined}
-        style={
-          Array [
-            false,
-            false,
-            false,
-            Object {
-              "alignItems": "center",
-              "backgroundColor": "transparent",
-              "justifyContent": "center",
-            },
-            undefined,
-          ]
-        }
-        underlayColor="white"
-      >
-        <Text
-          accessible={true}
-          allowFontScaling={false}
-          disabled={false}
-          ellipsizeMode="tail"
-          style={
-            Array [
-              Object {
-                "color": "#bdc6cf",
-                "fontSize": 28,
-              },
-              Array [
-                Object {
-                  "backgroundColor": "transparent",
-                },
-                undefined,
-              ],
-              Object {
-                "fontFamily": "Material Icons",
-                "fontStyle": "normal",
-                "fontWeight": "normal",
-              },
-            ]
-          }
-        >
-          
-        </Text>
       </View>
     </View>
   </View>
@@ -268,25 +147,9 @@ exports[`renders an empty conversation 1`] = `
 <View
   style={
     Object {
+      "backgroundColor": "#eee",
       "flexDirection": "column",
-    }
-  }
->
-  <View
-    style={
-      Object {
-        "marginTop": 0,
-      }
-    }
-  />
-</View>
-`;
-
-exports[`renders an non-empty conversation 1`] = `
-<View
-  style={
-    Object {
-      "flexDirection": "column",
+      "height": 1334,
     }
   }
 >
@@ -297,264 +160,262 @@ exports[`renders an non-empty conversation 1`] = `
       }
     }
   >
-    <View
-      onLongPress={undefined}
-      onPress={undefined}
+    <RCTScrollView
+      data={Array []}
+      disableVirtualization={false}
+      getItem={[Function]}
+      getItemCount={[Function]}
+      horizontal={false}
+      initialNumToRender={10}
+      keyExtractor={[Function]}
+      maxToRenderPerBatch={10}
+      numColumns={1}
+      onContentSizeChange={[Function]}
+      onEndReachedThreshold={2}
+      onLayout={[Function]}
+      onMomentumScrollEnd={[Function]}
+      onScroll={[Function]}
+      onScrollBeginDrag={[Function]}
+      onScrollEndDrag={[Function]}
+      onViewableItemsChanged={undefined}
+      renderItem={[Function]}
+      renderScrollComponent={[Function]}
+      scrollEventThrottle={50}
+      stickyHeaderIndices={Array []}
       style={
         Object {
-          "backgroundColor": "#aaaaaa",
+          "marginBottom": 30,
         }
       }
-      underlayColor="white"
+      updateCellsBatchingPeriod={50}
+      windowSize={21}
     >
-      <View
-        style={
-          Array [
-            Object {
-              "flexDirection": "row",
-              "marginLeft": 10,
-            },
-            undefined,
-          ]
+      <View />
+    </RCTScrollView>
+  </View>
+</View>
+`;
+
+exports[`renders an non-empty conversation 1`] = `
+<View
+  style={
+    Object {
+      "backgroundColor": "#eee",
+      "flexDirection": "column",
+      "height": 1334,
+    }
+  }
+>
+  <View
+    style={
+      Object {
+        "marginTop": 0,
+      }
+    }
+  >
+    <RCTScrollView
+      data={
+        Array [
+          Message {
+            "body": "bar",
+            "dateCreated": "Fri, 12 May 2017 02:46:30 +0000",
+            "dateSent": "Fri, 12 May 2017 02:46:31 +0000",
+            "dateUpdated": "Fri, 12 May 2017 02:46:31 +0000",
+            "direction": "outbound-api",
+            "from": "+1231231234",
+            "sid": "somesid5",
+            "status": "delivered",
+            "to": "+1231231235",
+          },
+          Message {
+            "body": "foo",
+            "dateCreated": "Fri, 12 May 2017 02:46:30 +0000",
+            "dateSent": "Fri, 12 May 2017 02:46:31 +0000",
+            "dateUpdated": "Fri, 12 May 2017 02:46:31 +0000",
+            "direction": "inbound",
+            "from": "+1231231235",
+            "sid": "somesid0",
+            "status": "received",
+            "to": "+1231231234",
+          },
+        ]
+      }
+      disableVirtualization={false}
+      getItem={[Function]}
+      getItemCount={[Function]}
+      horizontal={false}
+      initialNumToRender={10}
+      keyExtractor={[Function]}
+      maxToRenderPerBatch={10}
+      numColumns={1}
+      onContentSizeChange={[Function]}
+      onEndReachedThreshold={2}
+      onLayout={[Function]}
+      onMomentumScrollEnd={[Function]}
+      onScroll={[Function]}
+      onScrollBeginDrag={[Function]}
+      onScrollEndDrag={[Function]}
+      onViewableItemsChanged={undefined}
+      renderItem={[Function]}
+      renderScrollComponent={[Function]}
+      scrollEventThrottle={50}
+      stickyHeaderIndices={Array []}
+      style={
+        Object {
+          "marginBottom": 30,
         }
-      >
+      }
+      updateCellsBatchingPeriod={50}
+      windowSize={21}
+    >
+      <View>
         <View
-          style={
-            Object {
-              "flex": 1,
-              "justifyContent": "center",
-            }
-          }
+          onLayout={[Function]}
         >
           <View
-            style={undefined}
-          >
-            <Text
-              accessible={true}
-              allowFontScaling={true}
-              disabled={false}
-              ellipsizeMode="tail"
-              style={
-                Array [
-                  Object {},
-                  undefined,
-                  undefined,
-                  undefined,
-                  undefined,
-                  undefined,
-                  undefined,
-                  undefined,
-                  undefined,
-                  undefined,
-                  Array [
-                    Object {
-                      "color": "#43484d",
-                      "fontSize": 17.5,
-                    },
-                    Object {
-                      "marginLeft": 10,
-                    },
-                    undefined,
-                    undefined,
-                  ],
-                ]
-              }
-            >
-              bar
-            </Text>
-          </View>
-          <View
-            style={undefined}
-          >
-            <View />
-          </View>
-        </View>
-        <View
-          style={
-            Object {
-              "alignItems": "flex-end",
-              "flex": 0.15,
-              "justifyContent": "center",
-            }
-          }
-        >
-          <View
+            onLongPress={undefined}
             onPress={undefined}
             style={
-              Array [
-                false,
-                false,
-                false,
-                Object {
-                  "alignItems": "center",
-                  "backgroundColor": "transparent",
-                  "justifyContent": "center",
-                },
-                undefined,
-              ]
+              Object {
+                "margin": 10,
+                "marginRight": 50,
+              }
             }
             underlayColor="white"
           >
-            <Text
-              accessible={true}
-              allowFontScaling={false}
-              disabled={false}
-              ellipsizeMode="tail"
+            <View
               style={
                 Array [
                   Object {
-                    "color": "#bdc6cf",
-                    "fontSize": 28,
+                    "flexDirection": "row",
+                    "marginLeft": 10,
                   },
-                  Array [
-                    Object {
-                      "backgroundColor": "transparent",
-                    },
-                    undefined,
-                  ],
+                  undefined,
+                ]
+              }
+            >
+              <View
+                style={
                   Object {
-                    "fontFamily": "Material Icons",
-                    "fontStyle": "normal",
-                    "fontWeight": "normal",
-                  },
-                ]
-              }
-            >
-              
-            </Text>
-          </View>
-        </View>
-      </View>
-    </View>
-    <View
-      onLongPress={undefined}
-      onPress={undefined}
-      style={
-        Object {
-          "backgroundColor": "#111111",
-        }
-      }
-      underlayColor="white"
-    >
-      <View
-        style={
-          Array [
-            Object {
-              "flexDirection": "row",
-              "marginLeft": 10,
-            },
-            undefined,
-          ]
-        }
-      >
-        <View
-          style={
-            Object {
-              "flex": 1,
-              "justifyContent": "center",
-            }
-          }
-        >
-          <View
-            style={undefined}
-          >
-            <Text
-              accessible={true}
-              allowFontScaling={true}
-              disabled={false}
-              ellipsizeMode="tail"
-              style={
-                Array [
-                  Object {},
-                  undefined,
-                  undefined,
-                  undefined,
-                  undefined,
-                  undefined,
-                  undefined,
-                  undefined,
-                  undefined,
-                  undefined,
-                  Array [
-                    Object {
-                      "color": "#43484d",
-                      "fontSize": 17.5,
-                    },
-                    Object {
-                      "marginLeft": 10,
-                    },
-                    undefined,
-                    undefined,
-                  ],
-                ]
-              }
-            >
-              foo
-            </Text>
-          </View>
-          <View
-            style={undefined}
-          >
-            <View />
+                    "flex": 1,
+                    "justifyContent": "center",
+                  }
+                }
+              >
+                <View
+                  style={undefined}
+                >
+                  <View>
+                    <View
+                      style={
+                        Object {
+                          "alignSelf": "flex-start",
+                          "backgroundColor": "#d05ce3",
+                          "borderRadius": 10,
+                          "padding": 10,
+                        }
+                      }
+                    >
+                      <Text
+                        accessible={true}
+                        allowFontScaling={true}
+                        disabled={false}
+                        ellipsizeMode="tail"
+                        style={
+                          Object {
+                            "color": "#ffffff",
+                          }
+                        }
+                      >
+                        bar
+                      </Text>
+                    </View>
+                  </View>
+                </View>
+                <View
+                  style={undefined}
+                >
+                  <View />
+                </View>
+              </View>
+            </View>
           </View>
         </View>
         <View
-          style={
-            Object {
-              "alignItems": "flex-end",
-              "flex": 0.15,
-              "justifyContent": "center",
-            }
-          }
+          onLayout={[Function]}
         >
           <View
+            onLongPress={undefined}
             onPress={undefined}
             style={
-              Array [
-                false,
-                false,
-                false,
-                Object {
-                  "alignItems": "center",
-                  "backgroundColor": "transparent",
-                  "justifyContent": "center",
-                },
-                undefined,
-              ]
+              Object {
+                "margin": 10,
+                "marginLeft": 50,
+                "marginRight": 30,
+              }
             }
             underlayColor="white"
           >
-            <Text
-              accessible={true}
-              allowFontScaling={false}
-              disabled={false}
-              ellipsizeMode="tail"
+            <View
               style={
                 Array [
                   Object {
-                    "color": "#bdc6cf",
-                    "fontSize": 28,
+                    "flexDirection": "row",
+                    "marginLeft": 10,
                   },
-                  Array [
-                    Object {
-                      "backgroundColor": "transparent",
-                    },
-                    undefined,
-                  ],
-                  Object {
-                    "fontFamily": "Material Icons",
-                    "fontStyle": "normal",
-                    "fontWeight": "normal",
-                  },
+                  undefined,
                 ]
               }
             >
-              
-            </Text>
+              <View
+                style={
+                  Object {
+                    "flex": 1,
+                    "justifyContent": "center",
+                  }
+                }
+              >
+                <View
+                  style={undefined}
+                >
+                  <View>
+                    <View
+                      style={
+                        Object {
+                          "alignSelf": "flex-end",
+                          "backgroundColor": "#fff",
+                          "borderRadius": 10,
+                          "padding": 10,
+                        }
+                      }
+                    >
+                      <Text
+                        accessible={true}
+                        allowFontScaling={true}
+                        disabled={false}
+                        ellipsizeMode="tail"
+                        style={
+                          Object {
+                            "textAlign": "right",
+                          }
+                        }
+                      >
+                        foo
+                      </Text>
+                    </View>
+                  </View>
+                </View>
+                <View
+                  style={undefined}
+                >
+                  <View />
+                </View>
+              </View>
+            </View>
           </View>
         </View>
       </View>
-    </View>
+    </RCTScrollView>
   </View>
 </View>
 `;

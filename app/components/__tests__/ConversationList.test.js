@@ -49,7 +49,20 @@ test('renders rows', () => {
   });
 
   expect(
-    renderer.create(conversationList.renderRows())
+    renderer.create(conversationList.render())
+  ).toMatchSnapshot();
+});
+
+test('renders empty rows', () => {
+  const conversationList = new PConversationList({
+    account: { ...initialState.account },
+    messages: { ...initialState.messages },
+    selectConversation: () => {},
+    push: () => {},
+  });
+
+  expect(
+    renderer.create(conversationList.render())
   ).toMatchSnapshot();
 });
 
@@ -75,7 +88,7 @@ test('renders rows with selected number', () => {
   });
 
   expect(
-    renderer.create(conversationList.renderRows())
+    renderer.create(conversationList.render())
   ).toMatchSnapshot();
 });
 

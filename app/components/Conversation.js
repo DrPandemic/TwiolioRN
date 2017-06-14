@@ -1,7 +1,13 @@
 // @flow
 
 import React, { Component } from 'react';
-import { Dimensions, View, StyleSheet, Text } from 'react-native';
+import {
+  Dimensions,
+  FlatList,
+  StyleSheet,
+  Text,
+  View,
+} from 'react-native';
 import { List, ListItem } from 'react-native-elements';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
@@ -18,11 +24,14 @@ const screenHeight = Dimensions.get(`window`).height;
 const styles = StyleSheet.create({
   container: {
     flexDirection: 'column',
-    backgroundColor: '#eee',
+    backgroundColor: colors.background,
     height: screenHeight,
   },
   list: {
     marginTop: 0,
+  },
+  flatList: {
+    marginBottom: 30,
   },
   ourMessage: {
     margin: 10,
@@ -95,13 +104,11 @@ export class PConversation extends Component {
     );
   }
 
-  static renderRows(messages: Array<Message>) {
-    return messages.map(m => {
-      if (m.isInbound) {
-        return PConversation.renderUs(m);
-      }
-      return PConversation.renderOther(m);
-    });
+  static renderRow(message: Message) {
+    if (message.isInbound) {
+      return PConversation.renderUs(message);
+    }
+    return PConversation.renderOther(message);
   }
 
   render() {
@@ -111,7 +118,12 @@ export class PConversation extends Component {
     return (
       <View style={styles.container}>
         <List style={styles.list}>
-          {PConversation.renderRows(getMessagesById(store, conversationId))}
+          <FlatList
+            data={getMessagesById(store, conversationId)}
+            renderItem={({item}) => PConversation.renderRow(item)}
+            keyExtractor={message => message.sid}
+            style={styles.flatList}
+          />
         </List>
       </View>
     );

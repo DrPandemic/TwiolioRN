@@ -21,11 +21,13 @@ I'm doing this project to learn React Native. So feel free to open PRs to improv
 - [ ] Order messages
 - [ ] Save already received messages
   - [ ] Display phone numbers with conversations but that wasn't received by the API
+- [ ] Android back button
 - [ ] Send SMS
 - [ ] Always fetch messages
 - [ ] Start new conversation
 - [ ] Use contacts to display names
 - [ ] System notifications
+- [ ] Display message's date
 - [ ] Reduce network usage
   - [ ] Configurable fetch timeout
   - [ ] Don't ask twice for the same SMS
