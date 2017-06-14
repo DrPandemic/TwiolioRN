@@ -16,22 +16,26 @@ I'm doing this project to learn React Native. So feel free to open PRs to improv
 - [x] Display conversations by number
 - [x] Display all conversations
 - [x] Change navigation bar when in a conversation
-- [ ] Order messages
 - [x] Display a conversation
-- [ ] Router animation
-- [ ] Manage multipart messages
+- [x] Style conversation
+- [ ] Order messages
+- [ ] Save already received messages
+  - [ ] Display phone numbers with conversations but that wasn't received by the API
 - [ ] Send SMS
+- [ ] Always fetch messages
 - [ ] Start new conversation
 - [ ] Use contacts to display names
 - [ ] System notifications
-- [ ] Save already received messages
-  - [ ] Display phone numbers with conversations but that wasn't received by the API
 - [ ] Reduce network usage
   - [ ] Configurable fetch timeout
   - [ ] Don't ask twice for the same SMS
 - [ ] Delete messages
 - [ ] Delete conversations
 - [ ] Login page to replace configs
+
+
+- [ ] Router animation
+- [ ] Manage multipart messages
 
 ### Evolution (If I finished the project and want to sell an easier experience)
 - [ ] A way to create a Twilio account from the app

@@ -1,7 +1,7 @@
 // @flow
 
 import React, { Component } from 'react';
-import { View, StyleSheet } from 'react-native';
+import { Dimensions, View, StyleSheet, Text } from 'react-native';
 import { List, ListItem } from 'react-native-elements';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
@@ -9,21 +9,47 @@ import { bindActionCreators } from 'redux';
 import { ActionCreators } from '../actions';
 import { Message } from '../types';
 import { getMessagesById } from '../types/ConversationStore';
+import { colors } from '../constants';
 import type { StateT } from '../reducers';
 import type { T as MessagesT } from '../reducers/messages';
+
+const screenHeight = Dimensions.get(`window`).height;
 
 const styles = StyleSheet.create({
   container: {
     flexDirection: 'column',
+    backgroundColor: '#eee',
+    height: screenHeight,
   },
   list: {
     marginTop: 0,
   },
   ourMessage: {
-    backgroundColor: '#111111'
+    margin: 10,
+    marginLeft: 50,
+    marginRight: 30,
   },
   otherMessage: {
-    backgroundColor: '#aaaaaa'
+    margin: 10,
+    marginRight: 50,
+  },
+  ourTitle: {
+    textAlign: 'right',
+  },
+  otherTitle: {
+    color: colors.primary.text,
+  },
+  ourMessageBody: {
+    backgroundColor: '#fff',
+    alignSelf: 'flex-end',
+    borderRadius: 10,
+    padding: 10,
+  },
+  otherMessageBody: {
+    backgroundColor: colors.primary.light,
+    alignSelf: 'flex-start',
+    borderRadius: 10,
+    padding: 10,
   },
 });
 
@@ -39,8 +65,15 @@ export class PConversation extends Component {
     return (
       <ListItem
         key={message.sid}
-        title={message.body}
+        title={
+          <View style={styles.ourMessageBody}>
+            <Text style={styles.ourTitle}>
+              {message.body}
+            </Text>
+          </View>
+        }
         style={styles.ourMessage}
+        hideChevron={true}
       />
     );
   }
@@ -49,8 +82,15 @@ export class PConversation extends Component {
     return (
       <ListItem
         key={message.sid}
-        title={message.body}
+        title={
+          <View style={styles.otherMessageBody}>
+            <Text style={styles.otherTitle}>
+              {message.body}
+            </Text>
+          </View>
+        }
         style={styles.otherMessage}
+        hideChevron={true}
       />
     );
   }
