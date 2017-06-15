@@ -13,9 +13,11 @@ export function addMessage(store: ConversationStoreT, message: Message):
 ConversationStoreT {
   const id = message.conversationId;
 
+  // This could be an performance issue at some point
   return {
     ...store,
     [id]: [message, ...(store[id] || []).filter(m => m.sid !== message.sid)]
+      .sort((a: Message, b: Message) => a.compare(b))
   };
 }
 

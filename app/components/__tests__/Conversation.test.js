@@ -16,19 +16,6 @@ test('renders a message', () => {
   expect(renderer.create(PConversation.renderUs(message))).toMatchSnapshot();
 });
 
-test('renders rows', () => {
-  const message = new Message(messageFixture.simple);
-  const store = addMessages({}, [
-    message,
-    new Message(messageFixture.simpleInverse),
-    new Message(messageFixture.simpleOtherFrom),
-    new Message(messageFixture.secondOutbound),
-  ]);
-  const messages = getMessagesById(store, message.conversationId);
-
-  expect(renderer.create(PConversation.renderRows(messages))).toMatchSnapshot();
-});
-
 test('renders an empty conversation', () => {
   const list = renderer.create(
       <PConversation

@@ -10,9 +10,9 @@ export default class Message {
   body: string;
   to: string;
   from: string;
-  dateCreated: string;
-  dateUpdated: string;
-  dateSent: string;
+  dateCreated: Date;
+  dateUpdated: Date;
+  dateSent: Date;
   status: string;
   direction: string;
 
@@ -21,15 +21,11 @@ export default class Message {
     this.body = response.body;
     this.to = response.to;
     this.from = response.from;
-    this.dateCreated = response.date_created;
-    this.dateUpdated = response.date_updated;
-    this.dateSent = response.date_sent;
+    this.dateCreated = new Date(response.date_created);
+    this.dateUpdated = new Date(response.date_updated);
+    this.dateSent = new Date(response.date_sent);
     this.status = response.status;
     this.direction = response.direction;
-  }
-
-  get isInbound(): boolean {
-    return this.direction === 'inbound';
   }
 
   /*
@@ -39,6 +35,10 @@ export default class Message {
       outbound-call for messages initiated during a call
       or outbound-reply for messages initiated in response to an incoming SMS
    */
+  get isInbound(): boolean {
+    return this.direction === 'inbound';
+  }
+
   get conversationUsers(): ConversationUsers {
     return {
       us: this.isInbound ? this.to : this.from,
@@ -52,6 +52,15 @@ export default class Message {
 
   get conversationId(): string {
     return Message.getConversationId(this.conversationUsers);
+  }
+
+  compare(b: Message): number {
+    if (this.dateSent < b.dateSent) {
+      return -1;
+    } else if (this.dateSent > b.dateSent) {
+      return 1;
+    }
+    return 0;
   }
 }
 

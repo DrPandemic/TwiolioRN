@@ -18,12 +18,12 @@ I'm doing this project to learn React Native. So feel free to open PRs to improv
 - [x] Change navigation bar when in a conversation
 - [x] Display a conversation
 - [x] Style conversation
-- [ ] Order messages
-- [ ] Save already received messages
-  - [ ] Display phone numbers with conversations but that wasn't received by the API
+- [ ] Order messages and conversations
 - [ ] Android back button
-- [ ] Send SMS
 - [ ] Always fetch messages
+  - [ ] Save already received messages
+  - [ ] Display phone numbers with conversations but that wasn't received by the API
+- [ ] Send SMS
 - [ ] Start new conversation
 - [ ] Use contacts to display names
 - [ ] System notifications
@@ -34,6 +34,7 @@ I'm doing this project to learn React Native. So feel free to open PRs to improv
 - [ ] Delete messages
 - [ ] Delete conversations
 - [ ] Login page to replace configs
+- [ ] Display money left
 
 
 - [ ] Router animation

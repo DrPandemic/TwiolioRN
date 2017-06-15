@@ -1,11 +1,11 @@
 // @flow
 
 import { addMessages, getMessages, getMessagesById, filterByUs } from '../ConversationStore';
-import phoneFixture from '../../test_helpers/fixtures/received_message.json';
+import fixture from '../../test_helpers/fixtures/received_message.json';
 import Message from '../Message';
 
 test('is able to get back a single message', () => {
-  const m0 = new Message(phoneFixture.simple);
+  const m0 = new Message(fixture.simple);
   const store0 = {};
 
   const store1 = addMessages(store0, [m0]);
@@ -16,7 +16,7 @@ test('is able to get back a single message', () => {
 });
 
 test('is able to get back a single message by id', () => {
-  const m0 = new Message(phoneFixture.simple);
+  const m0 = new Message(fixture.simple);
 
   const store = addMessages({}, [m0]);
   const messages = getMessagesById(store, m0.conversationId);
@@ -26,7 +26,7 @@ test('is able to get back a single message by id', () => {
 });
 
 test('is able to fetch an unexisting messages', () => {
-  const m0 = new Message(phoneFixture.simple);
+  const m0 = new Message(fixture.simple);
 
   const store = addMessages({}, [m0]);
   const messages = getMessagesById(store, `${m0.conversationId}foo`);
@@ -35,10 +35,10 @@ test('is able to fetch an unexisting messages', () => {
 });
 
 test('is able to get back a single message after many saves', () => {
-  const m0 = new Message(phoneFixture.simple);
-  const m1 = new Message(phoneFixture.simpleInverse);
-  const m2 = new Message(phoneFixture.simpleOtherFrom);
-  const m3 = new Message(phoneFixture.simpleOutbound);
+  const m0 = new Message(fixture.simple);
+  const m1 = new Message(fixture.simpleInverse);
+  const m2 = new Message(fixture.simpleOtherFrom);
+  const m3 = new Message(fixture.simpleOutbound);
   let store = {};
 
   store = addMessages(store, [m0, m1]);
@@ -60,10 +60,10 @@ test('is able to get back a single message after many saves', () => {
 });
 
 test('filterByUs', () => {
-  const m0 = new Message(phoneFixture.simple);
-  const m1 = new Message(phoneFixture.simpleInverse);
-  const m2 = new Message(phoneFixture.simpleOtherFrom);
-  const m3 = new Message(phoneFixture.simpleOutbound);
+  const m0 = new Message(fixture.simple);
+  const m1 = new Message(fixture.simpleInverse);
+  const m2 = new Message(fixture.simpleOtherFrom);
+  const m3 = new Message(fixture.simpleOutbound);
   const store0 = addMessages({}, [m0, m1, m2, m3]);
 
   const store1 = filterByUs(store0, m0.conversationUsers.us);
@@ -81,10 +81,10 @@ test('filterByUs', () => {
 });
 
 test('filterByUs with null us', () => {
-  const m0 = new Message(phoneFixture.simple);
-  const m1 = new Message(phoneFixture.simpleInverse);
-  const m2 = new Message(phoneFixture.simpleOtherFrom);
-  const m3 = new Message(phoneFixture.simpleOutbound);
+  const m0 = new Message(fixture.simple);
+  const m1 = new Message(fixture.simpleInverse);
+  const m2 = new Message(fixture.simpleOtherFrom);
+  const m3 = new Message(fixture.simpleOutbound);
   const store0 = addMessages({}, [m0, m1, m2, m3]);
 
   const store1 = filterByUs(store0, null);
@@ -95,4 +95,17 @@ test('filterByUs with null us', () => {
     m1.conversationId,
     m2.conversationId,
   ]));
+});
+
+test('messages are ordered', () => {
+  const m0 = new Message(fixture.chronologicallyUnorderedList[0]);
+  const m1 = new Message(fixture.chronologicallyUnorderedList[1]);
+  const m2 = new Message(fixture.chronologicallyUnorderedList[2]);
+  const store = addMessages({}, [m0, m1, m2]);
+  const messages = getMessages(store, m0.conversationUsers);
+
+  expect(messages).toHaveLength(3);
+  expect(messages[0]).toEqual(m1);
+  expect(messages[1]).toEqual(m2);
+  expect(messages[2]).toEqual(m0);
 });
