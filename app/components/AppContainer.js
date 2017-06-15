@@ -11,7 +11,8 @@ import Conversation from './Conversation';
 import PhoneNumberMenu from './PhoneNumberMenu';
 import ConversationMenu from './ConversationMenu';
 import ConversationList from './ConversationList';
-import { colors } from '../constants';
+import Interval from './Interval';
+import { Colors } from '../constants';
 
 const styles = StyleSheet.create({
   container: {
@@ -19,25 +20,16 @@ const styles = StyleSheet.create({
   nav: {
     flexDirection: 'row',
     padding: 15,
-    backgroundColor: colors.primary.normal,
+    backgroundColor: Colors.primary.normal,
     elevation: 5,
   },
 });
 
 class AppContainer extends Component {
-  props: {
-    fetchAccountNumbers: () => Promise<void>,
-    fetchMessages: () => Promise<void>,
-  };
-
-  componentDidMount(): void {
-    this.props.fetchAccountNumbers();
-    this.props.fetchMessages();
-  }
-
   render() {
     return (
       <View style={styles.container}>
+        <Interval />
         <AndroidBackButton />
         <View style={styles.nav}>
           <Route exact path="/" component={PhoneNumberMenu}/>

@@ -3,12 +3,12 @@
 import Config from 'react-native-config';
 import { Buffer } from 'buffer';
 
-import { shouldMockFetch } from '../constants';
+import { ShouldMockFetch } from '../constants';
 import mocks from './mock.json';
 
 function mockedFetch(url: string, params: any) {
   const mock = mocks.find(m => m.method === params.method && url === m.url);
-  if (__DEV__ && shouldMockFetch && mock) {
+  if (__DEV__ && ShouldMockFetch && mock) {
     return Promise.resolve({
       ok: true,
       json: () => Promise.resolve(mock.response),

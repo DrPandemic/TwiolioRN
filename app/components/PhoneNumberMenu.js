@@ -17,11 +17,11 @@ import type { T as FetchedT } from '../reducers/fetchedAccountNumbers';
 import type { T as AccountT } from '../reducers/account';
 import type { StateT } from '../reducers';
 import { PhoneNumber } from '../types';
-import { colors } from '../constants';
+import { Colors } from '../constants';
 
 const styles = StyleSheet.create({
   text: {
-    color: colors.primary.text,
+    color: Colors.primary.text,
     fontSize: 20,
   },
   icon: {
@@ -109,7 +109,7 @@ export class PPhoneNumberMenu extends Component {
               <Icon
                 name="arrow-drop-down"
                 size={25}
-                color={colors.primary.text}
+                color={Colors.primary.text}
                 style={styles.icon}
               />
             </Text>

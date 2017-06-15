@@ -7,14 +7,14 @@ import { Text, StyleSheet, View } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 
 import { ActionCreators } from '../actions';
-import { colors } from '../constants';
+import { Colors } from '../constants';
 
 const styles = StyleSheet.create({
   container: {
     flexDirection: 'row',
   },
   text: {
-    color: colors.primary.text,
+    color: Colors.primary.text,
     fontSize: 20,
     marginLeft: 10,
   },
@@ -33,7 +33,7 @@ export class PConversationMenu extends Component {
       <Icon
         name='keyboard-backspace'
         size={25}
-        color={colors.primary.text}
+        color={Colors.primary.text}
         style={styles.icon}
         onPress={this.props.goBack}
       />

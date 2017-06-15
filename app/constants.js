@@ -1,6 +1,5 @@
-export const shouldMockFetch = true;
-
-export const colors = {
+export const ShouldMockFetch = true;
+export const Colors = {
   primary: {
     normal: '#9c27b0',
     light: '#d05ce3',
@@ -9,3 +8,4 @@ export const colors = {
   },
   background: '#eee',
 };
+export const RefreshInterval = 1000 * 30;

@@ -14,7 +14,7 @@ import { bindActionCreators } from 'redux';
 import { ActionCreators } from '../actions';
 import { Message } from '../types';
 import { getConversations, filterByUs } from '../types/ConversationStore';
-import { colors } from '../constants';
+import { Colors } from '../constants';
 import type { StateT } from '../reducers';
 import type { T as AccountT } from '../reducers/account';
 import type { T as MessagesT } from '../reducers/messages';
@@ -24,13 +24,13 @@ const screenHeight = Dimensions.get(`window`).height;
 const styles = StyleSheet.create({
   container: {
     flexDirection: 'column',
-    backgroundColor: colors.background,
+    backgroundColor: Colors.background,
     height: screenHeight,
   },
   list: {
     marginTop: 0,
     borderBottomWidth: 0,
-    backgroundColor: colors.background,
+    backgroundColor: Colors.background,
   },
   item: {
     paddingTop: 10,
