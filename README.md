@@ -18,11 +18,12 @@ I'm doing this project to learn React Native. So feel free to open PRs to improv
 - [x] Change navigation bar when in a conversation
 - [x] Display a conversation
 - [x] Style conversation
-- [ ] Order messages and conversations
-- [ ] Android back button
+- [x] Order messages and conversations
+- [x] Android back button
 - [ ] Always fetch messages
   - [ ] Save already received messages
   - [ ] Display phone numbers with conversations but that wasn't received by the API
+- [ ] Always show end of conversation first
 - [ ] Send SMS
 - [ ] Start new conversation
 - [ ] Use contacts to display names

@@ -4,7 +4,7 @@ import React, { Component } from 'react';
 import { View, StyleSheet } from 'react-native';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { Route, withRouter } from 'react-router-native';
+import { AndroidBackButton, Route, withRouter } from 'react-router-native';
 
 import { ActionCreators } from '../actions';
 import Conversation from './Conversation';
@@ -38,6 +38,7 @@ class AppContainer extends Component {
   render() {
     return (
       <View style={styles.container}>
+        <AndroidBackButton />
         <View style={styles.nav}>
           <Route exact path="/" component={PhoneNumberMenu}/>
           <Route path="/conversation" component={ConversationMenu}/>
