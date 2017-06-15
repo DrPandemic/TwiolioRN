@@ -241,5 +241,73 @@
         "media": "/2010-04-01/Accounts/account_sid/Messages/something/Media.json"
       }
     }
+  ],
+  "chronologicallyUnorderedConversations": [
+    {
+      "sid": "someid0",
+      "date_created": "Fri, 12 May 2017 02:46:30 +0000",
+      "date_updated": "Fri, 12 May 2017 02:46:31 +0000",
+      "date_sent": "Fri, 12 May 2017 02:46:31 +0000",
+      "to": "+1231231235",
+      "from": "+1231231234",
+      "body": "bar",
+      "status": "delivered",
+      "direction": "outbound-api"
+    },
+    {
+      "sid": "someid1",
+      "date_created": "Fri, 10 May 2017 02:46:30 +0000",
+      "date_updated": "Fri, 10 May 2017 02:46:31 +0000",
+      "date_sent": "Fri, 10 May 2017 02:46:31 +0000",
+      "to": "+1231231235",
+      "from": "+1231231234",
+      "body": "bar",
+      "status": "delivered",
+      "direction": "outbound-api"
+    },
+    {
+      "sid": "someid2",
+      "date_created": "Fri, 11 May 2017 02:46:30 +0000",
+      "date_updated": "Fri, 11 May 2017 02:46:31 +0000",
+      "date_sent": "Fri, 11 May 2017 02:46:31 +0000",
+      "to": "+1231231235",
+      "from": "+1231231234",
+      "body": "bar",
+      "status": "delivered",
+      "direction": "outbound-api"
+    },
+    {
+      "sid": "someid3",
+      "date_created": "Fri, 10 May 2017 02:46:30 +0000",
+      "date_updated": "Fri, 10 May 2017 02:46:31 +0000",
+      "date_sent": "Fri, 10 May 2017 02:46:31 +0000",
+      "to": "+1231231236",
+      "from": "+1231231234",
+      "body": "bar",
+      "status": "delivered",
+      "direction": "outbound-api"
+    },
+    {
+      "sid": "someid4",
+      "date_created": "Fri, 11 May 2017 02:46:30 +0000",
+      "date_updated": "Fri, 11 May 2017 02:46:31 +0000",
+      "date_sent": "Fri, 11 May 2017 02:46:31 +0000",
+      "to": "+1231231237",
+      "from": "+1231231234",
+      "body": "bar",
+      "status": "delivered",
+      "direction": "outbound-api"
+    },
+    {
+      "sid": "someid5",
+      "date_created": "Fri, 8 May 2017 02:46:30 +0000",
+      "date_updated": "Fri, 8 May 2017 02:46:31 +0000",
+      "date_sent": "Fri, 8 May 2017 02:46:31 +0000",
+      "to": "+1231231238",
+      "from": "+1231231234",
+      "body": "bar",
+      "status": "delivered",
+      "direction": "outbound-api"
+    }
   ]
 }

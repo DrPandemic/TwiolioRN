@@ -45,7 +45,18 @@ export function getMessages(
 export function getConversations(
   store: ConversationStoreT
 ): NestedArray<Message> {
-  return Object.values(store);
+  return Object.values(store)
+    .sort((aList: Array<Message>, bList: Array<Message>) => {
+      const a = aList[aList.length - 1];
+      const b = bList[bList.length - 1];
+
+      if (a.dateSent < b.dateSent) {
+        return -1;
+      } else if (a.dateSent > b.dateSent) {
+        return 1;
+      }
+      return 0;
+    });
 }
 
 // For this function to work, we need to have non-empty conversations.

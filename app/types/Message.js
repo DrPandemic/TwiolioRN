@@ -56,9 +56,9 @@ export default class Message {
 
   compare(b: Message): number {
     if (this.dateSent < b.dateSent) {
-      return -1;
-    } else if (this.dateSent > b.dateSent) {
       return 1;
+    } else if (this.dateSent > b.dateSent) {
+      return -1;
     }
     return 0;
   }

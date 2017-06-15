@@ -1,6 +1,12 @@
 // @flow
 
-import { addMessages, getMessages, getMessagesById, filterByUs } from '../ConversationStore';
+import {
+  addMessages,
+  filterByUs,
+  getConversations,
+  getMessages,
+  getMessagesById,
+} from '../ConversationStore';
 import fixture from '../../test_helpers/fixtures/received_message.json';
 import Message from '../Message';
 
@@ -105,7 +111,30 @@ test('messages are ordered', () => {
   const messages = getMessages(store, m0.conversationUsers);
 
   expect(messages).toHaveLength(3);
-  expect(messages[0]).toEqual(m1);
+  expect(messages[0]).toEqual(m0);
   expect(messages[1]).toEqual(m2);
-  expect(messages[2]).toEqual(m0);
+  expect(messages[2]).toEqual(m1);
+});
+
+test('conversations are ordered', () => {
+  const m0 = new Message(fixture.chronologicallyUnorderedConversations[0]);
+  const m1 = new Message(fixture.chronologicallyUnorderedConversations[1]);
+  const m2 = new Message(fixture.chronologicallyUnorderedConversations[2]);
+  const m3 = new Message(fixture.chronologicallyUnorderedConversations[3]);
+  const m4 = new Message(fixture.chronologicallyUnorderedConversations[4]);
+  const m5 = new Message(fixture.chronologicallyUnorderedConversations[5]);
+
+  const store = addMessages({}, [m0, m1, m2, m3, m4, m5]);
+  const conversations = getConversations(store, m0.conversationUsers);
+
+  expect(conversations[0][0].sid).toEqual(m5.sid);
+  expect(
+    conversations[1][0].sid === m3.sid ||
+    conversations[1][0].sid === m0.sid
+  ).toBeTruthy();
+  expect(
+    conversations[2][0].sid === m3.sid ||
+    conversations[2][0].sid === m0.sid
+  ).toBeTruthy();
+  expect(conversations[3][0].sid).toEqual(m4.sid);
 });
