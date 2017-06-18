@@ -25,6 +25,7 @@ the codebase.
 - [x] Android back button
 - [x] Always fetch messages
   - [ ] Save already received messages and number
+  - [ ] Manage response paging
   - [ ] Display phone numbers with conversations but that wasn't received by the API
 - [ ] Always show end of conversation first (https://github.com/facebook/react-native/issues/13727)
 - [ ] Send SMS

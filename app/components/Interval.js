@@ -1,6 +1,6 @@
 // @flow
 
-import React, { Component } from 'react';
+import { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
@@ -10,6 +10,8 @@ import { RefreshInterval } from '../constants';
 type PropsT = {
   fetchAccountNumbers: () => Promise<void>,
   fetchMessages: () => Promise<void>,
+  // Testing purposes
+  tickDone?: () => {},
 };
 
 export class PInterval extends Component {
@@ -27,8 +29,9 @@ export class PInterval extends Component {
   }
 
   tick(): void {
-    this.props.fetchAccountNumbers()
+    this.props.fetchMessages()
         .then(() => { this.setTimeout(); })
+        .then(() => { if (this.props.tickDone) this.props.tickDone(); })
         .catch(e => { console.error(e); });
   }
 
@@ -40,7 +43,7 @@ export class PInterval extends Component {
 
   componentDidMount(): void {
     this.finished = false;
-    this.props.fetchMessages().catch(e => { console.error(e); })
+    this.props.fetchAccountNumbers().catch(e => { console.error(e); });
     this.tick();
   }
 

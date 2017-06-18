@@ -19,7 +19,7 @@ import { Colors } from '../constants';
 import type { StateT } from '../reducers';
 import type { T as MessagesT } from '../reducers/messages';
 
-const screenHeight = Dimensions.get(`window`).height;
+const screenHeight = Dimensions.get('window').height;
 
 const styles = StyleSheet.create({
   container: {
