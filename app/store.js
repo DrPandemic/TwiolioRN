@@ -3,10 +3,15 @@
 import { install } from 'redux-loop';
 import createHistory from 'history/createMemoryHistory';
 import { routerMiddleware } from 'react-router-redux';
-import { applyMiddleware, compose, createStore } from 'redux';
+import { applyMiddleware, createStore } from 'redux';
+import { composeWithDevTools } from 'remote-redux-devtools';
 
 import { initialState, reducer } from './reducers';
 
 export const history = createHistory();
-const enhancer = compose(applyMiddleware(routerMiddleware(history)), install());
+const composeEnhancers = composeWithDevTools({ realtime: true, port: 8000, hostname: 'localhost' });
+const enhancer = composeEnhancers(
+  applyMiddleware(routerMiddleware(history)),
+  install(),
+);
 export const store = createStore(reducer, initialState, enhancer);

@@ -1,6 +1,7 @@
 // @flow
 
 import { loop, Effects } from 'redux-loop';
+
 import * as types from '../actions/types';
 import type { ConversationStoreT } from '../types/ConversationStore';
 import { addMessages } from '../types/ConversationStore';
