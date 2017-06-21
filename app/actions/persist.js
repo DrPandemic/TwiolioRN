@@ -2,7 +2,7 @@
 
 import * as types from './types';
 
-export function fetchMessages(): types.PersistStoreT {
+export function persistStore(): types.PersistStoreT {
   return {
     type: types.PERSIST_STORE,
   };
