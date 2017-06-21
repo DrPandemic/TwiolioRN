@@ -3,6 +3,8 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
 
+jest.mock('../../store');
+
 import { PConversationMenu } from '../ConversationMenu';
 import messageFixture from '../../test_helpers/fixtures/received_message.json';
 import { Message } from '../../types';

@@ -2,6 +2,8 @@
 
 import { Effects, loop } from 'redux-loop';
 
+jest.mock('../../store');
+
 import { reducer, initialState } from '../messages';
 import effects from '../../effects';
 import * as actions from '../../actions/messages';

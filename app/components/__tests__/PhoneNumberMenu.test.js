@@ -2,6 +2,8 @@ import React from 'react';
 import renderer from 'react-test-renderer';
 import { Text } from 'react-native';
 
+jest.mock('../../store');
+
 import { PPhoneNumberMenu } from '../PhoneNumberMenu';
 import phoneFixture from '../../test_helpers/fixtures/received_phone_number.json';
 import { PhoneNumber } from '../../types';

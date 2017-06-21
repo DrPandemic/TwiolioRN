@@ -13,7 +13,7 @@ export const reducer = combineReducers({
   account: accountReducers.reducer,
   messages: messageReducers.reducer,
   router: routerReducer,
-  /* persist: persistReducers.reducer,*/
+  persist: persistReducers.reducer,
 });
 
 export type StateT = {|
@@ -21,7 +21,7 @@ export type StateT = {|
   account: accountReducers.T,
   messages: messageReducers.T,
   router: any,
-                      /* persist: persistReducers.T,*/
+  persist: persistReducers.T,
 |};
 
 export const initialState: StateT = {
@@ -29,5 +29,5 @@ export const initialState: StateT = {
   account: accountReducers.initialState,
   messages: messageReducers.initialState,
   router: {},
-  /* persist: persistReducers.initialState,*/
+  persist: persistReducers.initialState,
 };

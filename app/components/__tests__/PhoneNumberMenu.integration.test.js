@@ -3,6 +3,8 @@
 import React from 'react';
 import { Text } from 'react-native';
 
+jest.mock('../../store');
+
 jest.mock('react-native-popup-menu', () => ({
   Menu: 'Menu',
   MenuContext: 'MenuContext',

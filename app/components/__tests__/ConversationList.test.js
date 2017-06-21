@@ -2,6 +2,8 @@
 
 import renderer from 'react-test-renderer';
 
+jest.mock('../../store');
+
 import { PConversationList } from '../ConversationList';
 import messageFixture from '../../test_helpers/fixtures/received_message.json';
 import { Message } from '../../types';

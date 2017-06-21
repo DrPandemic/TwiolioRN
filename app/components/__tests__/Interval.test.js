@@ -3,6 +3,8 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
 
+jest.mock('../../store');
+
 import { PInterval } from '../Interval';
 
 beforeEach(() => {
