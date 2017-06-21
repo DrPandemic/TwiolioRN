@@ -6,12 +6,14 @@ import { routerReducer } from 'react-router-redux';
 import * as fetchedAccountNumbersReducers from './fetchedAccountNumbers';
 import * as accountReducers from './account';
 import * as messageReducers from './messages';
+import * as persistReducers from './persist';
 
 export const reducer = combineReducers({
   fetchedAccountNumbers: fetchedAccountNumbersReducers.reducer,
   account: accountReducers.reducer,
   messages: messageReducers.reducer,
   router: routerReducer,
+  /* persist: persistReducers.reducer,*/
 });
 
 export type StateT = {|
@@ -19,6 +21,7 @@ export type StateT = {|
   account: accountReducers.T,
   messages: messageReducers.T,
   router: any,
+                      /* persist: persistReducers.T,*/
 |};
 
 export const initialState: StateT = {
@@ -26,4 +29,5 @@ export const initialState: StateT = {
   account: accountReducers.initialState,
   messages: messageReducers.initialState,
   router: {},
+  /* persist: persistReducers.initialState,*/
 };

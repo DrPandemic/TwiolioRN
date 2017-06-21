@@ -13,6 +13,8 @@ export const FETCH_MESSAGES = 'FETCH_MESSAGES';
 export const SET_FETCHED_MESSAGES = 'SET_FETCHED_MESSAGES';
 export const FETCH_MESSAGE_ERROR = 'FETCH_MESSAGE_ERROR';
 
+export const PERSIST_STORE = 'PERSIST_STORE';
+
 export type FetchAccountNumbersT = {|
   type: 'FETCH_ACCOUNT_NUMBERS',
 |}
@@ -21,8 +23,8 @@ export type SuccessFetchAccountNumbersT = {|
   fetchedAccountNumbers: Array<PhoneNumber>,
 |}
 export type FailFetchAccountNumbersT = {|
-    type: 'FETCH_ACCOUNT_NUMBER_ERROR',
-    error: any,
+  type: 'FETCH_ACCOUNT_NUMBER_ERROR',
+  error: any,
 |}
 
 export type SelectNumberT = {|
@@ -34,12 +36,16 @@ export type FetchMessagesT = {|
   type: 'FETCH_MESSAGES',
 |}
 export type SuccessFetchMessagesT = {|
-    type: 'SET_FETCHED_MESSAGES',
-    fetchedMessages: Array<Message>,
+  type: 'SET_FETCHED_MESSAGES',
+  fetchedMessages: Array<Message>,
 |}
 export type FailFetchMessagesT = {|
-    type: 'FETCH_MESSAGE_ERROR',
-    error: any,
+  type: 'FETCH_MESSAGE_ERROR',
+  error: any,
+|}
+
+export type PersistStoreT = {|
+  type: 'PERSIST_STORE',
 |}
 
 export type ActionT =
@@ -47,7 +53,8 @@ export type ActionT =
   | SuccessFetchAccountNumbersT
   | FailFetchAccountNumbersT
   | SelectNumberT
-  | SelectConversationT
   | FetchMessagesT
   | SuccessFetchMessagesT
-  | FailFetchMessagesT;
+  | FailFetchMessagesT
+  | PersistStoreT
+;
