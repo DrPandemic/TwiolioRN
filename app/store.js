@@ -9,7 +9,9 @@ import { composeWithDevTools } from 'remote-redux-devtools';
 import { initialState, reducer } from './reducers';
 
 export const history = createHistory();
-const composeEnhancers = composeWithDevTools({ realtime: true, port: 8000, hostname: 'localhost' });
+const composeEnhancers = composeWithDevTools(
+  { realtime: true, port: 8000, hostname: 'localhost' }
+);
 const enhancer = composeEnhancers(
   applyMiddleware(routerMiddleware(history)),
   install(),

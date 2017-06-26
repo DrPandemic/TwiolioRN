@@ -5,7 +5,6 @@
 	"scripts": {
 		"flow": "node_modules/.bin/flow",
 		"flow-stop": "node_modules/.bin/flow stop",
-		"postinstall": "remotedev-debugger",
 		"remotedev": "remotedev --hostname=localhost --port=8000 --injectserver=reactnative",
 		"start": "node node_modules/react-native/local-cli/cli.js start",
 		"test": "jest"
@@ -49,8 +48,7 @@
 		"flow-typed": "^2.1.2",
 		"jest": "^20.0.3",
 		"react-test-renderer": "^16.0.0-alpha.12",
-    "remotedev-server": "^0.2.2",
-		"remote-redux-devtools-on-debugger": "^0.7.1"
+		"remotedev-server": "^0.2.2"
 	},
 	"jest": {
 		"preset": "react-native"

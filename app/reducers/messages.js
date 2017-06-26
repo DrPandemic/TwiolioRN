@@ -17,7 +17,7 @@ export type T = {|
 export const initialState: T = {
   loading: false,
   messages: {},
-  error: {},
+  error: null,
 };
 
 export const reducer = createReducer({
@@ -34,7 +34,7 @@ export const reducer = createReducer({
     return {
       ...state,
       messages: addMessages(state.messages, action.fetchedMessages),
-      error: {},
+      error: null,
       loading: false,
     };
   },

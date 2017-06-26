@@ -14,6 +14,8 @@ export const SET_FETCHED_MESSAGES = 'SET_FETCHED_MESSAGES';
 export const FETCH_MESSAGE_ERROR = 'FETCH_MESSAGE_ERROR';
 
 export const PERSIST_STORE = 'PERSIST_STORE';
+export const SUCCESS_PERSIST_STORE = 'SUCCESS_PERSIST_STORE';
+export const FAIL_PERSIST_STORE = 'FAIL_PERSIST_STORE';
 
 export type FetchAccountNumbersT = {|
   type: 'FETCH_ACCOUNT_NUMBERS',
@@ -48,6 +50,15 @@ export type PersistStoreT = {|
   type: 'PERSIST_STORE',
 |}
 
+export type SuccessPersistStoreT = {|
+  type: 'SUCCESS_PERSIST_STORE',
+|}
+
+export type FailPersistStoreT = {|
+  type: 'FAIL_PERSIST_STORE',
+  error: any,
+|}
+
 export type ActionT =
   | FetchAccountNumbersT
   | SuccessFetchAccountNumbersT
@@ -57,4 +68,6 @@ export type ActionT =
   | SuccessFetchMessagesT
   | FailFetchMessagesT
   | PersistStoreT
+  | SuccessPersistStoreT
+  | FailPersistStoreT
 ;
