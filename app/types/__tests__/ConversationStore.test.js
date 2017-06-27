@@ -156,5 +156,5 @@ test('restore', () => {
   expect(conversations[0][0]).not.toBe(conversations[0][1]);
   expect(conversations[1][0].sid).toEqual('sid2');
 
-  expect(restoreStore(['something not good'])).toEqual({});
+  expect(restore(['something not good'])).toEqual({});
 });
