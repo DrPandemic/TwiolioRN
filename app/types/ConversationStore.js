@@ -77,3 +77,19 @@ export function filterByUs(
                  {}
                );
 }
+
+// Called when restoring the state.
+// The input is like a store but without classes.
+export function restore(conversations: any): ConversationStoreT {
+  try {
+    let store = {};
+    for (const messages of Object.values(conversations)) {
+      store = addMessages(store, messages.map(m => new Message(m)));
+    }
+    return store;
+  } catch (e) {
+    // I don't know what to do with this empty block.
+    // I think it's acceptable to ignore the error here.
+  }
+  return {};
+}

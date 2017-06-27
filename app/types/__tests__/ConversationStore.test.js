@@ -6,8 +6,10 @@ import {
   getConversations,
   getMessages,
   getMessagesById,
+  restore,
 } from '../ConversationStore';
 import fixture from '../../test_helpers/fixtures/received_message.json';
+import storeFixture from '../../test_helpers/fixtures/conversation_store.json';
 import Message from '../Message';
 
 test('is able to get back a single message', () => {
@@ -125,7 +127,7 @@ test('conversations are ordered', () => {
   const m5 = new Message(fixture.chronologicallyUnorderedConversations[5]);
 
   const store = addMessages({}, [m0, m1, m2, m3, m4, m5]);
-  const conversations = getConversations(store, m0.conversationUsers);
+  const conversations = getConversations(store);
 
   expect(conversations[0][0].sid).toEqual(m5.sid);
   expect(
@@ -137,4 +139,22 @@ test('conversations are ordered', () => {
     conversations[2][0].sid === m0.sid
   ).toBeTruthy();
   expect(conversations[3][0].sid).toEqual(m4.sid);
+});
+
+test('restore', () => {
+  const store = restore(storeFixture.simple);
+  const conversations = getConversations(store);
+
+  expect(
+    conversations[0][0].sid === 'sid0' ||
+    conversations[0][0].sid === 'sid1'
+  ).toBeTruthy();
+  expect(
+    conversations[0][1].sid === 'sid0' ||
+    conversations[0][1].sid === 'sid1'
+  ).toBeTruthy();
+  expect(conversations[0][0]).not.toBe(conversations[0][1]);
+  expect(conversations[1][0].sid).toEqual('sid2');
+
+  expect(restoreStore(['something not good'])).toEqual({});
 });
