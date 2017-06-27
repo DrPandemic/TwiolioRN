@@ -1,3 +1,5 @@
+// @flow
+
 import * as types from '../../actions/types';
 import fixtures from '../../test_helpers/fixtures/received_message.json';
 import ApiMock from '../../test_helpers/api_helper';

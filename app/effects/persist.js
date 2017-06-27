@@ -1,6 +1,5 @@
 // @flow
 
-import { persistStore as pS, getStoredState } from 'redux-persist';
 import FilesystemStorage from 'redux-persist-filesystem-storage';
 
 import { store } from '../store';
@@ -14,8 +13,10 @@ export const config = {
   ]
 };
 
-export function persistStore(): Promise<any> {
-  return Promise.resolve(pS(
+export function persistStore(
+  persist: (Object, Object) => Promise<void>
+): Promise<any> {
+  return Promise.resolve(persist(
     store,
     config,
   ))
@@ -23,7 +24,9 @@ export function persistStore(): Promise<any> {
   .catch(e => actions.failPersistStore(e));
 }
 
-export function restoreStore(): Promise<any> {
+export function restoreStore(
+  getStoredState: (Object) => Promise<StateT>
+): Promise<any> {
   return getStoredState(config)
     .then((state: StateT) => actions.successRestoreStore(state))
     .catch(e => actions.failRestoreStore(e));

@@ -1,6 +1,8 @@
 // @flow
 
 import { loop, Effects } from 'redux-loop';
+import { getStoredState } from 'redux-persist';
+
 import * as types from '../actions/types';
 import createReducer from '../lib/createReducer';
 import effects from '../effects';
@@ -17,7 +19,7 @@ export const reducer = createReducer({
   [types.RESTORE_STORE](state: StateT) {
     return loop(
       { ...state },
-      Effects.promise(effects.restoreStore)
+      Effects.promise(effects.restoreStore, getStoredState)
     );
   },
   [types.SUCCESS_RESTORE_STORE](

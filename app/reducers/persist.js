@@ -1,6 +1,8 @@
 // @flow
 
 import { loop, Effects } from 'redux-loop';
+import { persistStore } from 'redux-persist';
+
 import * as types from '../actions/types';
 import createReducer from '../lib/createReducer';
 import effects from '../effects';
@@ -18,7 +20,7 @@ export const reducer = createReducer({
   [types.PERSIST_STORE](state: T) {
     return loop(
       { ...state },
-      Effects.promise(effects.persistStore)
+      Effects.promise(effects.persistStore, persistStore)
     );
   },
   [types.SUCCESS_PERSIST_STORE](state: T) {
