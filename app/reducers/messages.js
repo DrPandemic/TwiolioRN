@@ -3,11 +3,13 @@
 import { loop, Effects } from 'redux-loop';
 
 import * as types from '../actions/types';
-import type { ConversationStoreT } from '../types/ConversationStore';
 import { addMessages } from '../types/ConversationStore';
 import LibApi from '../lib/api';
 import createReducer from '../lib/createReducer';
 import effects from '../effects';
+import { restore } from '../types/ConversationStore';
+import type { ConversationStoreT } from '../types/ConversationStore';
+import type { StateT } from './';
 
 export type T = {|
   loading: boolean,
@@ -45,6 +47,17 @@ export const reducer = createReducer({
     return {
       ...state,
       error: action.error,
+      loading: false,
+    };
+  },
+  [types.SUCCESS_RESTORE_STORE](
+    state: StateT,
+    action: types.SuccessRestoreStoreT,
+  ) {
+    return {
+      ...state.messages,
+      messages: restore(action.state.messages.messages),
+      error: null,
       loading: false,
     };
   },

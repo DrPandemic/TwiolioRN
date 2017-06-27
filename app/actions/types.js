@@ -17,6 +17,10 @@ export const PERSIST_STORE = 'PERSIST_STORE';
 export const SUCCESS_PERSIST_STORE = 'SUCCESS_PERSIST_STORE';
 export const FAIL_PERSIST_STORE = 'FAIL_PERSIST_STORE';
 
+export const RESTORE_STORE = 'RESTORE_STORE';
+export const SUCCESS_RESTORE_STORE = 'SUCCESS_RESTORE_STORE';
+export const FAIL_RESTORE_STORE = 'FAIL_RESTORE_STORE';
+
 export type FetchAccountNumbersT = {|
   type: 'FETCH_ACCOUNT_NUMBERS',
 |}
@@ -49,13 +53,23 @@ export type FailFetchMessagesT = {|
 export type PersistStoreT = {|
   type: 'PERSIST_STORE',
 |}
-
 export type SuccessPersistStoreT = {|
   type: 'SUCCESS_PERSIST_STORE',
 |}
-
 export type FailPersistStoreT = {|
   type: 'FAIL_PERSIST_STORE',
+  error: any,
+|}
+
+export type RestoreStoreT = {|
+  type: 'RESTORE_STORE',
+|}
+export type SuccessRestoreStoreT = {|
+  type: 'SUCCESS_RESTORE_STORE',
+  state: any,
+|}
+export type FailRestoreStoreT = {|
+  type: 'FAIL_RESTORE_STORE',
   error: any,
 |}
 
@@ -70,4 +84,7 @@ export type ActionT =
   | PersistStoreT
   | SuccessPersistStoreT
   | FailPersistStoreT
+  | RestoreStoreT
+  | SuccessRestoreStoreT
+  | FailRestoreStoreT
 ;

@@ -10,6 +10,8 @@ import { RefreshInterval } from '../constants';
 type PropsT = {
   fetchAccountNumbers: () => Promise<void>,
   fetchMessages: () => Promise<void>,
+  persistStore: () => Promise<void>,
+  restoreStore: () => Promise<void>,
   // Testing purposes
   tickDone?: () => {},
 };
@@ -43,8 +45,9 @@ export class PInterval extends Component {
 
   componentDidMount(): void {
     this.finished = false;
-    this.props.fetchAccountNumbers().catch(e => { console.error(e); });
-    this.tick();
+    this.props.fetchAccountNumbers();
+    this.props.restoreStore();
+    /* this.tick();*/
   }
 
   componentWillUnmount(): void {

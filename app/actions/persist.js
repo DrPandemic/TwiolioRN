@@ -20,3 +20,23 @@ export function failPersistStore(error: any): types.FailPersistStoreT {
     error,
   };
 }
+
+export function restoreStore(): types.RestoreStoreT {
+  return {
+    type: types.RESTORE_STORE,
+  };
+}
+
+export function successRestoreStore(state: any): types.SuccessRestoreStoreT {
+  return {
+    type: types.SUCCESS_RESTORE_STORE,
+    state,
+  };
+}
+
+export function failRestoreStore(error: any): types.FailRestoreStoreT {
+  return {
+    type: types.FAIL_RESTORE_STORE,
+    error,
+  };
+}
