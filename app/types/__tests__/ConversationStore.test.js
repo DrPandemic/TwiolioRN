@@ -129,7 +129,7 @@ test('conversations are ordered', () => {
   const store = addMessages({}, [m0, m1, m2, m3, m4, m5]);
   const conversations = getConversations(store);
 
-  expect(conversations[0][0].sid).toEqual(m5.sid);
+  expect(conversations[0][0].sid).toEqual(m4.sid);
   expect(
     conversations[1][0].sid === m3.sid ||
     conversations[1][0].sid === m0.sid
@@ -138,7 +138,7 @@ test('conversations are ordered', () => {
     conversations[2][0].sid === m3.sid ||
     conversations[2][0].sid === m0.sid
   ).toBeTruthy();
-  expect(conversations[3][0].sid).toEqual(m4.sid);
+  expect(conversations[3][0].sid).toEqual(m5.sid);
 });
 
 test('restore', () => {
@@ -155,6 +155,4 @@ test('restore', () => {
   ).toBeTruthy();
   expect(conversations[0][0]).not.toBe(conversations[0][1]);
   expect(conversations[1][0].sid).toEqual('sid2');
-
-  expect(restore(['something not good'])).toEqual({});
 });

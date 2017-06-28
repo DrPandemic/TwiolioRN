@@ -50,9 +50,9 @@ export function getConversations(
       const a = aList[aList.length - 1];
       const b = bList[bList.length - 1];
 
-      if (a.dateSent < b.dateSent) {
+      if (a.dateSent > b.dateSent) {
         return -1;
-      } else if (a.dateSent > b.dateSent) {
+      } else if (a.dateSent < b.dateSent) {
         return 1;
       }
       return 0;
@@ -84,7 +84,7 @@ export function restore(conversations: any): ConversationStoreT {
   try {
     let store = {};
     for (const messages of Object.values(conversations)) {
-      store = addMessages(store, messages.map(m => new Message(m)));
+      store = addMessages(store, messages.map(m => Message.restore(m)));
     }
     return store;
   } catch (e) {

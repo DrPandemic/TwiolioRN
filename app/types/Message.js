@@ -28,6 +28,15 @@ export default class Message {
     this.direction = response.direction;
   }
 
+  static restore(data: any): Message {
+    const message = new Message(data);
+    message.dateCreated = new Date(data.dateCreated);
+    message.dateUpdated = new Date(data.dateUpdated);
+    message.dateSent = new Date(data.dateSent);
+
+    return message;
+  }
+
   /*
      According to twilio doc:
      The direction of this SMS message. inbound for incoming messages,

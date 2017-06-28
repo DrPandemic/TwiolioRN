@@ -1,15 +1,16 @@
-// @flow
-
 import { Effects, loop } from 'redux-loop';
 
 jest.mock('../../store');
 
+import { restore } from '../../types/ConversationStore';
 import { reducer, initialState } from '../messages';
 import effects from '../../effects';
 import * as actions from '../../actions/messages';
+import * as persistActions from '../../actions/persist';
 import LibApi from '../../lib/api';
 import { Message } from '../../types';
-import fixture from '../../test_helpers/fixtures/received_message';
+import fixture from '../../test_helpers/fixtures/received_message.json';
+import conversationFixture from '../../test_helpers/fixtures/conversation_store.json';
 
 test('reducer.FETCH_MESSAGES', () => {
   const state = { ...initialState, loading: false };
@@ -54,6 +55,27 @@ test('success followed by an error', () => {
   expect(state).toEqual({
     ...initialState,
     messages: { [m.conversationId]: [m] },
-    error: e
+    error: e,
+  });
+});
+
+test('RESTORE_STORE', () => {
+  const state = {
+    ...initialState,
+    error: Symbol('error'),
+    loading: true,
+  };
+
+  const result = reducer(state, persistActions.successRestoreStore({
+    messages: {
+      messages: conversationFixture.simple,
+    },
+  }));
+
+  expect(result).toEqual({
+    ...state,
+    messages: restore(conversationFixture.simple),
+    error: null,
+    loading: false,
   });
 });
