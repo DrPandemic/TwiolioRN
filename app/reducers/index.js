@@ -7,7 +7,6 @@ import * as fetchedAccountNumbersReducers from './fetchedAccountNumbers';
 import * as accountReducers from './account';
 import * as messageReducers from './messages';
 import * as persistReducers from './persist';
-import * as restoreReducers from './restore';
 
 export type StateT = {|
   fetchedAccountNumbers: fetchedAccountNumbersReducers.T,
@@ -15,7 +14,6 @@ export type StateT = {|
   messages: messageReducers.T,
   router: any,
   persist: persistReducers.T,
-  restore: restoreReducers.T,
 |};
 
 export const initialState: StateT = {
@@ -24,7 +22,6 @@ export const initialState: StateT = {
   messages: messageReducers.initialState,
   router: {},
   persist: persistReducers.initialState,
-  restore: restoreReducers.initialState,
 };
 
 export const reducer = combineReducers({
@@ -33,5 +30,4 @@ export const reducer = combineReducers({
   messages: messageReducers.reducer,
   router: routerReducer,
   persist: persistReducers.reducer,
-  restore: restoreReducers.reducer,
 });

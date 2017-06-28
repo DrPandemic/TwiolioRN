@@ -1,19 +1,22 @@
 // @flow
 
 import { loop, Effects } from 'redux-loop';
-import { persistStore } from 'redux-persist';
+import { persistStore, getStoredState } from 'redux-persist';
 
 import * as types from '../actions/types';
 import createReducer from '../lib/createReducer';
 import effects from '../effects';
+import type { StateT } from './';
 
 export type T = {|
   lastPersist: ?Date,
-  error: any,
+  persistError: any,
+  restoreError: any,
 |};
 export const initialState: T = {
   lastPersist: null,
-  error: null,
+  persistError: null,
+  restoreError: null,
 };
 
 export const reducer = createReducer({
@@ -27,7 +30,7 @@ export const reducer = createReducer({
     return {
       ...state,
       lastPersist: new Date(),
-      error: null,
+      persistError: null,
     };
   },
   [types.FAIL_PERSIST_STORE](
@@ -36,7 +39,30 @@ export const reducer = createReducer({
   ) {
     return {
       ...state,
-      error: action.error,
+      persistError: action.error,
+    };
+  },
+  [types.RESTORE_STORE](state: StateT) {
+    return loop(
+      { ...state },
+      Effects.promise(effects.restoreStore, getStoredState)
+    );
+  },
+  [types.SUCCESS_RESTORE_STORE](
+    state: StateT,
+  ) {
+    return {
+      ...state,
+      restoreError: null,
+    };
+  },
+  [types.FAIL_RESTORE_STORE](
+    state: StateT,
+    action: types.FailRestoreStoreT,
+  ) {
+    return {
+      ...state,
+      restoreError: action.error,
     };
   },
 });
