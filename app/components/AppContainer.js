@@ -1,6 +1,6 @@
 // @flow
 
-import React from 'react';
+import React, { Component } from 'react';
 import { View, StyleSheet } from 'react-native';
 import { AndroidBackButton, Route, withRouter } from 'react-router-native';
 import { connect } from 'react-redux';
@@ -11,7 +11,6 @@ import Conversation from './Conversation';
 import PhoneNumberMenu from './PhoneNumberMenu';
 import ConversationMenu from './ConversationMenu';
 import ConversationList from './ConversationList';
-import Interval from './Interval';
 import { Colors } from '../constants';
 
 const styles = StyleSheet.create({
@@ -33,17 +32,30 @@ function mapDispatchToProps(dispatch) {
   return bindActionCreators(ActionCreators, dispatch);
 }
 
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(() => (
-  <View style={styles.container}>
-    <Interval />
-    <AndroidBackButton />
+class AppContainer extends Component {
+  props: {
+    restoreStore: () => Promise<void>,
+  }
 
-    <View style={styles.nav}>
-      <Route exact path="/" component={PhoneNumberMenu}/>
-      <Route path="/conversation" component={ConversationMenu}/>
-    </View>
+  componentDidMount(): void {
+    this.props.restoreStore();
+  }
 
-    <Route exact path="/" component={ConversationList}/>
-    <Route path="/conversation" component={Conversation}/>
-  </View>
-)));
+  render() {
+    return (
+      <View style={styles.container}>
+        <AndroidBackButton />
+
+        <View style={styles.nav}>
+          <Route exact path="/" component={PhoneNumberMenu}/>
+          <Route path="/conversation" component={ConversationMenu}/>
+        </View>
+
+        <Route exact path="/" component={ConversationList}/>
+        <Route path="/conversation" component={Conversation}/>
+      </View>
+    );
+  }
+}
+
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(AppContainer));
