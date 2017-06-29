@@ -79,3 +79,14 @@ test('RESTORE_STORE', () => {
     loading: false,
   });
 });
+
+test('TICK', () => {
+  const state = { ...initialState, loading: false };
+
+  const result = reducer(state, persistActions.tick());
+
+  expect(result).toEqual(loop(
+    { ...initialState },
+    Effects.constant(actions.fetchMessages())
+  ));
+});

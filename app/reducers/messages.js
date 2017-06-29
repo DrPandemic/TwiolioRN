@@ -3,11 +3,11 @@
 import { loop, Effects } from 'redux-loop';
 
 import * as types from '../actions/types';
-import { addMessages } from '../types/ConversationStore';
+import { addMessages, restore } from '../types/ConversationStore';
 import LibApi from '../lib/api';
 import createReducer from '../lib/createReducer';
 import effects from '../effects';
-import { restore } from '../types/ConversationStore';
+import { fetchMessages } from '../actions/messages';
 import type { ConversationStoreT } from '../types/ConversationStore';
 import type { StateT } from './';
 
@@ -23,6 +23,12 @@ export const initialState: T = {
 };
 
 export const reducer = createReducer({
+  [types.TICK](state: T) {
+    return loop(
+      { ...state },
+      Effects.constant(fetchMessages()),
+    );
+  },
   [types.FETCH_MESSAGES](state: T) {
     return loop(
       { ...state, loading: true },
