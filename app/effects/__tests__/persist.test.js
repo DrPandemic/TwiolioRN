@@ -1,8 +1,7 @@
 // @flow
 
 import * as types from '../../actions/types';
-/* import { initialState } from '../../reducers';*/
-import { persistStore, restoreStore } from '../persist';
+import { persistStore, restoreStore, scheduleTick } from '../persist';
 
 test('persistStore success', async () => {
   const spy = jest.fn().mockReturnValue(Promise.resolve());
@@ -51,5 +50,17 @@ test('restoreStore failure', async () => {
   expect(result).toEqual({
     type: types.FAIL_RESTORE_STORE,
     error,
+  });
+});
+
+test('scheduleTick returns tick at some point', async () => {
+  jest.useFakeTimers();
+  const timer = scheduleTick();
+
+  jest.runOnlyPendingTimers();
+  const result = await timer;
+
+  expect(result).toEqual({
+    type: types.TICK,
   });
 });

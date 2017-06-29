@@ -16,10 +16,12 @@ export const FETCH_MESSAGE_ERROR = 'FETCH_MESSAGE_ERROR';
 export const PERSIST_STORE = 'PERSIST_STORE';
 export const SUCCESS_PERSIST_STORE = 'SUCCESS_PERSIST_STORE';
 export const FAIL_PERSIST_STORE = 'FAIL_PERSIST_STORE';
-
 export const RESTORE_STORE = 'RESTORE_STORE';
 export const SUCCESS_RESTORE_STORE = 'SUCCESS_RESTORE_STORE';
 export const FAIL_RESTORE_STORE = 'FAIL_RESTORE_STORE';
+
+export const SCHEDULE_TICK = 'SCHEDULE_TICK';
+export const TICK = 'TICK';
 
 export type FetchAccountNumbersT = {|
   type: 'FETCH_ACCOUNT_NUMBERS',
@@ -60,7 +62,6 @@ export type FailPersistStoreT = {|
   type: 'FAIL_PERSIST_STORE',
   error: any,
 |}
-
 export type RestoreStoreT = {|
   type: 'RESTORE_STORE',
 |}
@@ -71,6 +72,13 @@ export type SuccessRestoreStoreT = {|
 export type FailRestoreStoreT = {|
   type: 'FAIL_RESTORE_STORE',
   error: any,
+|}
+
+export type ScheduleTickT = {|
+  type: 'SCHEDULE_TICK',
+|}
+export type TickT = {|
+  type: 'TICK',
 |}
 
 export type ActionT =
@@ -87,4 +95,6 @@ export type ActionT =
   | RestoreStoreT
   | SuccessRestoreStoreT
   | FailRestoreStoreT
+  | ScheduleTickT
+  | TickT
 ;

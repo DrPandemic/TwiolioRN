@@ -40,3 +40,15 @@ export function failRestoreStore(error: any): types.FailRestoreStoreT {
     error,
   };
 }
+
+export function scheduleTick(): types.ScheduleTickT {
+  return {
+    type: types.SCHEDULE_TICK,
+  };
+}
+
+export function tick(): types.TickT {
+  return {
+    type: types.TICK,
+  };
+}
