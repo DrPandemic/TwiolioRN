@@ -3,12 +3,11 @@ A react native SMS client based on Twilio. This uses Twilio numbers and APIs.
 Currently, this project is only tested on Android.
 
 ## Objectives
-The cellphone plans are way to expensive where I live while tablet plans are more
-accessible. Also, it would be great for travellers since it would eliminate many
+The cellphone plans are way too expensive where I live while tablet plans are more
+accessible. Using this application would allow sending text messages even when on a tablet plan. Also, this project would be great for travellers since it would eliminate many
 roaming issues.
 
-This application could also be "translated" to normal react and be used to access
-your SMS on a computer.
+This application could eventually have a web version in normal react to access your SMS on a computer.
 
 I'm doing this project to learn React Native. So feel free to open PRs to improve
 the codebase.
