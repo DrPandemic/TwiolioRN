@@ -14,6 +14,7 @@ I'm doing this project to learn React Native. So feel free to open PRs to improv
 the codebase.
 
 ## TODO
+### Alpha
 - [x] Be able to select phone numbers
   - [x] Change the visual to more easily understand that's a dropdown
 - [x] Display conversations by number
@@ -24,27 +25,28 @@ the codebase.
 - [x] Order messages and conversations
 - [x] Android back button
 - [x] Always fetch messages
-  - [ ] Save already received messages and number
-  - [ ] Manage response paging
+  - [x] Save already received messages and number
+  - [ ] Manage response paging (1)
   - [ ] Display phone numbers with conversations but that wasn't received by the API
-- [ ] Always show end of conversation first (https://github.com/facebook/react-native/issues/13727)
 - [ ] Send SMS
 - [ ] Start new conversation
 - [ ] Use contacts to display names
 - [ ] System notifications
-- [ ] Display message's date
 - [ ] Reduce network usage
   - [ ] Configurable fetch timeout
-  - [ ] Don't ask twice for the same SMS
+  - [ ] Don't ask twice for the same SMS (2)
+  - [ ] After 1 and 2, I'll remove fake network responses
+- [ ] Always show end of conversation first (https://github.com/facebook/react-native/issues/13727)
+- [ ] Display money left
+
+### Beta
+- [ ] Adds a banner for no network
+- [ ] Display message's date
 - [ ] Delete messages
 - [ ] Delete conversations
 - [ ] Login page to replace configs
-- [ ] Display money left
-
-
 - [ ] Router animation
-- [ ] Manage multipart messages
-- [ ] Adds a banner for no network
+- [x] Manage multipart messages
 
 ### Evolution (If I finished the project and want to sell an easier experience)
 - [ ] A way to create a Twilio account from the app
