@@ -2,6 +2,7 @@
 
 import { loop, Effects } from 'redux-loop';
 import * as types from '../actions/types';
+import { fetchAccountNumbers } from '../actions/fetchedAccountNumbers';
 import LibApi from '../lib/api';
 import createReducer from '../lib/createReducer';
 import effects from '../effects';
@@ -19,6 +20,12 @@ export const initialState: T = {
 };
 
 export const reducer = createReducer({
+  [types.TICK](state: T) {
+    return loop(
+      { ...state },
+      Effects.constant(fetchAccountNumbers()),
+    );
+  },
   [types.FETCH_ACCOUNT_NUMBERS](state: T) {
     return loop(
       { ...state, loading: true },

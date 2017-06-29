@@ -5,6 +5,7 @@ jest.mock('../../store');
 import { reducer, initialState } from '../fetchedAccountNumbers';
 import effects from '../../effects';
 import * as actions from '../../actions/fetchedAccountNumbers';
+import * as persistActions from '../../actions/persist';
 import LibApi from '../../lib/api';
 
 test('reducer.FETCH_ACCOUNT_NUMBERS', () => {
@@ -45,4 +46,15 @@ test('success followed by an error', () => {
   const state2 = reducer(state1, actions.failFetchAccountNumbers(s1));
 
   expect(state2).toEqual({ ...initialState, numbers: s0, error: s1 });
+});
+
+test('TICK', () => {
+  const state = { ...initialState, loading: false };
+
+  const result = reducer(state, persistActions.tick());
+
+  expect(result).toEqual(loop(
+    { ...initialState },
+    Effects.constant(actions.fetchAccountNumbers())
+  ));
 });

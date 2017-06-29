@@ -1,5 +1,3 @@
-// @flow
-
 import { Effects, loop } from 'redux-loop';
 
 jest.mock('../../store');
@@ -76,7 +74,12 @@ test('SUCCESS_RESTORE_STORE', () => {
 
   const result = reducer(state, actions.successRestoreStore());
 
-  expect(result).toEqual({ ...initialState, restoreError: null });
+  expect(result).toEqual(
+    loop(
+      { ...initialState, restoreError: null },
+      Effects.constant(actions.tick()),
+    )
+  );
 });
 
 test('FAIL_RESTORE_STORE', () => {
@@ -96,4 +99,22 @@ test('success followed by an error', () => {
   state = reducer(state, actions.failRestoreStore(e));
 
   expect(state.restoreError).toBe(e);
+});
+
+test('SCHEDULE_TICK', () => {
+  const result = reducer({ ...initialState }, actions.scheduleTick());
+
+  expect(result).toEqual(loop(
+    { ...initialState },
+    Effects.promise(effects.scheduleTick)
+  ));
+});
+
+test('TICK', () => {
+  const result = reducer({ ...initialState }, actions.tick());
+
+  expect(result).toEqual(loop(
+    { ...initialState },
+    Effects.constant(actions.scheduleTick)
+  ));
 });

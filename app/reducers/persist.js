@@ -4,6 +4,7 @@ import { loop, Effects } from 'redux-loop';
 import { persistStore, getStoredState } from 'redux-persist';
 
 import * as types from '../actions/types';
+import * as actions from '../actions/persist';
 import createReducer from '../lib/createReducer';
 import effects from '../effects';
 import type { StateT } from './';
@@ -51,10 +52,10 @@ export const reducer = createReducer({
   [types.SUCCESS_RESTORE_STORE](
     state: StateT,
   ) {
-    return {
-      ...state,
-      restoreError: null,
-    };
+    return loop(
+      { ...state, restoreError: null },
+      Effects.constant(actions.tick())
+    );
   },
   [types.FAIL_RESTORE_STORE](
     state: StateT,
@@ -64,5 +65,22 @@ export const reducer = createReducer({
       ...state,
       restoreError: action.error,
     };
+  },
+  // This could have its own reducer
+  [types.SCHEDULE_TICK](
+    state: StateT,
+  ) {
+    return loop(
+      { ...state },
+      Effects.promise(effects.scheduleTick)
+    );
+  },
+  [types.TICK](
+    state: StateT,
+  ) {
+    return loop(
+      { ...state },
+      Effects.constant(actions.scheduleTick())
+    );
   },
 });
