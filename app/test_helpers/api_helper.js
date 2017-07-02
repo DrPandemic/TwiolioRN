@@ -27,7 +27,10 @@ export default class MockApi {
     if (resolve) {
       this[fn] = jest.fn().mockReturnValueOnce(
         Promise.resolve({
-          json: () => Promise.resolve(result)
+          json: () => Promise.resolve({
+            ...result,
+            next_page_uri: null,
+          })
         })
       );
     } else {
@@ -50,7 +53,9 @@ export default class MockApi {
           return Promise.reject(mock.result);
         }
 
-        return Promise.resolve(mock.result);
+        return Promise.resolve({
+          json: () => Promise.resolve(mock.result)
+        })
       });
     }
 

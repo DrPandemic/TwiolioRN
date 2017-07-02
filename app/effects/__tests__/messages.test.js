@@ -40,19 +40,19 @@ test('3 level paging', async () => {
   const [p0, p1, p2] = completeFixture.threePages;
   const api = (new ApiMock()).multiMock('get', [{
     url: '/Messages.json',
-    params: {},
+    params: undefined,
     expandRoute: true,
     resolve: true,
     result: p0,
   }, {
-    url: p0.next_page_url,
-    params: {},
+    url: p0.next_page_uri,
+    params: undefined,
     expandRoute: false,
     resolve: true,
     result: p1,
   }, {
-    url: p1.next_page_url,
-    params: {},
+    url: p1.next_page_uri,
+    params: undefined,
     expandRoute: false,
     resolve: true,
     result: p2,
@@ -61,9 +61,9 @@ test('3 level paging', async () => {
   const result = await fetchMessages(api);
 
   expect(api.get.mock.calls.length).toEqual(3);
-  expect(api.get).toBeCalledWith('/Messages.json');
-  expect(api.get).toBeCalledWith(p0.next_page_url, {}, false);
-  expect(api.get).toBeCalledWith(p1.next_page_url, {}, false);
+  expect(api.get).toBeCalledWith('/Messages.json', undefined, true);
+  expect(api.get).toBeCalledWith(p0.next_page_uri, undefined, false);
+  expect(api.get).toBeCalledWith(p1.next_page_uri, undefined, false);
   expect(result.type).toEqual(types.SET_FETCHED_MESSAGES);
   expect(result.fetchedMessages).toContainEqual(new Message(p0.messages[0]));
   expect(result.fetchedMessages).toContainEqual(new Message(p0.messages[1]));
