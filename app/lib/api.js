@@ -3,6 +3,7 @@
 import Config from 'react-native-config';
 import { Buffer } from 'buffer';
 
+import match from '../lib/match';
 import { ShouldMockFetch } from '../constants';
 import mocks from './mock.json';
 
@@ -19,7 +20,7 @@ function mockedFetch(url: string, params: any) {
 }
 
 export default class Api {
-  static headers() {
+  headers() {
     const auth = new Buffer(
       `${Config.TWILIO_ACCOUNT_SID}:${Config.TWILIO_AUTH_TOKEN}`
     );
@@ -31,33 +32,38 @@ export default class Api {
     };
   }
 
-  static get(route, params = null) {
-    return this.xhr(route, params, 'GET');
+  get(route: string, params: ?Object, expandRoute: boolean = true) {
+    return this.xhr(route, params, expandRoute, 'GET');
   }
 
-  static head(route) {
-    return this.xhr(route, null, 'HEAD');
+  head(route: string, expandRoute: boolean = true) {
+    return this.xhr(route, null, expandRoute, 'HEAD');
   }
 
-  static put(route, params) {
-    return this.xhr(route, params, 'PUT');
+  put(route: string, params: ?Object, expandRoute: boolean = true) {
+    return this.xhr(route, params, expandRoute, 'PUT');
   }
 
-  static post(route, params) {
-    return this.xhr(route, params, 'POST');
+  post(route: string, params: ?Object, expandRoute: boolean = true) {
+    return this.xhr(route, params, expandRoute, 'POST');
   }
 
-  static delete(route, params) {
-    return this.xhr(route, params, 'DELETE');
+  delete(route: string, params: ?Object, expandRoute: boolean = true) {
+    return this.xhr(route, params, expandRoute, 'DELETE');
   }
 
-  static xhr(route, params, verb) {
-    const host = 'https://api.twilio.com/2010-04-01/Accounts/';
-    const url = `${host}${Config.TWILIO_ACCOUNT_SID}${route}`;
+  xhr(route: string, params: ?Object, expandRoute: boolean, verb: string) {
+    const host = 'https://api.twilio.com';
+    const base = `/2010-04-01/Accounts/${Config.TWILIO_ACCOUNT_SID}`;
+    const url = match(
+      expandRoute, '',
+      [true, `${host}${base}${route}`],
+      [false, `${host}${route}`],
+    );
     const options = Object.assign(
       { method: verb },
       params ? { body: JSON.stringify(params) } : null,
-      { headers: Api.headers() }
+      { headers: this.headers() }
     );
 
     return mockedFetch(url, options).then(resp => {
