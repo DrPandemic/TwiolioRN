@@ -3,35 +3,27 @@
 import * as actions from '../actions/messages';
 import { Message } from '../types';
 
-async function fetchNextPage(
-  Api: any,
+function fetchNextPage(
+  api: any,
   url: ?string,
   params: ?any,
   expandRoute: boolean,
   messages: Array<Message>
-): Promise<actions.successFetchMessages> {
-  try {
-    if (url === null) {
-      return actions.successFetchMessages(messages);
-    }
-
-    let response = await Api.get(url, params, expandRoute);
-    response = await response.json();
-
-    return await fetchNextPage(
-      Api,
-      response.next_page_uri,
-      undefined,
-      false,
-      messages.concat(response.messages.map(message => new Message(message)))
-    );
-  } catch(e) {
-    return actions.failFetchMessages(e);
+): Promise<actions.successFetchMessages | actions.failFetchMessages> {
+  if (url === null) {
+    return Promise.resolve(actions.successFetchMessages(messages));
   }
+
+  return api.get(url, params, expandRoute)
+    .then(r => r.json())
+    .then(r => fetchNextPage(api, r.next_page_uri, undefined, false,
+      messages.concat(r.messages.map(message => new Message(message)))))
+    // Note: If one page fails, all the data is "lost"
+    .catch(e => actions.failFetchMessages(e));
 }
 
-export async function fetchMessages(
-  Api: any
+export function fetchMessages(
+  api: any
 ): Promise<actions.successFetchMessages | actions.failFetchMessages> {
-  return fetchNextPage(Api, '/Messages.json', undefined, true, []);
+  return fetchNextPage(api, '/Messages.json', undefined, true, []);
 }

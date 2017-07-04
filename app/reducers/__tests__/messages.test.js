@@ -7,7 +7,7 @@ import { reducer, initialState } from '../messages';
 import effects from '../../effects';
 import * as actions from '../../actions/messages';
 import * as persistActions from '../../actions/persist';
-import LibApi from '../../lib/api';
+import { getApi } from '../../lib/api';
 import { Message } from '../../types';
 import fixture from '../../test_helpers/fixtures/received_message.json';
 import conversationFixture from '../../test_helpers/fixtures/conversation_store.json';
@@ -19,7 +19,7 @@ test('reducer.FETCH_MESSAGES', () => {
 
   expect(result).toEqual(loop(
     { ...initialState, loading: true },
-    Effects.promise(effects.fetchMessages, LibApi)
+    Effects.promise(effects.fetchMessages, getApi())
   ));
 });
 

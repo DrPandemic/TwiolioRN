@@ -24,8 +24,9 @@ the codebase.
 - [x] Order messages and conversations
 - [x] Android back button
 - [x] Always fetch messages
-  - [x] Save already received messages and number
-  - [ ] Manage response paging (1)
+  - [x] Save already received messages
+  - [ ] Save already received numbers
+  - [x] Manage response paging (1)
   - [ ] Display phone numbers with conversations but that wasn't received by the API
 - [ ] Send SMS
 - [ ] Start new conversation
@@ -33,7 +34,7 @@ the codebase.
 - [ ] System notifications
 - [ ] Reduce network usage
   - [ ] Configurable fetch timeout
-  - [ ] Don't ask twice for the same SMS (2)
+  - [ ] Don't query twice for the same SMS (2)
   - [ ] After 1 and 2, I'll remove fake network responses
 - [ ] Always show end of conversation first (https://github.com/facebook/react-native/issues/13727)
 - [ ] Display money left

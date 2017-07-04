@@ -4,7 +4,7 @@ import { loop, Effects } from 'redux-loop';
 
 import * as types from '../actions/types';
 import { addMessages, restore } from '../types/ConversationStore';
-import LibApi from '../lib/api';
+import { getApi } from '../lib/api';
 import createReducer from '../lib/createReducer';
 import effects from '../effects';
 import { fetchMessages } from '../actions/messages';
@@ -32,7 +32,7 @@ export const reducer = createReducer({
   [types.FETCH_MESSAGES](state: T) {
     return loop(
       { ...state, loading: true },
-      Effects.promise(effects.fetchMessages, LibApi)
+      Effects.promise(effects.fetchMessages, getApi())
     );
   },
   [types.SET_FETCHED_MESSAGES](

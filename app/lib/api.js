@@ -74,3 +74,8 @@ export default class Api {
     });
   }
 }
+
+const api = new Api();
+export function getApi() {
+  return api;
+}

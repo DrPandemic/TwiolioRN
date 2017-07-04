@@ -6,7 +6,7 @@ import { reducer, initialState } from '../fetchedAccountNumbers';
 import effects from '../../effects';
 import * as actions from '../../actions/fetchedAccountNumbers';
 import * as persistActions from '../../actions/persist';
-import LibApi from '../../lib/api';
+import { getApi } from '../../lib/api';
 
 test('reducer.FETCH_ACCOUNT_NUMBERS', () => {
   const state = { ...initialState, loading: false };
@@ -15,7 +15,7 @@ test('reducer.FETCH_ACCOUNT_NUMBERS', () => {
 
   expect(result).toEqual(loop(
     { ...initialState, loading: true },
-    Effects.promise(effects.fetchNumbers, LibApi)
+    Effects.promise(effects.fetchNumbers, getApi())
   ));
 });
 
