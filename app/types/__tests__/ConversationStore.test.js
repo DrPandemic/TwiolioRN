@@ -113,9 +113,9 @@ test('messages are ordered', () => {
   const messages = getMessages(store, m0.conversationUsers);
 
   expect(messages).toHaveLength(3);
-  expect(messages[0]).toEqual(m0);
+  expect(messages[0]).toEqual(m1);
   expect(messages[1]).toEqual(m2);
-  expect(messages[2]).toEqual(m1);
+  expect(messages[2]).toEqual(m0);
 });
 
 test('conversations are ordered', () => {
@@ -129,15 +129,26 @@ test('conversations are ordered', () => {
   const store = addMessages({}, [m0, m1, m2, m3, m4, m5]);
   const conversations = getConversations(store);
 
-  expect(conversations[0][0].sid).toEqual(m4.sid);
   expect(
-    conversations[1][0].sid === m3.sid ||
-    conversations[1][0].sid === m0.sid
+    conversations[0][0].sid === m0.sid ||
+    conversations[0][0].sid === m1.sid ||
+    conversations[0][0].sid === m2.sid
   ).toBeTruthy();
   expect(
-    conversations[2][0].sid === m3.sid ||
-    conversations[2][0].sid === m0.sid
+    conversations[0][1].sid === m0.sid ||
+    conversations[0][1].sid === m1.sid ||
+    conversations[0][1].sid === m2.sid
   ).toBeTruthy();
+  expect(
+    conversations[0][2].sid === m0.sid ||
+    conversations[0][2].sid === m1.sid ||
+    conversations[0][2].sid === m2.sid
+  ).toBeTruthy();
+  expect(conversations[0][0]).not.toEqual(conversations[0][1]);
+  expect(conversations[0][0]).not.toEqual(conversations[0][2]);
+  expect(conversations[0][3]).not.toEqual(conversations[0][2]);
+  expect(conversations[1][0].sid).toEqual(m4.sid);
+  expect(conversations[2][0].sid).toEqual(m3.sid);
   expect(conversations[3][0].sid).toEqual(m5.sid);
 });
 
@@ -153,6 +164,6 @@ test('restore', () => {
     conversations[0][1].sid === 'sid0' ||
     conversations[0][1].sid === 'sid1'
   ).toBeTruthy();
-  expect(conversations[0][0]).not.toBe(conversations[0][1]);
+  expect(conversations[0][0]).not.toEqual(conversations[0][1]);
   expect(conversations[1][0].sid).toEqual('sid2');
 });

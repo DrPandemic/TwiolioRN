@@ -174,20 +174,10 @@ exports[`renders empty rows 1`] = `
 >
   <View
     style={
-      Array [
-        Object {
-          "backgroundColor": "#ffffff",
-          "borderBottomWidth": 1,
-          "borderColor": "#cbd2d9",
-          "borderTopWidth": 1,
-          "marginTop": 20,
-        },
-        Object {
-          "backgroundColor": "#eee",
-          "borderBottomWidth": 0,
-          "marginTop": 0,
-        },
-      ]
+      Object {
+        "borderBottomWidth": 0,
+        "marginTop": 0,
+      }
     }
   >
     <RCTScrollView
@@ -238,20 +228,10 @@ exports[`renders rows 1`] = `
 >
   <View
     style={
-      Array [
-        Object {
-          "backgroundColor": "#ffffff",
-          "borderBottomWidth": 1,
-          "borderColor": "#cbd2d9",
-          "borderTopWidth": 1,
-          "marginTop": 20,
-        },
-        Object {
-          "backgroundColor": "#eee",
-          "borderBottomWidth": 0,
-          "marginTop": 0,
-        },
-      ]
+      Object {
+        "borderBottomWidth": 0,
+        "marginTop": 0,
+      }
     }
   >
     <RCTScrollView
@@ -263,20 +243,33 @@ exports[`renders rows 1`] = `
               "dateCreated": 2017-05-12T02:46:30.000Z,
               "dateSent": 2017-05-12T02:46:31.000Z,
               "dateUpdated": 2017-05-12T02:46:31.000Z,
-              "direction": "outbound-api",
-              "from": "+1231231234",
-              "sid": "somesid5",
-              "status": "delivered",
-              "to": "+1231231235",
+              "direction": "inbound",
+              "from": "+1231231235",
+              "sid": "somesid0",
+              "status": "received",
+              "to": "+1231231234",
             },
             Message {
               "body": "foo",
               "dateCreated": 2017-05-12T02:46:30.000Z,
               "dateSent": 2017-05-12T02:46:31.000Z,
               "dateUpdated": 2017-05-12T02:46:31.000Z,
+              "direction": "outbound-api",
+              "from": "+1231231234",
+              "sid": "somesid5",
+              "status": "delivered",
+              "to": "+1231231235",
+            },
+          ],
+          Array [
+            Message {
+              "body": "foo",
+              "dateCreated": 2017-05-12T02:46:30.000Z,
+              "dateSent": 2017-05-12T02:46:31.000Z,
+              "dateUpdated": 2017-05-12T02:46:31.000Z,
               "direction": "inbound",
-              "from": "+1231231235",
-              "sid": "somesid0",
+              "from": "+1231231236",
+              "sid": "somesid2",
               "status": "received",
               "to": "+1231231234",
             },
@@ -292,19 +285,6 @@ exports[`renders rows 1`] = `
               "sid": "somesid1",
               "status": "received",
               "to": "+1231231235",
-            },
-          ],
-          Array [
-            Message {
-              "body": "foo",
-              "dateCreated": 2017-05-12T02:46:30.000Z,
-              "dateSent": 2017-05-12T02:46:31.000Z,
-              "dateUpdated": 2017-05-12T02:46:31.000Z,
-              "direction": "inbound",
-              "from": "+1231231236",
-              "sid": "somesid2",
-              "status": "received",
-              "to": "+1231231234",
             },
           ],
         ]
@@ -597,7 +577,7 @@ exports[`renders rows 1`] = `
                       ]
                     }
                   >
-                    +1231231234
+                    +1231231236
                   </Text>
                 </View>
                 <View
@@ -760,7 +740,7 @@ exports[`renders rows 1`] = `
                       ]
                     }
                   >
-                    +1231231236
+                    +1231231234
                   </Text>
                 </View>
                 <View
@@ -845,20 +825,10 @@ exports[`renders rows with selected number 1`] = `
 >
   <View
     style={
-      Array [
-        Object {
-          "backgroundColor": "#ffffff",
-          "borderBottomWidth": 1,
-          "borderColor": "#cbd2d9",
-          "borderTopWidth": 1,
-          "marginTop": 20,
-        },
-        Object {
-          "backgroundColor": "#eee",
-          "borderBottomWidth": 0,
-          "marginTop": 0,
-        },
-      ]
+      Object {
+        "borderBottomWidth": 0,
+        "marginTop": 0,
+      }
     }
   >
     <RCTScrollView
@@ -870,22 +840,22 @@ exports[`renders rows with selected number 1`] = `
               "dateCreated": 2017-05-12T02:46:30.000Z,
               "dateSent": 2017-05-12T02:46:31.000Z,
               "dateUpdated": 2017-05-12T02:46:31.000Z,
-              "direction": "outbound-api",
-              "from": "+1231231234",
-              "sid": "somesid5",
-              "status": "delivered",
-              "to": "+1231231235",
+              "direction": "inbound",
+              "from": "+1231231235",
+              "sid": "somesid0",
+              "status": "received",
+              "to": "+1231231234",
             },
             Message {
               "body": "foo",
               "dateCreated": 2017-05-12T02:46:30.000Z,
               "dateSent": 2017-05-12T02:46:31.000Z,
               "dateUpdated": 2017-05-12T02:46:31.000Z,
-              "direction": "inbound",
-              "from": "+1231231235",
-              "sid": "somesid0",
-              "status": "received",
-              "to": "+1231231234",
+              "direction": "outbound-api",
+              "from": "+1231231234",
+              "sid": "somesid5",
+              "status": "delivered",
+              "to": "+1231231235",
             },
           ],
           Array [

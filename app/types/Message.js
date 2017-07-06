@@ -64,9 +64,14 @@ export default class Message {
   }
 
   compare(b: Message): number {
-    if (this.dateSent < b.dateSent) {
+    if (this.dateSent > b.dateSent) {
       return 1;
-    } else if (this.dateSent > b.dateSent) {
+    } else if (this.dateSent < b.dateSent) {
+      return -1;
+    // To be sure that 2 different messages are not seem as the same
+    } else if (this.sid > b.sid) {
+      return 1;
+    } else if (this.sid < b.sid) {
       return -1;
     }
     return 0;

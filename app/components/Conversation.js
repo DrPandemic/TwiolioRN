@@ -3,14 +3,15 @@
 import React, { Component } from 'react';
 import {
   Dimensions,
-  FlatList,
   StyleSheet,
   Text,
   View,
+  FlatList,
 } from 'react-native';
 import { List, ListItem } from 'react-native-elements';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
+import ReversedFlatList from 'react-native-reversed-flat-list';
 
 import { ActionCreators } from '../actions';
 import { Message } from '../types';
@@ -24,14 +25,15 @@ const screenHeight = Dimensions.get('window').height;
 const styles = StyleSheet.create({
   container: {
     flexDirection: 'column',
-    backgroundColor: Colors.background,
     height: screenHeight,
   },
   list: {
     marginTop: 0,
   },
   flatList: {
-    marginBottom: 30,
+    // Honnestly, I need to understand this magic value
+    marginBottom: 80,
+    backgroundColor: Colors.background,
   },
   ourMessage: {
     margin: 10,
@@ -116,15 +118,13 @@ export class PConversation extends Component {
     const conversationId = this.props.location.state;
 
     return (
-      <View style={styles.container}>
-        <List style={styles.list}>
-          <FlatList
-            data={getMessagesById(store, conversationId)}
-            renderItem={({item}) => PConversation.renderRow(item)}
-            keyExtractor={message => message.sid}
-            style={styles.flatList}
-          />
-        </List>
+      <View style={styles.container} >
+        <ReversedFlatList
+          data={getMessagesById(store, conversationId)}
+          renderItem={({item}) => PConversation.renderRow(item)}
+          keyExtractor={message => message.sid}
+          style={styles.flatList}
+        />
       </View>
     );
   }

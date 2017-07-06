@@ -30,7 +30,6 @@ const styles = StyleSheet.create({
   list: {
     marginTop: 0,
     borderBottomWidth: 0,
-    backgroundColor: Colors.background,
   },
   item: {
     paddingTop: 10,
@@ -80,7 +79,7 @@ export class PConversationList extends Component {
     ));
     return (
       <View style={styles.container}>
-        <List containerStyle={styles.list}>
+        <List style={styles.list}>
           <FlatList
             data={messages}
             renderItem={({item}) => this.renderRow(item)}

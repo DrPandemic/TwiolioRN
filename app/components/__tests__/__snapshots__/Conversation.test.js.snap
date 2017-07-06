@@ -147,52 +147,53 @@ exports[`renders an empty conversation 1`] = `
 <View
   style={
     Object {
-      "backgroundColor": "#eee",
       "flexDirection": "column",
       "height": 1334,
     }
   }
 >
-  <View
+  <RCTScrollView
+    data={Array []}
+    disableVirtualization={false}
+    getItem={[Function]}
+    getItemCount={[Function]}
+    horizontal={false}
+    initialNumToRender={10}
+    keyExtractor={[Function]}
+    maxToRenderPerBatch={10}
+    numColumns={1}
+    onContentSizeChange={[Function]}
+    onEndReachedThreshold={2}
+    onLayout={[Function]}
+    onMomentumScrollEnd={[Function]}
+    onScroll={[Function]}
+    onScrollBeginDrag={[Function]}
+    onScrollEndDrag={[Function]}
+    onViewableItemsChanged={undefined}
+    renderItem={[Function]}
+    renderScrollComponent={[Function]}
+    scrollEventThrottle={50}
+    stickyHeaderIndices={Array []}
     style={
-      Object {
-        "marginTop": 0,
-      }
-    }
-  >
-    <RCTScrollView
-      data={Array []}
-      disableVirtualization={false}
-      getItem={[Function]}
-      getItemCount={[Function]}
-      horizontal={false}
-      initialNumToRender={10}
-      keyExtractor={[Function]}
-      maxToRenderPerBatch={10}
-      numColumns={1}
-      onContentSizeChange={[Function]}
-      onEndReachedThreshold={2}
-      onLayout={[Function]}
-      onMomentumScrollEnd={[Function]}
-      onScroll={[Function]}
-      onScrollBeginDrag={[Function]}
-      onScrollEndDrag={[Function]}
-      onViewableItemsChanged={undefined}
-      renderItem={[Function]}
-      renderScrollComponent={[Function]}
-      scrollEventThrottle={50}
-      stickyHeaderIndices={Array []}
-      style={
+      Array [
         Object {
-          "marginBottom": 30,
-        }
-      }
-      updateCellsBatchingPeriod={50}
-      windowSize={21}
-    >
-      <View />
-    </RCTScrollView>
-  </View>
+          "backgroundColor": "#eee",
+          "marginBottom": 80,
+        },
+        Object {
+          "transform": Array [
+            Object {
+              "scaleY": -1,
+            },
+          ],
+        },
+      ]
+    }
+    updateCellsBatchingPeriod={50}
+    windowSize={21}
+  >
+    <View />
+  </RCTScrollView>
 </View>
 `;
 
@@ -200,77 +201,90 @@ exports[`renders an non-empty conversation 1`] = `
 <View
   style={
     Object {
-      "backgroundColor": "#eee",
       "flexDirection": "column",
       "height": 1334,
     }
   }
 >
-  <View
-    style={
-      Object {
-        "marginTop": 0,
-      }
+  <RCTScrollView
+    data={
+      Array [
+        Message {
+          "body": "bar",
+          "dateCreated": 2017-05-12T02:46:30.000Z,
+          "dateSent": 2017-05-12T02:46:31.000Z,
+          "dateUpdated": 2017-05-12T02:46:31.000Z,
+          "direction": "outbound-api",
+          "from": "+1231231234",
+          "sid": "somesid5",
+          "status": "delivered",
+          "to": "+1231231235",
+        },
+        Message {
+          "body": "foo",
+          "dateCreated": 2017-05-12T02:46:30.000Z,
+          "dateSent": 2017-05-12T02:46:31.000Z,
+          "dateUpdated": 2017-05-12T02:46:31.000Z,
+          "direction": "inbound",
+          "from": "+1231231235",
+          "sid": "somesid0",
+          "status": "received",
+          "to": "+1231231234",
+        },
+      ]
     }
-  >
-    <RCTScrollView
-      data={
-        Array [
-          Message {
-            "body": "bar",
-            "dateCreated": 2017-05-12T02:46:30.000Z,
-            "dateSent": 2017-05-12T02:46:31.000Z,
-            "dateUpdated": 2017-05-12T02:46:31.000Z,
-            "direction": "outbound-api",
-            "from": "+1231231234",
-            "sid": "somesid5",
-            "status": "delivered",
-            "to": "+1231231235",
-          },
-          Message {
-            "body": "foo",
-            "dateCreated": 2017-05-12T02:46:30.000Z,
-            "dateSent": 2017-05-12T02:46:31.000Z,
-            "dateUpdated": 2017-05-12T02:46:31.000Z,
-            "direction": "inbound",
-            "from": "+1231231235",
-            "sid": "somesid0",
-            "status": "received",
-            "to": "+1231231234",
-          },
-        ]
-      }
-      disableVirtualization={false}
-      getItem={[Function]}
-      getItemCount={[Function]}
-      horizontal={false}
-      initialNumToRender={10}
-      keyExtractor={[Function]}
-      maxToRenderPerBatch={10}
-      numColumns={1}
-      onContentSizeChange={[Function]}
-      onEndReachedThreshold={2}
-      onLayout={[Function]}
-      onMomentumScrollEnd={[Function]}
-      onScroll={[Function]}
-      onScrollBeginDrag={[Function]}
-      onScrollEndDrag={[Function]}
-      onViewableItemsChanged={undefined}
-      renderItem={[Function]}
-      renderScrollComponent={[Function]}
-      scrollEventThrottle={50}
-      stickyHeaderIndices={Array []}
-      style={
+    disableVirtualization={false}
+    getItem={[Function]}
+    getItemCount={[Function]}
+    horizontal={false}
+    initialNumToRender={10}
+    keyExtractor={[Function]}
+    maxToRenderPerBatch={10}
+    numColumns={1}
+    onContentSizeChange={[Function]}
+    onEndReachedThreshold={2}
+    onLayout={[Function]}
+    onMomentumScrollEnd={[Function]}
+    onScroll={[Function]}
+    onScrollBeginDrag={[Function]}
+    onScrollEndDrag={[Function]}
+    onViewableItemsChanged={undefined}
+    renderItem={[Function]}
+    renderScrollComponent={[Function]}
+    scrollEventThrottle={50}
+    stickyHeaderIndices={Array []}
+    style={
+      Array [
         Object {
-          "marginBottom": 30,
-        }
-      }
-      updateCellsBatchingPeriod={50}
-      windowSize={21}
-    >
-      <View>
+          "backgroundColor": "#eee",
+          "marginBottom": 80,
+        },
+        Object {
+          "transform": Array [
+            Object {
+              "scaleY": -1,
+            },
+          ],
+        },
+      ]
+    }
+    updateCellsBatchingPeriod={50}
+    windowSize={21}
+  >
+    <View>
+      <View
+        onLayout={[Function]}
+      >
         <View
-          onLayout={[Function]}
+          style={
+            Object {
+              "transform": Array [
+                Object {
+                  "scaleY": -1,
+                },
+              ],
+            }
+          }
         >
           <View
             onLongPress={undefined}
@@ -341,8 +355,20 @@ exports[`renders an non-empty conversation 1`] = `
             </View>
           </View>
         </View>
+      </View>
+      <View
+        onLayout={[Function]}
+      >
         <View
-          onLayout={[Function]}
+          style={
+            Object {
+              "transform": Array [
+                Object {
+                  "scaleY": -1,
+                },
+              ],
+            }
+          }
         >
           <View
             onLongPress={undefined}
@@ -415,7 +441,7 @@ exports[`renders an non-empty conversation 1`] = `
           </View>
         </View>
       </View>
-    </RCTScrollView>
-  </View>
+    </View>
+  </RCTScrollView>
 </View>
 `;

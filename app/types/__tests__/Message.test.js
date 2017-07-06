@@ -48,6 +48,6 @@ test('compare', () => {
   expect(m1.compare(m1)).toEqual(0);
   expect(m2.compare(m2)).toEqual(0);
 
-  expect(m0.compare(m1)).toEqual(-1);
-  expect(m1.compare(m0)).toEqual(1);
+  expect(m0.compare(m1)).toEqual(1);
+  expect(m1.compare(m0)).toEqual(-1);
 });
