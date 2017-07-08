@@ -15,11 +15,13 @@ export type T = {|
   loading: boolean,
   messages: ConversationStoreT,
   error: any,
+  lastFetch: ?string,
 |};
 export const initialState: T = {
   loading: false,
   messages: {},
   error: null,
+  lastFetch: null,
 };
 
 export const reducer = createReducer({
@@ -32,7 +34,7 @@ export const reducer = createReducer({
   [types.FETCH_MESSAGES](state: T) {
     return loop(
       { ...state, loading: true },
-      Effects.promise(effects.fetchMessages, getApi())
+      Effects.promise(effects.fetchMessages, getApi(), state.lastFetch)
     );
   },
   [types.SET_FETCHED_MESSAGES](
@@ -61,10 +63,9 @@ export const reducer = createReducer({
     action: types.SuccessRestoreStoreT,
   ) {
     return {
+      ...initialState,
       ...state.messages,
       messages: restore(action.state.messages.messages),
-      error: null,
-      loading: false,
     };
   },
 });

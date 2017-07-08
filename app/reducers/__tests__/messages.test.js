@@ -13,13 +13,16 @@ import fixture from '../../test_helpers/fixtures/received_message.json';
 import conversationFixture from '../../test_helpers/fixtures/conversation_store.json';
 
 test('reducer.FETCH_MESSAGES', () => {
-  const state = { ...initialState, loading: false };
+  const lastFetch = Symbol('lastFetch');
+  const state = { ...initialState, loading: false, lastFetch };
 
   const result = reducer(state, actions.fetchMessages());
 
+  console.log(result);
+
   expect(result).toEqual(loop(
-    { ...initialState, loading: true },
-    Effects.promise(effects.fetchMessages, getApi())
+    { ...initialState, loading: true, lastFetch },
+    Effects.promise(effects.fetchMessages, getApi(), lastFetch)
   ));
 });
 
@@ -77,6 +80,7 @@ test('RESTORE_STORE', () => {
     messages: restore(conversationFixture.simple),
     error: null,
     loading: false,
+    lastFetch: null,
   });
 });
 
@@ -87,6 +91,6 @@ test('TICK', () => {
 
   expect(result).toEqual(loop(
     { ...initialState },
-    Effects.constant(actions.fetchMessages())
+    Effects.constant(actions.fetchMessages(initialState.lastFetch))
   ));
 });

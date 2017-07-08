@@ -23,7 +23,8 @@ function fetchNextPage(
 }
 
 export function fetchMessages(
-  api: any
+  api: any,
+  lastFetch: ?string,
 ): Promise<actions.successFetchMessages | actions.failFetchMessages> {
   return fetchNextPage(api, '/Messages.json', undefined, true, []);
 }

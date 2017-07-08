@@ -35,12 +35,16 @@ the codebase.
 - [ ] Reduce network usage
   - [ ] Configurable fetch timeout
   - [ ] Don't query twice for the same SMS (2)
+    - [ ] Restore lastFetch
   - [ ] After 1 and 2, I'll remove fake network responses
-- [ ] Always show end of conversation first (https://github.com/facebook/react-native/issues/13727)
+  - [ ] The reverse list for messages force every messages to load
+- [x] Always show end of conversation first (https://github.com/facebook/react-native/issues/13727)
 - [ ] Display money left
 
 ### Beta
+- [ ] Manage message errors from Twilio's API
 - [ ] Adds a banner for no network
+- [ ] Display when loading
 - [ ] Display message's date
 - [ ] Delete messages
 - [ ] Delete conversations
