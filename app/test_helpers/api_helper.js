@@ -5,6 +5,7 @@ import equal from 'deep-equal';
 type Mock = {
   url: string,
   params: ?Object,
+  headers: ?Object,
   expandRoute: boolean,
   resolve: boolean,
   result: any,
@@ -13,13 +14,15 @@ type Mock = {
 function requestMatch(
   url: string,
   params: ?Object,
+  headers: ?Object,
   expandRoute: boolean,
   mock: Mock
 ): boolean {
   return mock.resolve &&
          url === mock.url &&
          expandRoute === mock.expandRoute &&
-         equal(params, mock.params);
+         equal(params, mock.params) &&
+         equal(headers, mock.headers);
 }
 
 export default class MockApi {
@@ -47,9 +50,10 @@ export default class MockApi {
       this[fn].mockImplementationOnce((
         url: string,
         params: ?Object,
+        headers: ?Object,
         expandRoute: boolean = true,
       ) => {
-        if (!requestMatch(url, params, expandRoute, mock)) {
+        if (!requestMatch(url, params, headers, expandRoute, mock)) {
           return Promise.reject(mock.result);
         }
 

@@ -7,7 +7,7 @@ import { FetchMessageThresholdInMinutes } from '../constants';
 function fetchNextPage(
   api: any,
   url: ?string,
-  params: ?Object,
+  headers: ?Object,
   expandRoute: boolean,
   messages: Array<Message>
 ): Promise<actions.successFetchMessages | actions.failFetchMessages> {
@@ -15,9 +15,9 @@ function fetchNextPage(
     return Promise.resolve(actions.successFetchMessages(messages));
   }
 
-  return api.get(url, params, expandRoute)
+  return api.get(url, null, headers, expandRoute)
     .then(r => r.json())
-    .then(r => fetchNextPage(api, r.next_page_uri, undefined, false,
+    .then(r => fetchNextPage(api, r.next_page_uri, null, false,
       messages.concat(r.messages.map(message => new Message(message)))))
     // Note: If one page fails, all the data is "lost"
     .catch(e => actions.failFetchMessages(e));
@@ -31,7 +31,7 @@ export function fetchMessages(
   api: any,
   lastFetch: ?Date = null,
 ): Promise<actions.successFetchMessages | actions.failFetchMessages> {
-  let params;
+  let headers = null;
   if (lastFetch != null) {
     lastFetch.setMonth(lastFetch.getMonth() - 1);
     lastFetch.setMinutes(
@@ -41,10 +41,10 @@ export function fetchMessages(
     const month = pad(lastFetch.getMonth() + 1);
     const day = pad(lastFetch.getDate());
 
-    params = {
+    headers = {
       DateSent: `>${lastFetch.getFullYear()}-${month}-${day}`,
     };
   }
 
-  return fetchNextPage(api, '/Messages.json', params, true, []);
+  return fetchNextPage(api, '/Messages.json', headers, true, []);
 }

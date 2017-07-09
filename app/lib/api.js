@@ -2,20 +2,24 @@
 
 import Config from 'react-native-config';
 import { Buffer } from 'buffer';
+import equal from 'deep-equal';
 
 import match from '../lib/match';
 import { ShouldMockFetch } from '../constants';
 import mocks from './mock.json';
 
-function mockedFetch(url: string, params: any) {
-  const mock = mocks.find(m => m.method === params.method && url === m.url);
+function mockedFetch(url: string, options: any) {
+  const mock = mocks.find(m =>
+      m.method === options.method &&
+      url === m.url
+  );
   if (__DEV__ && ShouldMockFetch && mock) {
     return Promise.resolve({
       ok: true,
       json: () => Promise.resolve(mock.response),
     });
   } else {
-    return fetch(url, params);
+    return fetch(url, options);
   }
 }
 
@@ -32,27 +36,27 @@ export default class Api {
     };
   }
 
-  get(route: string, params: ?Object, expandRoute: boolean = true) {
-    return this.xhr(route, params, expandRoute, 'GET');
+  get(route: string, params: ?Object, headers: ?Object, expandRoute: boolean = true) {
+    return this.xhr(route, params, headers, expandRoute, 'GET');
   }
 
-  head(route: string, expandRoute: boolean = true) {
-    return this.xhr(route, null, expandRoute, 'HEAD');
+  head(route: string, headers: ?Object, expandRoute: boolean = true) {
+    return this.xhr(route, null, headers, expandRoute, 'HEAD');
   }
 
-  put(route: string, params: ?Object, expandRoute: boolean = true) {
-    return this.xhr(route, params, expandRoute, 'PUT');
+  put(route: string, params: ?Object, headers: ?Object, expandRoute: boolean = true) {
+    return this.xhr(route, params, headers, expandRoute, 'PUT');
   }
 
-  post(route: string, params: ?Object, expandRoute: boolean = true) {
-    return this.xhr(route, params, expandRoute, 'POST');
+  post(route: string, params: ?Object, headers: ?Object, expandRoute: boolean = true) {
+    return this.xhr(route, params, headers, expandRoute, 'POST');
   }
 
-  delete(route: string, params: ?Object, expandRoute: boolean = true) {
-    return this.xhr(route, params, expandRoute, 'DELETE');
+  delete(route: string, params: ?Object, headers: ?Object, expandRoute: boolean = true) {
+    return this.xhr(route, params, headers, expandRoute, 'DELETE');
   }
 
-  xhr(route: string, params: ?Object, expandRoute: boolean, verb: string) {
+  xhr(route: string, params: ?Object, headers: ?Object, expandRoute: boolean, verb: string) {
     const host = 'https://api.twilio.com';
     const base = `/2010-04-01/Accounts/${Config.TWILIO_ACCOUNT_SID}`;
     const url = match(
@@ -63,7 +67,12 @@ export default class Api {
     const options = Object.assign(
       { method: verb },
       params ? { body: JSON.stringify(params) } : null,
-      { headers: this.headers() }
+      {
+        headers: {
+          ...this.headers(),
+          ...headers,
+        }
+      }
     );
 
     return mockedFetch(url, options).then(resp => {

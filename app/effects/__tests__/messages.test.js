@@ -30,7 +30,7 @@ test('fetchMessages with and without a lastFetch', async () => {
     messages: [fixtures.simple]
   });
   await fetchMessages(api0, null);
-  expect(api0.get).toBeCalledWith('/Messages.json', undefined, true);
+  expect(api0.get).toBeCalledWith('/Messages.json', null, null, true);
 
   // With lastFetch with less than the threshold
   const api1 = (new ApiMock()).mock('get', true, {
@@ -40,7 +40,7 @@ test('fetchMessages with and without a lastFetch', async () => {
     api1,
     new Date(2000, 10, 10, 0, FetchMessageThresholdInMinutes/2, 0),
   );
-  expect(api1.get).toBeCalledWith('/Messages.json', {
+  expect(api1.get).toBeCalledWith('/Messages.json', null, {
     DateSent: '>2000-10-09',
   }, true);
 
@@ -52,7 +52,7 @@ test('fetchMessages with and without a lastFetch', async () => {
     api2,
     new Date(2000, 10, 10, 0, FetchMessageThresholdInMinutes, 1),
   );
-  expect(api2.get).toBeCalledWith('/Messages.json', {
+  expect(api2.get).toBeCalledWith('/Messages.json', null, {
     DateSent: '>2000-10-10',
   }, true);
 });
@@ -74,19 +74,22 @@ test('3 level paging', async () => {
   const [p0, p1, p2] = completeFixture.threePages;
   const api = (new ApiMock()).multiMock('get', [{
     url: '/Messages.json',
-    params: undefined,
+    params: null,
+    headers: null,
     expandRoute: true,
     resolve: true,
     result: p0,
   }, {
     url: p0.next_page_uri,
-    params: undefined,
+    params: null,
+    headers: null,
     expandRoute: false,
     resolve: true,
     result: p1,
   }, {
     url: p1.next_page_uri,
-    params: undefined,
+    params: null,
+    headers: null,
     expandRoute: false,
     resolve: true,
     result: p2,
@@ -95,9 +98,9 @@ test('3 level paging', async () => {
   const result = await fetchMessages(api);
 
   expect(api.get.mock.calls.length).toEqual(3);
-  expect(api.get).toBeCalledWith('/Messages.json', undefined, true);
-  expect(api.get).toBeCalledWith(p0.next_page_uri, undefined, false);
-  expect(api.get).toBeCalledWith(p1.next_page_uri, undefined, false);
+  expect(api.get).toBeCalledWith('/Messages.json', null, null, true);
+  expect(api.get).toBeCalledWith(p0.next_page_uri, null, null, false);
+  expect(api.get).toBeCalledWith(p1.next_page_uri, null, null, false);
   expect(result.type).toEqual(types.SET_FETCHED_MESSAGES);
   expect(result.fetchedMessages).toContainEqual(new Message(p0.messages[0]));
   expect(result.fetchedMessages).toContainEqual(new Message(p0.messages[1]));
