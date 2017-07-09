@@ -29,6 +29,7 @@ the codebase.
   - [x] Manage response paging (1)
   - [ ] Display phone numbers with conversations but that wasn't received by the API
 - [ ] Send SMS
+- [ ] Don't loose received message when a single page fail
 - [ ] Start new conversation
 - [ ] Use contacts to display names
 - [ ] System notifications

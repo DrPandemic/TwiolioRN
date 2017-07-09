@@ -2,11 +2,12 @@
 
 import * as actions from '../actions/messages';
 import { Message } from '../types';
+import { FetchMessageThresholdInMinutes } from '../constants';
 
 function fetchNextPage(
   api: any,
   url: ?string,
-  params: ?any,
+  params: ?Object,
   expandRoute: boolean,
   messages: Array<Message>
 ): Promise<actions.successFetchMessages | actions.failFetchMessages> {
@@ -22,9 +23,28 @@ function fetchNextPage(
     .catch(e => actions.failFetchMessages(e));
 }
 
+function pad(val: number) {
+  return ('00' + val).slice(-2);
+}
+
 export function fetchMessages(
   api: any,
-  lastFetch: ?string,
+  lastFetch: ?Date = null,
 ): Promise<actions.successFetchMessages | actions.failFetchMessages> {
-  return fetchNextPage(api, '/Messages.json', undefined, true, []);
+  let params;
+  if (lastFetch != null) {
+    lastFetch.setMonth(lastFetch.getMonth() - 1);
+    lastFetch.setMinutes(
+      lastFetch.getMinutes() - FetchMessageThresholdInMinutes
+    );
+
+    const month = pad(lastFetch.getMonth() + 1);
+    const day = pad(lastFetch.getDate());
+
+    params = {
+      DateSent: `>${lastFetch.getFullYear()}-${month}-${day}`,
+    };
+  }
+
+  return fetchNextPage(api, '/Messages.json', params, true, []);
 }

@@ -9,3 +9,4 @@ export const Colors = {
   background: '#eee',
 };
 export const RefreshInterval = 1000 * 30;
+export const FetchMessageThresholdInMinutes = 10;

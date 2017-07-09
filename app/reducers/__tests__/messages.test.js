@@ -35,6 +35,7 @@ test('reducer.SET_FETCHED_MESSAGES', () => {
   expect(result).toEqual({
     ...initialState,
     messages: { [m.conversationId]: [m] },
+    lastFetch: new Date(fixture.simple.date_sent),
   });
 });
 

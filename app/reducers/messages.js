@@ -15,7 +15,7 @@ export type T = {|
   loading: boolean,
   messages: ConversationStoreT,
   error: any,
-  lastFetch: ?string,
+  lastFetch: ?Date,
 |};
 export const initialState: T = {
   loading: false,

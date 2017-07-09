@@ -6,8 +6,9 @@ import completeFixture from '../../test_helpers/fixtures/complete_message.json';
 import ApiMock from '../../test_helpers/api_helper';
 import { fetchMessages } from '../messages';
 import { Message } from '../../types';
+import { FetchMessageThresholdInMinutes } from '../../constants';
 
-test('fetchNumbers success', async () => {
+test('fetchMessages success', async () => {
   const api = (new ApiMock()).mock('get', true, {
     messages: [fixtures.simple]
   });
@@ -23,7 +24,40 @@ test('fetchNumbers success', async () => {
   });
 });
 
-test('fetchNumbers failure', async () => {
+test('fetchMessages with and without a lastFetch', async () => {
+  // No lastFetch
+  const api0 = (new ApiMock()).mock('get', true, {
+    messages: [fixtures.simple]
+  });
+  await fetchMessages(api0, null);
+  expect(api0.get).toBeCalledWith('/Messages.json', undefined, true);
+
+  // With lastFetch with less than the threshold
+  const api1 = (new ApiMock()).mock('get', true, {
+    messages: [fixtures.simple]
+  });
+  await fetchMessages(
+    api1,
+    new Date(2000, 10, 10, 0, FetchMessageThresholdInMinutes/2, 0),
+  );
+  expect(api1.get).toBeCalledWith('/Messages.json', {
+    DateSent: '>2000-10-09',
+  }, true);
+
+  // With lastFetch with more than the threshold
+  const api2 = (new ApiMock()).mock('get', true, {
+    messages: [fixtures.simple]
+  });
+  await fetchMessages(
+    api2,
+    new Date(2000, 10, 10, 0, FetchMessageThresholdInMinutes, 1),
+  );
+  expect(api2.get).toBeCalledWith('/Messages.json', {
+    DateSent: '>2000-10-10',
+  }, true);
+});
+
+test('fetchMessages failure', async () => {
   const error = Symbol('error');
   const api = (new ApiMock()).mock('get', false, error);
 
