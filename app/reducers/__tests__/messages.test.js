@@ -18,8 +18,6 @@ test('reducer.FETCH_MESSAGES', () => {
 
   const result = reducer(state, actions.fetchMessages());
 
-  console.log(result);
-
   expect(result).toEqual(loop(
     { ...initialState, loading: true, lastFetch },
     Effects.promise(effects.fetchMessages, getApi(), lastFetch)
@@ -60,6 +58,7 @@ test('success followed by an error', () => {
     ...initialState,
     messages: { [m.conversationId]: [m] },
     error: e,
+    lastFetch: m.dateSent,
   });
 });
 

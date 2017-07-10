@@ -8,6 +8,7 @@ import { getApi } from '../lib/api';
 import createReducer from '../lib/createReducer';
 import effects from '../effects';
 import { fetchMessages } from '../actions/messages';
+import Message from '../types/Message';
 import type { ConversationStoreT } from '../types/ConversationStore';
 import type { StateT } from './';
 
@@ -46,6 +47,7 @@ export const reducer = createReducer({
       messages: addMessages(state.messages, action.fetchedMessages),
       error: null,
       loading: false,
+      lastFetch: Message.FindMostRecentDateSent(action.fetchedMessages),
     };
   },
   [types.FETCH_MESSAGE_ERROR](
