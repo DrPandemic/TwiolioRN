@@ -76,5 +76,16 @@ export default class Message {
     }
     return 0;
   }
-}
 
+  static FindMostRecentDateSent(messages: Array<Message>): ?Date {
+    if (messages.length === 0) {
+      return null;
+    }
+    // I would like to have a fold here
+    return messages.reduce(
+      (prev: Message, curr: Message) =>
+        (prev.dateSent > curr.dateSent ? prev : curr),
+      messages[0]
+    ).dateSent;
+  }
+}

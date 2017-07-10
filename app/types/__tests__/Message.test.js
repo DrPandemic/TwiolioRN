@@ -51,3 +51,17 @@ test('compare', () => {
   expect(m0.compare(m1)).toEqual(1);
   expect(m1.compare(m0)).toEqual(-1);
 });
+
+test('FindMostRecentDateSent', () => {
+  const m0 = new Message(fixture.simple);
+  const m1 = new Message(fixture.simpleLater);
+  const m2 = new Message(fixture.simpleInverse);
+
+  expect(Message.FindMostRecentDateSent([])).toEqual(null);
+  expect(Message.FindMostRecentDateSent([m0])).toEqual(m0.dateSent);
+  const result0 = Message.FindMostRecentDateSent([m0, m2]);
+  expect(result0 === m0.dateSent || result0 === m2.dateSent).toBeTruthy();
+  expect(Message.FindMostRecentDateSent([m0, m1, m2])).toEqual(m1.dateSent);
+  expect(Message.FindMostRecentDateSent([m1, m0, m2])).toEqual(m1.dateSent);
+  expect(Message.FindMostRecentDateSent([m1, m0, m2])).toEqual(m1.dateSent);
+});
