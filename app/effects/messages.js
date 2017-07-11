@@ -24,14 +24,10 @@ function fetchNextPage(
 }
 
 function pad(val: number) {
-  return ('00' + val).slice(-2);
+  return (`00${val}`).slice(-2);
 }
 
-export function fetchMessages(
-  api: any,
-  lastFetch: ?Date = null,
-): Promise<actions.successFetchMessages | actions.failFetchMessages> {
-  let headers = null;
+function generateHeaders(lastFetch: ?Date): ?Object {
   if (lastFetch != null) {
     lastFetch.setMonth(lastFetch.getMonth() - 1);
     lastFetch.setMinutes(
@@ -41,10 +37,18 @@ export function fetchMessages(
     const month = pad(lastFetch.getMonth() + 1);
     const day = pad(lastFetch.getDate());
 
-    headers = {
+    return {
       DateSent: `>${lastFetch.getFullYear()}-${month}-${day}`,
     };
   }
 
-  return fetchNextPage(api, '/Messages.json', headers, true, []);
+  return {};
+}
+
+export function fetchMessages(
+  api: any,
+  lastFetch: ?Date = null,
+): Promise<actions.successFetchMessages | actions.failFetchMessages> {
+  return fetchNextPage(api, '/Messages.json', generateHeaders(lastFetch),
+    true, []);
 }

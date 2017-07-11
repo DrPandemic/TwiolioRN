@@ -1,4 +1,4 @@
-export const ShouldMockFetch = true;
+export const ShouldMockFetch = false;
 export const Colors = {
   primary: {
     normal: '#9c27b0',

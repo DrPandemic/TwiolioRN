@@ -18,9 +18,9 @@ function mockedFetch(url: string, options: any) {
       ok: true,
       json: () => Promise.resolve(mock.response),
     });
-  } else {
-    return fetch(url, options);
   }
+
+  return fetch(url, options);
 }
 
 export default class Api {
@@ -79,7 +79,7 @@ export default class Api {
       if (resp.ok) {
         return resp;
       }
-      throw `The result was not ok and with status ${resp.status}`;
+      throw new Error(`The result was not ok and with status ${resp.status}`);
     });
   }
 }
