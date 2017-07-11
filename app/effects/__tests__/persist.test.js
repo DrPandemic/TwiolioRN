@@ -64,13 +64,3 @@ test('scheduleTick returns tick at some point', async () => {
     type: types.TICK,
   });
 });
-
-test('restoreStore fails when nothing to restore', async () => {
-  const state = {};
-  const spy = jest.fn().mockReturnValue(Promise.resolve(state));
-
-  const result = await restoreStore(spy);
-
-  expect(spy).toBeCalled();
-  expect(result).toHaveProperty('type', types.FAIL_RESTORE_STORE);
-});
