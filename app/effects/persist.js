@@ -1,6 +1,7 @@
 // @flow
 
 import FilesystemStorage from 'redux-persist-filesystem-storage';
+import equal from 'deep-equal';
 
 import { store } from '../store';
 import * as actions from '../actions/persist';
@@ -30,7 +31,12 @@ export function restoreStore(
   getStoredState: (Object) => Promise<StateT>
 ): Promise<any> {
   return getStoredState(config)
-    .then((state: StateT) => actions.successRestoreStore(state))
+    .then((state: StateT) => {
+      if (equal(state, {})) {
+        return actions.failRestoreStore(new Error('Restored state was empty'));
+      }
+      return actions.successRestoreStore(state);
+    })
     .catch(e => actions.failRestoreStore(e));
 }
 
