@@ -94,3 +94,11 @@ test('TICK', () => {
     Effects.constant(actions.fetchMessages(initialState.lastFetch))
   ));
 });
+
+test("Doesn't crash on empty restore", async () => {
+  const state = { ...initialState };
+
+  const result = reducer(state, persistActions.successRestoreStore({}));
+
+  expect(result).toEqual({ ...initialState });
+});

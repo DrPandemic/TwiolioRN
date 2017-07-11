@@ -1,6 +1,7 @@
 // @flow
 
 import { loop, Effects } from 'redux-loop';
+import equal from 'deep-equal';
 
 import * as types from '../actions/types';
 import { addMessages, restore } from '../types/ConversationStore';
@@ -64,10 +65,13 @@ export const reducer = createReducer({
     state: StateT,
     action: types.SuccessRestoreStoreT,
   ) {
+    const messages = equal(action.state, {}) ?
+                     initialState.messages :
+                     restore(action.state.messages.messages);
     return {
       ...initialState,
       ...state.messages,
-      messages: restore(action.state.messages.messages),
+      messages,
     };
   },
 });
