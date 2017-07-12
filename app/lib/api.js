@@ -2,7 +2,6 @@
 
 import Config from 'react-native-config';
 import { Buffer } from 'buffer';
-import equal from 'deep-equal';
 
 import match from '../lib/match';
 import { ShouldMockFetch } from '../constants';

@@ -68,9 +68,13 @@ export const reducer = createReducer({
     const messages = equal(action.state, {}) ?
                      initialState.messages :
                      restore(action.state.messages.messages);
+    const lastFetch = action.state.messages ?
+                      action.state.messages.lastFetch :
+                      initialState.lastFetch;
     return {
       ...initialState,
       ...state.messages,
+      lastFetch,
       messages,
     };
   },

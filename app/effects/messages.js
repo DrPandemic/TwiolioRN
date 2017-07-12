@@ -42,7 +42,7 @@ function generateHeaders(lastFetch: ?Date): ?Object {
     };
   }
 
-  return {};
+  return null;
 }
 
 export function fetchMessages(

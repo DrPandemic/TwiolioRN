@@ -67,11 +67,14 @@ test('RESTORE_STORE', () => {
     ...initialState,
     error: Symbol('error'),
     loading: true,
+    lastFetch: null,
   };
+  const lastFetch = Symbol('last fetch');
 
   const result = reducer(state, persistActions.successRestoreStore({
     messages: {
       messages: conversationFixture.simple,
+      lastFetch,
     },
   }));
 
@@ -80,7 +83,7 @@ test('RESTORE_STORE', () => {
     messages: restore(conversationFixture.simple),
     error: null,
     loading: false,
-    lastFetch: null,
+    lastFetch,
   });
 });
 
