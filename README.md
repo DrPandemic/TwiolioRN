@@ -26,10 +26,10 @@ the codebase.
 - [x] Always fetch messages
   - [x] Save already received messages
   - [ ] Save already received numbers
+    - [ ] Display phone numbers with conversations but that wasn't received by the API
   - [x] Manage response paging (1)
-  - [ ] Display phone numbers with conversations but that wasn't received by the API
 - [ ] Send SMS
-- [ ] Don't loose received message when a single page fail
+- [ ] Don't lose received message when a single page fail
 - [ ] Start new conversation
 - [ ] Use contacts to display names
 - [ ] System notifications

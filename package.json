@@ -16,7 +16,7 @@
 		"es7-object-polyfill": "^0.0.5",
 		"history": "^4.6.1",
 		"react": "^16.0.0-alpha.12",
-		"react-native": "^0.45.1",
+		"react-native": "^0.46.1",
 		"react-native-config": "^0.4.2",
 		"react-native-elements": "^0.12.2",
 		"react-native-popup-menu": "^0.7.5",
