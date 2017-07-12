@@ -115,6 +115,6 @@ test('TICK', () => {
 
   expect(result).toEqual(loop(
     { ...initialState },
-    Effects.constant(actions.scheduleTick())
+    Effects.constant(actions.scheduleTick()),
   ));
 });

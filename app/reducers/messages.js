@@ -9,6 +9,7 @@ import { getApi } from '../lib/api';
 import createReducer from '../lib/createReducer';
 import effects from '../effects';
 import { fetchMessages } from '../actions/messages';
+import { persistStore } from '../actions/persist';
 import Message from '../types/Message';
 import type { ConversationStoreT } from '../types/ConversationStore';
 import type { StateT } from './';
@@ -43,13 +44,16 @@ export const reducer = createReducer({
     state: T,
     action: types.SuccessFetchMessagesT
   ) {
-    return {
-      ...state,
-      messages: addMessages(state.messages, action.fetchedMessages),
-      error: null,
-      loading: false,
-      lastFetch: Message.FindMostRecentDateSent(action.fetchedMessages),
-    };
+    return loop(
+      {
+        ...state,
+        messages: addMessages(state.messages, action.fetchedMessages),
+        error: null,
+        loading: false,
+        lastFetch: Message.FindMostRecentDateSent(action.fetchedMessages),
+      },
+      Effects.constant(persistStore())
+    );
   },
   [types.FETCH_MESSAGE_ERROR](
     state: T,
@@ -66,11 +70,11 @@ export const reducer = createReducer({
     action: types.SuccessRestoreStoreT,
   ) {
     const messages = equal(action.state, {}) ?
-                     initialState.messages :
-                     restore(action.state.messages.messages);
+                      initialState.messages :
+                      restore(action.state.messages.messages);
     const lastFetch = action.state.messages ?
-                      action.state.messages.lastFetch :
-                      initialState.lastFetch;
+                        new Date(action.state.messages.lastFetch) :
+                        initialState.lastFetch;
     return {
       ...initialState,
       ...state.messages,

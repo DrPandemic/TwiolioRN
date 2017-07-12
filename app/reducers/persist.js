@@ -80,7 +80,7 @@ export const reducer = createReducer({
   ) {
     return loop(
       { ...state },
-      Effects.constant(actions.scheduleTick())
+      Effects.constant(actions.scheduleTick()),
     );
   },
 });

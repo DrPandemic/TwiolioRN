@@ -30,11 +30,14 @@ test('reducer.SET_FETCHED_MESSAGES', () => {
 
   const result = reducer(state, actions.successFetchMessages([m]));
 
-  expect(result).toEqual({
-    ...initialState,
-    messages: { [m.conversationId]: [m] },
-    lastFetch: new Date(fixture.simple.date_sent),
-  });
+  expect(result).toEqual(loop(
+    {
+      ...initialState,
+      messages: { [m.conversationId]: [m] },
+      lastFetch: new Date(fixture.simple.date_sent),
+    },
+    Effects.constant(persistActions.persistStore())
+  ));
 });
 
 test('reducer.FETCH_MESSAGES_ERROR', () => {
@@ -51,7 +54,7 @@ test('success followed by an error', () => {
   const m = new Message(fixture.simple);
   const e = Symbol('error');
 
-  state = reducer(state, actions.successFetchMessages([m]));
+  [state] = reducer(state, actions.successFetchMessages([m]));
   state = reducer(state, actions.failFetchMessages(e));
 
   expect(state).toEqual({
@@ -69,7 +72,7 @@ test('RESTORE_STORE', () => {
     loading: true,
     lastFetch: null,
   };
-  const lastFetch = Symbol('last fetch');
+  const lastFetch = '2017-07-12T18:11:43.542Z';
 
   const result = reducer(state, persistActions.successRestoreStore({
     messages: {
@@ -83,7 +86,7 @@ test('RESTORE_STORE', () => {
     messages: restore(conversationFixture.simple),
     error: null,
     loading: false,
-    lastFetch,
+    lastFetch: new Date(lastFetch),
   });
 });
 
