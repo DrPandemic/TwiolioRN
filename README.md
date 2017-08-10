@@ -33,6 +33,7 @@ the codebase.
 - [ ] Start new conversation
 - [ ] Use contacts to display names
 - [ ] System notifications
+  - [ ] Use a background job 
 - [ ] Reduce network usage
   - [ ] Configurable fetch timeout
   - [x] Don't query twice for the same SMS (2)

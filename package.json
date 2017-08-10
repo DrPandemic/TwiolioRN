@@ -7,7 +7,7 @@
 		"flow-stop": "node_modules/.bin/flow stop",
 		"remotedev": "remotedev --hostname=localhost --port=8000 --injectserver=reactnative",
 		"start": "node node_modules/react-native/local-cli/cli.js start",
-		"test": "jest"
+		"test": "jest --coverage"
 	},
 	"dependencies": {
 		"buffer": "^5.0.6",

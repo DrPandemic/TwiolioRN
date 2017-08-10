@@ -2,6 +2,7 @@
 
 import * as types from './types';
 import { PhoneNumber } from '../types';
+import formatError from '../lib/errors';
 
 export function fetchAccountNumbers(): types.FetchAccountNumbersT {
   return {
@@ -21,6 +22,6 @@ export function failFetchAccountNumbers(error: any):
 types.FailFetchAccountNumbersT {
   return {
     type: types.FETCH_ACCOUNT_NUMBER_ERROR,
-    error,
+    error: formatError(error),
   };
 }

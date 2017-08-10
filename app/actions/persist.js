@@ -1,6 +1,7 @@
 // @flow
 
 import * as types from './types';
+import formatError from '../lib/errors';
 
 export function persistStore(): types.PersistStoreT {
   return {
@@ -17,7 +18,7 @@ export function successPersistStore(): types.SuccessPersistStoreT {
 export function failPersistStore(error: any): types.FailPersistStoreT {
   return {
     type: types.FAIL_PERSIST_STORE,
-    error,
+    error: formatError(error),
   };
 }
 
@@ -37,7 +38,7 @@ export function successRestoreStore(state: any): types.SuccessRestoreStoreT {
 export function failRestoreStore(error: any): types.FailRestoreStoreT {
   return {
     type: types.FAIL_RESTORE_STORE,
-    error,
+    error: formatError(error),
   };
 }
 
@@ -56,6 +57,6 @@ export function tick(): types.TickT {
 export function failScheduleTick(error: any): types.FailScheduleTickT {
   return {
     type: types.FAIL_SCHEDULE_TICK,
-    error,
+    error: formatError(error),
   };
 }

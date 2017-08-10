@@ -6,7 +6,6 @@ import { FetchMessageThresholdInMinutes } from '../constants';
 function fetchNextPage(
   api: any,
   url: ?string,
-  headers: ?Object,
   expandRoute: boolean,
   messages: Array<Message>
 ): Promise<Array<Message>> {
@@ -15,9 +14,9 @@ function fetchNextPage(
   }
 
   // Note: If one page fails, all the data is "lost"
-  return api.get(url, null, headers, expandRoute)
+  return api.get(url, null, null, expandRoute)
     .then(r => r.json())
-    .then(r => fetchNextPage(api, r.next_page_uri, null, false,
+    .then(r => fetchNextPage(api, r.next_page_uri, false,
       messages.concat(r.messages.map(message => new Message(message)))));
 }
 
@@ -25,32 +24,30 @@ function pad(val: number) {
   return (`00${val}`).slice(-2);
 }
 
-function generateHeaders(lastFetch: ?Date): ?Object {
+function generateDateSent(lastFetch: ?Date): string {
   if (lastFetch != null) {
-    lastFetch.setMonth(lastFetch.getMonth() - 1);
-    lastFetch.setMinutes(
-      lastFetch.getMinutes() - FetchMessageThresholdInMinutes
+    let copiedLastFetch = new Date(lastFetch.getTime());
+    copiedLastFetch.setMonth(copiedLastFetch.getMonth() - 1);
+    copiedLastFetch.setMinutes(
+      copiedLastFetch.getMinutes() - FetchMessageThresholdInMinutes
     );
 
-    const month = pad(lastFetch.getMonth() + 1);
-    const day = pad(lastFetch.getDate());
+    const month = pad(copiedLastFetch.getMonth() + 1);
+    const day = pad(copiedLastFetch.getDate());
 
-    return {
-      DateSent: `>${lastFetch.getFullYear()}-${month}-${day}`,
-    };
+    return encodeURI(
+      `?DateSent>=${copiedLastFetch.getFullYear()}-${month}-${day}`
+    );
   }
 
-  return null;
+  return '';
 }
 
 export function fetchMessages(
   api: any,
   lastFetch: ?Date = null,
 ): Promise<Array<Message>> {
-  let copiedLastFetch;
-  if (lastFetch) {
-    copiedLastFetch = new Date(lastFetch.getTime());
-  }
-  return fetchNextPage(api, '/Messages.json', generateHeaders(copiedLastFetch),
-    true, []);
+  return fetchNextPage(
+    api, `/Messages.json${generateDateSent(lastFetch)}`, true, []
+  );
 }

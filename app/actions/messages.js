@@ -2,6 +2,7 @@
 
 import * as types from './types';
 import { Message } from '../types';
+import formatError from '../lib/errors';
 
 export function fetchMessages(): types.FetchMessagesT {
   return {
@@ -21,6 +22,6 @@ export function failFetchMessages(error: any):
 types.FailFetchMessagesT {
   return {
     type: types.FETCH_MESSAGE_ERROR,
-    error,
+    error: formatError(error),
   };
 }

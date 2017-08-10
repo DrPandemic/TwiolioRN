@@ -35,9 +35,9 @@ test('fetchMessages with and without a lastFetch', async () => {
     api1,
     new Date(2000, 10, 10, 0, FetchMessageThresholdInMinutes/2, 0),
   );
-  expect(api1.get).toBeCalledWith('/Messages.json', null, {
-    DateSent: '>2000-10-09',
-  }, true);
+  expect(api1.get).toBeCalledWith(
+    "/Messages.json?DateSent%3E=2000-10-09", null, null, true
+  );
 
   // With lastFetch with more than the threshold
   const api2 = (new ApiMock()).mock('get', true, {
@@ -47,9 +47,9 @@ test('fetchMessages with and without a lastFetch', async () => {
     api2,
     new Date(2000, 10, 10, 0, FetchMessageThresholdInMinutes, 1),
   );
-  expect(api2.get).toBeCalledWith('/Messages.json', null, {
-    DateSent: '>2000-10-10',
-  }, true);
+  expect(api2.get).toBeCalledWith(
+    "/Messages.json?DateSent%3E=2000-10-10", null, null, true
+  );
 });
 
 test('fetchMessages failure', async () => {
