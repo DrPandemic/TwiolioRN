@@ -2,7 +2,6 @@
 
 import FilesystemStorage from 'redux-persist-filesystem-storage';
 
-import * as actions from '../actions/persist';
 import { store } from '../store';
 import { RefreshInterval } from '../constants';
 import type { StateT } from '../reducers';
@@ -12,7 +11,8 @@ export const config = {
   storage: FilesystemStorage,
   whitelist: [
     'messages',
-  ]
+  ],
+  skipRestore: true,
 };
 
 export function persistStore(

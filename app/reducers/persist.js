@@ -50,20 +50,20 @@ export const reducer = createReducer({
   [types.RESTORE_STORE](state: StateT) {
     return loop(
       { ...state },
-      Cmd.run(effects.restoreStore, {
-        successActionCreator: actions.successRestoreStore,
-        failActionCreator: actions.failRestoreStore,
-        args: [getStoredState],
-      })
-    );
+      Cmd.sequence([
+        Cmd.run(effects.restoreStore, {
+          successActionCreator: actions.successRestoreStore,
+          failActionCreator: actions.failRestoreStore,
+          args: [getStoredState],
+        }),
+        Cmd.action(actions.tick())
+      ]
+    ));
   },
   [types.SUCCESS_RESTORE_STORE](
     state: StateT,
   ) {
-    return loop(
-      { ...state, restoreError: null },
-      Cmd.action(actions.tick())
-    );
+    return { ...state, restoreError: null };
   },
   [types.FAIL_RESTORE_STORE](
     state: StateT,

@@ -47,6 +47,10 @@ export function fetchMessages(
   api: any,
   lastFetch: ?Date = null,
 ): Promise<Array<Message>> {
-  return fetchNextPage(api, '/Messages.json', generateHeaders(lastFetch),
+  let copiedLastFetch;
+  if (lastFetch) {
+    copiedLastFetch = new Date(lastFetch.getTime());
+  }
+  return fetchNextPage(api, '/Messages.json', generateHeaders(copiedLastFetch),
     true, []);
 }
