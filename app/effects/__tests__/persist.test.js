@@ -1,30 +1,22 @@
 // @flow
 
-import * as types from '../../actions/types';
 import { persistStore, restoreStore, scheduleTick } from '../persist';
 
-test('persistStore success', async () => {
+test('persistStore calls persistStore', async () => {
   const spy = jest.fn().mockReturnValue(Promise.resolve());
 
   const result = await persistStore(spy);
 
   expect(spy).toBeCalled();
-  expect(result).toEqual({
-    type: types.SUCCESS_PERSIST_STORE,
-  });
+  expect(result).toEqual(undefined);
 });
 
 test('persistStore failure', async () => {
   const error = Symbol('error');
   const spy = jest.fn().mockReturnValue(Promise.reject(error));
 
-  const result = await persistStore(spy);
-
+  await expect(persistStore(spy)).rejects.toEqual(error);
   expect(spy).toBeCalled();
-  expect(result).toEqual({
-    type: types.FAIL_PERSIST_STORE,
-    error,
-  });
 });
 
 test('restoreStore success', async () => {
@@ -34,33 +26,23 @@ test('restoreStore success', async () => {
   const result = await restoreStore(spy);
 
   expect(spy).toBeCalled();
-  expect(result).toEqual({
-    type: types.SUCCESS_RESTORE_STORE,
-    state,
-  });
+  expect(result).toEqual(state);
 });
 
 test('restoreStore failure', async () => {
   const error = Symbol('error');
   const spy = jest.fn().mockReturnValue(Promise.reject(error));
 
-  const result = await restoreStore(spy);
-
+  await expect(restoreStore(spy)).rejects.toEqual(error);
   expect(spy).toBeCalled();
-  expect(result).toEqual({
-    type: types.FAIL_RESTORE_STORE,
-    error,
-  });
 });
 
-test('scheduleTick returns tick at some point', async () => {
+test('scheduleTick returns at some point', async () => {
   jest.useFakeTimers();
   const timer = scheduleTick();
 
   jest.runOnlyPendingTimers();
   const result = await timer;
 
-  expect(result).toEqual({
-    type: types.TICK,
-  });
+  expect(result).toEqual(undefined);
 });

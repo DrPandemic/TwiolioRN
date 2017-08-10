@@ -16,12 +16,7 @@ test('fetchMessages success', async () => {
   const result = await fetchMessages(api);
 
   expect(api.get).toBeCalled();
-  expect(result).toEqual({
-    type: types.SET_FETCHED_MESSAGES,
-    fetchedMessages: [
-      new Message(fixtures.simple)
-    ],
-  });
+  expect(result).toEqual([new Message(fixtures.simple)]);
 });
 
 test('fetchMessages with and without a lastFetch', async () => {
@@ -61,13 +56,8 @@ test('fetchMessages failure', async () => {
   const error = Symbol('error');
   const api = (new ApiMock()).mock('get', false, error);
 
-  const result = await fetchMessages(api);
-
+  await expect(fetchMessages(api)).rejects.toEqual(error);
   expect(api.get).toBeCalled();
-  expect(result).toEqual({
-    type: types.FETCH_MESSAGE_ERROR,
-    error,
-  });
 });
 
 test('3 level paging', async () => {
@@ -101,11 +91,10 @@ test('3 level paging', async () => {
   expect(api.get).toBeCalledWith('/Messages.json', null, null, true);
   expect(api.get).toBeCalledWith(p0.next_page_uri, null, null, false);
   expect(api.get).toBeCalledWith(p1.next_page_uri, null, null, false);
-  expect(result.type).toEqual(types.SET_FETCHED_MESSAGES);
-  expect(result.fetchedMessages).toContainEqual(new Message(p0.messages[0]));
-  expect(result.fetchedMessages).toContainEqual(new Message(p0.messages[1]));
-  expect(result.fetchedMessages).toContainEqual(new Message(p1.messages[0]));
-  expect(result.fetchedMessages).toContainEqual(new Message(p1.messages[1]));
-  expect(result.fetchedMessages).toContainEqual(new Message(p2.messages[0]));
-  expect(result.fetchedMessages).toContainEqual(new Message(p2.messages[1]));
+  expect(result).toContainEqual(new Message(p0.messages[0]));
+  expect(result).toContainEqual(new Message(p0.messages[1]));
+  expect(result).toContainEqual(new Message(p1.messages[0]));
+  expect(result).toContainEqual(new Message(p1.messages[1]));
+  expect(result).toContainEqual(new Message(p2.messages[0]));
+  expect(result).toContainEqual(new Message(p2.messages[1]));
 });

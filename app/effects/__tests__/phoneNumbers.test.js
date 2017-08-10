@@ -12,23 +12,13 @@ test('fetchNumbers success', async () => {
   const result = await fetchNumbers(api);
 
   expect(api.get).toBeCalled();
-  expect(result).toEqual({
-    type: types.SET_FETCHED_ACCOUNT_NUMBERS,
-    fetchedAccountNumbers: [
-      new PhoneNumber(phoneFixture.simple)
-    ],
-  });
+  expect(result).toEqual([new PhoneNumber(phoneFixture.simple)]);
 });
 
 test('fetchNumbers failure', async () => {
   const error = Symbol('error');
   const api = (new ApiMock()).mock('get', false, error);
 
-  const result = await fetchNumbers(api);
-
+  await expect(fetchNumbers(api)).rejects.toEqual(error);
   expect(api.get).toBeCalled();
-  expect(result).toEqual({
-    type: types.FETCH_ACCOUNT_NUMBER_ERROR,
-    error,
-  });
 });
