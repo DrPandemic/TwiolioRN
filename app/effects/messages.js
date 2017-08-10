@@ -1,6 +1,5 @@
 // @flow
 
-import * as actions from '../actions/messages';
 import { Message } from '../types';
 import { FetchMessageThresholdInMinutes } from '../constants';
 
@@ -10,17 +9,16 @@ function fetchNextPage(
   headers: ?Object,
   expandRoute: boolean,
   messages: Array<Message>
-): Promise<actions.successFetchMessages | actions.failFetchMessages> {
+): Promise<Array<Message>> {
   if (url === null) {
-    return Promise.resolve(actions.successFetchMessages(messages));
+    return Promise.resolve(messages);
   }
 
+  // Note: If one page fails, all the data is "lost"
   return api.get(url, null, headers, expandRoute)
     .then(r => r.json())
     .then(r => fetchNextPage(api, r.next_page_uri, null, false,
-      messages.concat(r.messages.map(message => new Message(message)))))
-    // Note: If one page fails, all the data is "lost"
-    .catch(e => actions.failFetchMessages(e));
+      messages.concat(r.messages.map(message => new Message(message)))));
 }
 
 function pad(val: number) {
@@ -48,7 +46,7 @@ function generateHeaders(lastFetch: ?Date): ?Object {
 export function fetchMessages(
   api: any,
   lastFetch: ?Date = null,
-): Promise<actions.successFetchMessages | actions.failFetchMessages> {
+): Promise<Array<Message>> {
   return fetchNextPage(api, '/Messages.json', generateHeaders(lastFetch),
     true, []);
 }

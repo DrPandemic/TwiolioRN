@@ -2,8 +2,8 @@
 
 import FilesystemStorage from 'redux-persist-filesystem-storage';
 
-import { store } from '../store';
 import * as actions from '../actions/persist';
+import { store } from '../store';
 import { RefreshInterval } from '../constants';
 import type { StateT } from '../reducers';
 import type { TickT } from '../actions/types';
@@ -21,25 +21,18 @@ export function persistStore(
   return Promise.resolve(persist(
     store,
     config,
-  ))
-  .then(() => actions.successPersistStore())
-  .catch(e => actions.failPersistStore(e));
+  ));
 }
 
 export function restoreStore(
   getStoredState: (Object) => Promise<StateT>
 ): Promise<any> {
   return getStoredState(config)
-    .then((state: StateT) => actions.successRestoreStore(state))
-    .catch(e => actions.failRestoreStore(e));
+    .then((state: StateT) => state);
 }
 
 export function scheduleTick(): Promise<TickT> {
   return new Promise(re => {
     setTimeout(re, RefreshInterval);
-  })
-    .then(() => actions.tick())
-    .catch(e => {
-      console.error(e);
-    });
+  });
 }

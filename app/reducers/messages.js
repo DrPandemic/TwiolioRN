@@ -1,6 +1,6 @@
 // @flow
 
-import { loop, Effects } from 'redux-loop';
+import { loop, Cmd } from 'redux-loop';
 import equal from 'deep-equal';
 
 import * as types from '../actions/types';
@@ -8,7 +8,7 @@ import { addMessages, restore } from '../types/ConversationStore';
 import { getApi } from '../lib/api';
 import createReducer from '../lib/createReducer';
 import effects from '../effects';
-import { fetchMessages } from '../actions/messages';
+import * as messageActions from '../actions/messages';
 import { persistStore } from '../actions/persist';
 import Message from '../types/Message';
 import type { ConversationStoreT } from '../types/ConversationStore';
@@ -31,14 +31,17 @@ export const reducer = createReducer({
   [types.TICK](state: T) {
     return loop(
       { ...state },
-      Effects.constant(fetchMessages()),
+      Cmd.action(messageActions.fetchMessages()),
     );
   },
   [types.FETCH_MESSAGES](state: T) {
     return loop(
       { ...state, loading: true },
-      Effects.promise(effects.fetchMessages, getApi(), state.lastFetch)
-    );
+      Cmd.run(effects.fetchMessages, {
+        successActionCreator: messageActions.successFetchMessages,
+        failActionCreator: messageActions.failFetchMessages,
+        args: [getApi(), state.lastFetch],
+      }));
   },
   [types.SET_FETCHED_MESSAGES](
     state: T,
@@ -52,7 +55,7 @@ export const reducer = createReducer({
         loading: false,
         lastFetch: Message.FindMostRecentDateSent(action.fetchedMessages),
       },
-      Effects.constant(persistStore())
+      Cmd.action(persistStore())
     );
   },
   [types.FETCH_MESSAGE_ERROR](

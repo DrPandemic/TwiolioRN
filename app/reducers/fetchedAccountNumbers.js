@@ -1,8 +1,8 @@
 // @flow
 
-import { loop, Effects } from 'redux-loop';
+import { loop, Cmd } from 'redux-loop';
 import * as types from '../actions/types';
-import { fetchAccountNumbers } from '../actions/fetchedAccountNumbers';
+import * as fetchActions from '../actions/fetchedAccountNumbers';
 import { getApi } from '../lib/api';
 import createReducer from '../lib/createReducer';
 import effects from '../effects';
@@ -23,13 +23,17 @@ export const reducer = createReducer({
   [types.TICK](state: T) {
     return loop(
       { ...state },
-      Effects.constant(fetchAccountNumbers()),
+      Cmd.action(fetchActions.fetchAccountNumbers()),
     );
   },
   [types.FETCH_ACCOUNT_NUMBERS](state: T) {
     return loop(
       { ...state, loading: true },
-      Effects.promise(effects.fetchNumbers, getApi())
+      Cmd.run(effects.fetchNumbers, {
+        successActionCreator: fetchActions.successFetchAccountNumbers,
+        failActionCreator: fetchActions.failFetchAccountNumbers,
+        args: [getApi()],
+      })
     );
   },
   [types.SET_FETCHED_ACCOUNT_NUMBERS](

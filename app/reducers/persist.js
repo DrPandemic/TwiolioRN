@@ -1,6 +1,6 @@
 // @flow
 
-import { loop, Effects } from 'redux-loop';
+import { loop, Cmd } from 'redux-loop';
 import { persistStore, getStoredState } from 'redux-persist';
 
 import * as types from '../actions/types';
@@ -24,7 +24,11 @@ export const reducer = createReducer({
   [types.PERSIST_STORE](state: T) {
     return loop(
       { ...state },
-      Effects.promise(effects.persistStore, persistStore)
+      Cmd.run(effects.persistStore, {
+        successActionCreator: actions.successPersistStore,
+        failActionCreator: actions.failPersistStore,
+        args: [persistStore],
+      })
     );
   },
   [types.SUCCESS_PERSIST_STORE](state: T) {
@@ -46,7 +50,11 @@ export const reducer = createReducer({
   [types.RESTORE_STORE](state: StateT) {
     return loop(
       { ...state },
-      Effects.promise(effects.restoreStore, getStoredState)
+      Cmd.run(effects.restoreStore, {
+        successActionCreator: actions.successRestoreStore,
+        failActionCreator: actions.failRestoreStore,
+        args: [getStoredState],
+      })
     );
   },
   [types.SUCCESS_RESTORE_STORE](
@@ -54,7 +62,7 @@ export const reducer = createReducer({
   ) {
     return loop(
       { ...state, restoreError: null },
-      Effects.constant(actions.tick())
+      Cmd.action(actions.tick())
     );
   },
   [types.FAIL_RESTORE_STORE](
@@ -72,7 +80,11 @@ export const reducer = createReducer({
   ) {
     return loop(
       { ...state },
-      Effects.promise(effects.scheduleTick)
+      Cmd.run(effects.scheduleTick, {
+        successActionCreator: actions.tick,
+        failActionCreator: e => { console.error(e); },
+        args: [],
+      })
     );
   },
   [types.TICK](
@@ -80,7 +92,7 @@ export const reducer = createReducer({
   ) {
     return loop(
       { ...state },
-      Effects.constant(actions.scheduleTick()),
+      Cmd.action(actions.scheduleTick()),
     );
   },
 });
