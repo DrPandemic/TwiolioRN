@@ -52,3 +52,10 @@ export function tick(): types.TickT {
     type: types.TICK,
   };
 }
+
+export function failScheduleTick(error: any): types.FailScheduleTickT {
+  return {
+    type: types.FAIL_SCHEDULE_TICK,
+    error,
+  };
+}

@@ -1,4 +1,4 @@
-import { Effects, loop } from 'redux-loop';
+import { Cmd, loop } from 'redux-loop';
 
 jest.mock('../../store');
 
@@ -15,7 +15,11 @@ test('reducer.FETCH_ACCOUNT_NUMBERS', () => {
 
   expect(result).toEqual(loop(
     { ...initialState, loading: true },
-    Effects.promise(effects.fetchNumbers, getApi())
+    Cmd.run(effects.fetchNumbers, {
+      successActionCreator: actions.successFetchAccountNumbers,
+      failActionCreator: actions.failFetchAccountNumbers,
+      args: [getApi()],
+    })
   ));
 });
 
@@ -55,6 +59,6 @@ test('TICK', () => {
 
   expect(result).toEqual(loop(
     { ...initialState },
-    Effects.constant(actions.fetchAccountNumbers())
+    Cmd.action(actions.fetchAccountNumbers())
   ));
 });

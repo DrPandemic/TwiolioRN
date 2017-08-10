@@ -1,4 +1,4 @@
-import { Effects, loop } from 'redux-loop';
+import { Cmd, loop } from 'redux-loop';
 
 jest.mock('../../store');
 jest.mock('redux-persist', () => ({
@@ -17,7 +17,11 @@ test('PERSIST_STORE', () => {
 
   expect(result).toEqual(loop(
     { ...initialState },
-    Effects.promise(effects.persistStore, 'persistStore')
+    Cmd.run(effects.persistStore, {
+      successActionCreator: actions.successPersistStore,
+      failActionCreator: actions.failPersistStore,
+      args: ['persistStore'],
+    })
   ));
 });
 
@@ -62,7 +66,14 @@ test('RESTORE_STORE', () => {
 
   expect(result).toEqual(loop(
     { ...initialState },
-    Effects.promise(effects.restoreStore, 'getStoredState')
+    Cmd.sequence([
+      Cmd.run(effects.restoreStore, {
+        successActionCreator: actions.successRestoreStore,
+        failActionCreator: actions.failRestoreStore,
+        args: ['getStoredState'],
+      }),
+      Cmd.action(actions.tick())
+    ])
   ));
 });
 
@@ -74,12 +85,7 @@ test('SUCCESS_RESTORE_STORE', () => {
 
   const result = reducer(state, actions.successRestoreStore());
 
-  expect(result).toEqual(
-    loop(
-      { ...initialState, restoreError: null },
-      Effects.constant(actions.tick()),
-    )
-  );
+  expect(result).toEqual({ ...initialState, restoreError: null });
 });
 
 test('FAIL_RESTORE_STORE', () => {
@@ -106,7 +112,11 @@ test('SCHEDULE_TICK', () => {
 
   expect(result).toEqual(loop(
     { ...initialState },
-    Effects.promise(effects.scheduleTick)
+    Cmd.run(effects.scheduleTick, {
+      successActionCreator: actions.tick,
+      failActionCreator: actions.failScheduleTick,
+      args: [],
+    })
   ));
 });
 
@@ -115,6 +125,6 @@ test('TICK', () => {
 
   expect(result).toEqual(loop(
     { ...initialState },
-    Effects.constant(actions.scheduleTick()),
+    Cmd.action(actions.scheduleTick()),
   ));
 });

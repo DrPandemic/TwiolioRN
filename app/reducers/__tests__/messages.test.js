@@ -1,4 +1,4 @@
-import { Effects, loop } from 'redux-loop';
+import { Cmd, loop } from 'redux-loop';
 
 jest.mock('../../store');
 
@@ -20,7 +20,11 @@ test('reducer.FETCH_MESSAGES', () => {
 
   expect(result).toEqual(loop(
     { ...initialState, loading: true, lastFetch },
-    Effects.promise(effects.fetchMessages, getApi(), lastFetch)
+    Cmd.run(effects.fetchMessages, {
+      successActionCreator: actions.successFetchMessages,
+      failActionCreator: actions.failFetchMessages,
+      args: [getApi(), lastFetch],
+    })
   ));
 });
 
@@ -36,7 +40,7 @@ test('reducer.SET_FETCHED_MESSAGES', () => {
       messages: { [m.conversationId]: [m] },
       lastFetch: new Date(fixture.simple.date_sent),
     },
-    Effects.constant(persistActions.persistStore())
+    Cmd.action(persistActions.persistStore())
   ));
 });
 
@@ -97,7 +101,7 @@ test('TICK', () => {
 
   expect(result).toEqual(loop(
     { ...initialState },
-    Effects.constant(actions.fetchMessages(initialState.lastFetch))
+    Cmd.action(actions.fetchMessages(initialState.lastFetch))
   ));
 });
 

@@ -22,6 +22,7 @@ export const FAIL_RESTORE_STORE = 'FAIL_RESTORE_STORE';
 
 export const SCHEDULE_TICK = 'SCHEDULE_TICK';
 export const TICK = 'TICK';
+export const FAIL_SCHEDULE_TICK = 'FAIL_SCHEDULE_TICK';
 
 export type FetchAccountNumbersT = {|
   type: 'FETCH_ACCOUNT_NUMBERS',
@@ -80,6 +81,10 @@ export type ScheduleTickT = {|
 export type TickT = {|
   type: 'TICK',
 |}
+export type FailScheduleTickT = {|
+  type: 'FAIL_SCHEDULE_TICK',
+  error: any,
+|}
 
 export type ActionT =
   | FetchAccountNumbersT
@@ -97,4 +102,5 @@ export type ActionT =
   | FailRestoreStoreT
   | ScheduleTickT
   | TickT
+  | FailScheduleTickT
 ;

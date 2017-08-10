@@ -82,7 +82,7 @@ export const reducer = createReducer({
       { ...state },
       Cmd.run(effects.scheduleTick, {
         successActionCreator: actions.tick,
-        failActionCreator: e => { console.error(e); },
+        failActionCreator: actions.failScheduleTick,
         args: [],
       })
     );
