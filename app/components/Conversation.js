@@ -6,9 +6,8 @@ import {
   StyleSheet,
   Text,
   View,
-  FlatList,
 } from 'react-native';
-import { List, ListItem } from 'react-native-elements';
+import { ListItem } from 'react-native-elements';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import ReversedFlatList from 'react-native-reversed-flat-list';

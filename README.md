@@ -39,7 +39,7 @@ the codebase.
   - [x] Don't query twice for the same SMS (2)
     - [x] Restore lastFetch
   - [x] After 1 and 2, I'll remove fake network responses
-  - [ ] The reverse list for messages force every messages to load
+  - [ ] (Bug) The reverse list for messages force every messages to load
 - [x] Always show end of conversation first (https://github.com/facebook/react-native/issues/13727)
 - [ ] Display money left
 
