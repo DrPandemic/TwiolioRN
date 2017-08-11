@@ -4,7 +4,7 @@ import * as types from '../../actions/types';
 import fixtures from '../../test_helpers/fixtures/received_message.json';
 import completeFixture from '../../test_helpers/fixtures/complete_message.json';
 import ApiMock from '../../test_helpers/api_helper';
-import { fetchMessages } from '../messages';
+import { fetchMessages, sendMessage } from '../messages';
 import { Message } from '../../types';
 import { FetchMessageThresholdInMinutes } from '../../constants';
 
@@ -97,4 +97,22 @@ test('3 level paging', async () => {
   expect(result).toContainEqual(new Message(p1.messages[1]));
   expect(result).toContainEqual(new Message(p2.messages[0]));
   expect(result).toContainEqual(new Message(p2.messages[1]));
+});
+
+test('sendMessage', async () => {
+  const to = Symbol('to');
+  const from = Symbol('from');
+  const body = Symbol('body');
+  const api = (new ApiMock()).mock('post', true, {
+    to,
+    from,
+    body,
+    status: 'queued',
+  });
+
+  const result = await sendMessage(api, to, from, body);
+
+  expect(result.to).toEqual(to);
+  expect(result.from).toEqual(from);
+  expect(result.body).toEqual(body);
 });

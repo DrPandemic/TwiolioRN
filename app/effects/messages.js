@@ -51,3 +51,14 @@ export function fetchMessages(
     api, `/Messages.json${generateDateSent(lastFetch)}`, true, []
   );
 }
+
+export function sendMessage(
+  api: any,
+  to: string,
+  from: string,
+  body: string,
+): Promise<Message> {
+  return api.post('/Messages.json', { To: to, From: from, Body: body })
+    .then(r => r.json())
+    .then(r => new Message(r));
+}
