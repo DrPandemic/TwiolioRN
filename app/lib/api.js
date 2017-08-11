@@ -7,22 +7,48 @@ import match from '../lib/match';
 import { ShouldMockFetch } from '../constants';
 import mocks from './mock.json';
 
-function mockedFetch(url: string, options: any) {
-  const mock = mocks.find(m =>
-      m.method === options.method &&
-      url === m.url
+type Mock = {
+  method: string,
+  url: string,
+  response: any,
+}
+type MockConfig = {
+  ShouldMockFetch: boolean,
+  fetch: (string, any) => Promise<any>,
+  mocks: Array<Mock>,
+}
+
+function mockedFetch(url: string, options: any, mockConfig: MockConfig) {
+  const mock: ?Mock = mockConfig.mocks.find(m =>
+    m.method === options.method &&
+    url === m.url
   );
-  if (__DEV__ && ShouldMockFetch && mock) {
+  if (__DEV__ && mockConfig.ShouldMockFetch && mock) {
     return Promise.resolve({
       ok: true,
       json: () => Promise.resolve(mock.response),
     });
   }
 
-  return fetch(url, options);
+  return mockConfig.fetch(url, options);
 }
 
 export default class Api {
+  mockConfig: MockConfig;
+
+  constructor(mockConfig: ?MockConfig) {
+    if (!mockConfig) {
+      this.mockConfig = {
+        ShouldMockFetch,
+        // This is for node env
+        fetch: typeof fetch !== 'undefined' ? fetch : (() => Promise.resolve()),
+        mocks,
+      };
+    } else {
+      this.mockConfig = mockConfig;
+    }
+  }
+
   headers() {
     const auth = new Buffer(
       `${Config.TWILIO_ACCOUNT_SID}:${Config.TWILIO_AUTH_TOKEN}`
@@ -74,7 +100,7 @@ export default class Api {
       }
     );
 
-    return mockedFetch(url, options).then(resp => {
+    return mockedFetch(url, options, this.mockConfig).then(resp => {
       if (resp.ok) {
         return resp;
       }

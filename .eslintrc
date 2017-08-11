@@ -16,6 +16,10 @@
     "es6": true,
     "jest": true
   },
+  "globals": {
+    "fetch": false,
+    "__DEV__": false
+  },
   "extends": [
     "airbnb-base",
     "plugin:flowtype/recommended",

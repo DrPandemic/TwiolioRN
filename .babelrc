@@ -1,6 +1,6 @@
 {
   "presets": ["react-native"],
-  "plugins": [ 
-    "transform-do-expressions" 
+  "plugins": [
+    "transform-do-expressions"
   ]
 }
