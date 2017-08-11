@@ -19,7 +19,7 @@ import type { StateT } from '../reducers';
 import type { T as AccountT } from '../reducers/account';
 import type { T as MessagesT } from '../reducers/messages';
 
-const screenHeight = Dimensions.get(`window`).height;
+const screenHeight = Dimensions.get('window').height;
 
 const styles = StyleSheet.create({
   container: {
@@ -34,6 +34,7 @@ const styles = StyleSheet.create({
   item: {
     paddingTop: 10,
     paddingBottom: 10,
+    borderBottomWidth: 0,
   },
   flatList: {
     marginBottom: 30,
