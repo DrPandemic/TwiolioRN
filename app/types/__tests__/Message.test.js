@@ -65,3 +65,11 @@ test('FindMostRecentDateSent', () => {
   expect(Message.FindMostRecentDateSent([m1, m0, m2])).toEqual(m1.dateSent);
   expect(Message.FindMostRecentDateSent([m1, m0, m2])).toEqual(m1.dateSent);
 });
+
+test('copy', () => {
+  const m0 = new Message(fixture.simple);
+  const m1 = m0.copy();
+
+  expect(m0).not.toBe(m1);
+  expect(m0.compare(m1)).toEqual(0);
+});

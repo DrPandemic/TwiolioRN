@@ -68,7 +68,7 @@ export default class Message {
       return 1;
     } else if (this.dateSent < b.dateSent) {
       return -1;
-    // To be sure that 2 different messages are not seem as the same
+    // To be sure that 2 different messages are not seen as the same
     } else if (this.sid > b.sid) {
       return 1;
     } else if (this.sid < b.sid) {
@@ -87,5 +87,19 @@ export default class Message {
         (prev.dateSent > curr.dateSent ? prev : curr),
       messages[0]
     ).dateSent;
+  }
+
+  copy(): Message {
+    return new Message({
+      sid: this.sid,
+      body: this.body,
+      to: this.to,
+      from: this.from,
+      date_created: this.dateCreated.getTime(),
+      date_updated: this.dateUpdated.getTime(),
+      date_sent: this.dateSent.getTime(),
+      status: this.status,
+      direction: this.direction,
+    });
   }
 }
