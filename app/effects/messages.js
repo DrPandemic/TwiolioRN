@@ -2,6 +2,7 @@
 
 import { Message } from '../types';
 import { FetchMessageThresholdInMinutes } from '../constants';
+import formatError from '../lib/errors';
 
 function fetchNextPage(
   api: any,
@@ -60,5 +61,13 @@ export function sendMessage(
 ): Promise<Message> {
   return api.post('/Messages.json', { To: to, From: from, Body: body })
     .then(r => r.json())
+    .then(r => {
+      if (r.status !== 'queued') {
+        throw new Error(
+          `An error occured while sending a message. ${formatError(r)}`
+        );
+      }
+      return r;
+    })
     .then(r => new Message(r));
 }

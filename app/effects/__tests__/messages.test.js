@@ -100,19 +100,30 @@ test('3 level paging', async () => {
 });
 
 test('sendMessage', async () => {
-  const to = Symbol('to');
-  const from = Symbol('from');
-  const body = Symbol('body');
-  const api = (new ApiMock()).mock('post', true, {
+  const to = 'to';
+  const from = 'from';
+  const body = 'body';
+  const api0 = (new ApiMock()).mock('post', true, {
     to,
     from,
     body,
     status: 'queued',
   });
 
-  const result = await sendMessage(api, to, from, body);
+  const result0 = await sendMessage(api0, to, from, body);
 
-  expect(result.to).toEqual(to);
-  expect(result.from).toEqual(from);
-  expect(result.body).toEqual(body);
+  expect(result0.to).toEqual(to);
+  expect(result0.from).toEqual(from);
+  expect(result0.body).toEqual(body);
+
+  const api1 = (new ApiMock()).mock('post', true, {
+    to,
+    from,
+    body,
+    status: 'something not queued',
+  });
+
+  const result1 = sendMessage(api1, to, from, body);
+
+  await expect(result1).rejects.toBeDefined();
 });
