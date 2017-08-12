@@ -24,7 +24,6 @@ test('renders a row', () => {
       ...initialState.messages,
       messages: store,
     },
-    selectConversation: () => {},
     push: () => {},
   });
 
@@ -46,7 +45,6 @@ test('renders rows', () => {
       ...initialState.messages,
       messages: store,
     },
-    selectConversation: () => {},
     push: () => {},
   });
 
@@ -59,7 +57,6 @@ test('renders empty rows', () => {
   const conversationList = new PConversationList({
     account: { ...initialState.account },
     messages: { ...initialState.messages },
-    selectConversation: () => {},
     push: () => {},
   });
 
@@ -85,7 +82,6 @@ test('renders rows with selected number', () => {
       ...initialState.messages,
       messages: store,
     },
-    selectConversation: () => {},
     push: () => {},
   });
 
@@ -106,7 +102,6 @@ test('renders a row with correct redirect', () => {
       ...initialState.messages,
       messages: store,
     },
-    selectConversation: () => {},
     push: spy,
   });
 

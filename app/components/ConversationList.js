@@ -44,7 +44,6 @@ const styles = StyleSheet.create({
 type PropsT = {
   account: AccountT,
   messages: MessagesT,
-  selectConversation: ?string => void,
   push: (string, any) => void,
 };
 
@@ -83,7 +82,7 @@ export class PConversationList extends Component {
         <List style={styles.list}>
           <FlatList
             data={messages}
-            renderItem={({item}) => this.renderRow(item)}
+            renderItem={({ item }) => this.renderRow(item)}
             keyExtractor={([message]) => message.sid}
             style={styles.flatList}
           />

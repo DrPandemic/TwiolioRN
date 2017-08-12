@@ -1,6 +1,6 @@
 // @flow
 
-import Api, { getApi } from '../api';
+import Api, { getApi, urlEncode } from '../api';
 
 function getDefaultConfig() {
   return {
@@ -116,7 +116,7 @@ test('stringify params as body', async () => {
 
   expect(config.fetch.mock.calls[0][1]).not.toHaveProperty('body');
   expect(config.fetch.mock.calls[1][1]).toHaveProperty(
-    'body', JSON.stringify({ secret: 'yes' })
+    'body', urlEncode({ secret: 'yes' })
   );
 });
 

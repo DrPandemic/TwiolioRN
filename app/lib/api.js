@@ -18,6 +18,12 @@ type MockConfig = {
   mocks: Array<Mock>,
 }
 
+export function urlEncode(params) {
+  return Object.keys(params).map((key) => {
+    return encodeURIComponent(key) + '=' + encodeURIComponent(params[key]);
+  }).join('&');
+}
+
 function mockedFetch(url: string, options: any, mockConfig: MockConfig) {
   const mock: ?Mock = mockConfig.mocks.find(m =>
     m.method === options.method &&
@@ -55,7 +61,7 @@ export default class Api {
     );
     return {
       Accept: 'application/json',
-      'Content-Type': 'application/json',
+      'Content-Type': 'application/x-www-form-urlencoded',
       dataType: 'json',
       Authorization: `Basic ${auth.toString('base64')}`,
     };
@@ -91,7 +97,7 @@ export default class Api {
     );
     const options = Object.assign(
       { method: verb },
-      params ? { body: JSON.stringify(params) } : null,
+      params ? { body: urlEncode(params) } : null,
       {
         headers: {
           ...this.headers(),
