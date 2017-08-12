@@ -1,5 +1,5 @@
 import { fetchNumbers } from './phoneNumbers';
-import { fetchMessages } from './messages';
+import { fetchMessages, sendMessage } from './messages';
 import {
   persistStore,
   restoreStore,
@@ -9,6 +9,7 @@ import {
 export default {
   fetchNumbers,
   fetchMessages,
+  sendMessage,
   persistStore,
   restoreStore,
   scheduleTick,

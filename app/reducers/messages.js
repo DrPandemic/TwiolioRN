@@ -16,12 +16,14 @@ import type { StateT } from './';
 
 export type T = {|
   loading: boolean,
+  sending: boolean,
   messages: ConversationStoreT,
   error: any,
   lastFetch: ?Date,
 |};
 export const initialState: T = {
   loading: false,
+  sending: false,
   messages: {},
   error: null,
   lastFetch: null,
@@ -73,16 +75,29 @@ export const reducer = createReducer({
     action: types.SuccessRestoreStoreT,
   ) {
     const messages = equal(action.state, {}) ?
-                      initialState.messages :
-                      restore(action.state.messages.messages);
+      initialState.messages :
+      restore(action.state.messages.messages);
     const lastFetch = action.state.messages ?
-                        new Date(action.state.messages.lastFetch) :
-                        initialState.lastFetch;
+      new Date(action.state.messages.lastFetch) :
+      initialState.lastFetch;
     return {
       ...initialState,
       ...state.messages,
       lastFetch,
       messages,
     };
+  },
+
+  [types.SEND_MESSAGE](
+    state: StateT,
+    { to, from, body }: types.SendMessageT,
+  ) {
+    return loop(
+      { ...state, sending: true },
+      Cmd.run(effects.sendMessage, {
+        successActionCreator: messageActions.successSendMessage,
+        failActionCreator: messageActions.failSendMessage,
+        args: [getApi(), to, from, body],
+      }));
   },
 });

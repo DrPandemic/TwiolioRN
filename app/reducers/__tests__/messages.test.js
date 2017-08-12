@@ -81,6 +81,7 @@ test('RESTORE_STORE', () => {
   const result = reducer(state, persistActions.successRestoreStore({
     messages: {
       messages: conversationFixture.simple,
+      loading: true,
       lastFetch,
     },
   }));
@@ -111,4 +112,22 @@ test("Doesn't crash on empty restore", async () => {
   const result = reducer(state, persistActions.successRestoreStore({}));
 
   expect(result).toEqual({ ...initialState });
+});
+
+test('SEND_MESSAGE', () => {
+  const to = 'to';
+  const from = 'from';
+  const body = 'body';
+  const state = { ...initialState, sending: false };
+
+  const result = reducer(state, actions.sendMessage(to, from, body));
+
+  expect(result).toEqual(loop(
+    { ...initialState, sending: true },
+    Cmd.run(effects.sendMessage, {
+      successActionCreator: actions.successSendMessage,
+      failActionCreator: actions.failSendMessage,
+      args: [getApi(), to, from, body],
+    })
+  ));
 });

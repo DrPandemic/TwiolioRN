@@ -24,6 +24,10 @@ export const SCHEDULE_TICK = 'SCHEDULE_TICK';
 export const TICK = 'TICK';
 export const FAIL_SCHEDULE_TICK = 'FAIL_SCHEDULE_TICK';
 
+export const SEND_MESSAGE = 'SEND_MESSAGE';
+export const SUCCESS_SEND_MESSAGE = 'SUCCESS_SEND_MESSAGE';
+export const FAIL_SEND_MESSAGE = 'FAIL_SEND_MESSAGE';
+
 export type FetchAccountNumbersT = {|
   type: 'FETCH_ACCOUNT_NUMBERS',
 |}
@@ -86,6 +90,21 @@ export type FailScheduleTickT = {|
   error: any,
 |}
 
+export type SendMessageT = {|
+  type: 'SEND_MESSAGE',
+  to: string,
+  from: string,
+  body: string,
+|}
+export type SuccessSendMessageT = {|
+  type: 'SUCCESS_SEND_MESSAGE',
+  message: Message,
+|}
+export type FailSendMessageT = {|
+  type: 'FAIL_SEND_MESSAGE',
+  error: any,
+|}
+
 export type ActionT =
   | FetchAccountNumbersT
   | SuccessFetchAccountNumbersT
@@ -103,4 +122,7 @@ export type ActionT =
   | ScheduleTickT
   | TickT
   | FailScheduleTickT
+  | SendMessageT
+  | SuccessSendMessageT
+  | FailSendMessageT
 ;
