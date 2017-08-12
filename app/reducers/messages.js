@@ -4,7 +4,7 @@ import { loop, Cmd } from 'redux-loop';
 import equal from 'deep-equal';
 
 import * as types from '../actions/types';
-import { addMessages, restore } from '../types/ConversationStore';
+import { addMessages, addMessage, restore } from '../types/ConversationStore';
 import { getApi } from '../lib/api';
 import createReducer from '../lib/createReducer';
 import effects from '../effects';
@@ -19,6 +19,7 @@ export type T = {|
   sending: boolean,
   messages: ConversationStoreT,
   error: any,
+  sendingError: any,
   lastFetch: ?Date,
 |};
 export const initialState: T = {
@@ -26,6 +27,7 @@ export const initialState: T = {
   sending: false,
   messages: {},
   error: null,
+  sendingError: null,
   lastFetch: null,
 };
 
@@ -99,5 +101,29 @@ export const reducer = createReducer({
         failActionCreator: messageActions.failSendMessage,
         args: [getApi(), to, from, body],
       }));
+  },
+  [types.SUCCESS_SEND_MESSAGE](
+    state: T,
+    action: types.SuccessSendMessageT,
+  ) {
+    return loop(
+      {
+        ...state,
+        messages: addMessage(state.messages, action.message),
+        sendingError: null,
+        sending: false,
+      },
+      Cmd.action(persistStore())
+    );
+  },
+  [types.FAIL_SEND_MESSAGE](
+    state: T,
+    action: types.FailSendMessageT,
+  ) {
+    return {
+      ...state,
+      sendingError: action.error,
+      sending: false,
+    };
   },
 });

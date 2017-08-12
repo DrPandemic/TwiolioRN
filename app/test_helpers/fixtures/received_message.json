@@ -333,5 +333,29 @@
       "status": "delivered",
       "direction": "outbound-api"
     }
-  ]
+  ],
+  "simpleSending": {
+    "sid": "somesid0Sending",
+    "date_created": "Fri, 12 May 2017 02:46:30 +0000",
+    "date_updated": "Fri, 12 May 2017 02:46:31 +0000",
+    "date_sent": "Fri, 12 May 2017 02:46:31 +0000",
+    "account_sid": "account_sid",
+    "to": "+1231231234",
+    "from": "+1231231235",
+    "messaging_service_sid": null,
+    "body": "foo",
+    "status": "queued",
+    "num_segments": "1",
+    "num_media": "0",
+    "direction": "inbound",
+    "api_version": "2010-04-01",
+    "price": "-0.00750",
+    "price_unit": "USD",
+    "error_code": null,
+    "error_message": null,
+    "uri": "/2010-04-01/Accounts/account_sid/Messages/something.json",
+    "subresource_uris": {
+      "media": "/2010-04-01/Accounts/account_sid/Messages/something/Media.json"
+    }
+  }
 }

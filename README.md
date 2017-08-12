@@ -29,6 +29,7 @@ the codebase.
     - [ ] Display phone numbers with conversations but that wasn't received by the API
   - [x] Manage response paging (1)
 - [ ] Send SMS
+  - [ ] Display unacknowledged sent messages
 - [ ] Don't lose received message when a single page fail
 - [ ] Start new conversation
 - [ ] Use contacts to display names

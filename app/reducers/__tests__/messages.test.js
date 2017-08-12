@@ -11,6 +11,7 @@ import { getApi } from '../../lib/api';
 import { Message } from '../../types';
 import fixture from '../../test_helpers/fixtures/received_message.json';
 import conversationFixture from '../../test_helpers/fixtures/conversation_store.json';
+import formatError from '../../lib/errors';
 
 test('reducer.FETCH_MESSAGES', () => {
   const lastFetch = Symbol('lastFetch');
@@ -82,6 +83,7 @@ test('RESTORE_STORE', () => {
     messages: {
       messages: conversationFixture.simple,
       loading: true,
+      sending: true,
       lastFetch,
     },
   }));
@@ -91,6 +93,7 @@ test('RESTORE_STORE', () => {
     messages: restore(conversationFixture.simple),
     error: null,
     loading: false,
+    sending: false,
     lastFetch: new Date(lastFetch),
   });
 });
@@ -130,4 +133,34 @@ test('SEND_MESSAGE', () => {
       args: [getApi(), to, from, body],
     })
   ));
+});
+
+test('SUCCESS_SEND_MESSAGE', () => {
+  const state = { ...initialState, sending: true, sendingError: 123 };
+  const m = new Message(fixture.simpleSending);
+
+  const result = reducer(state, actions.successSendMessage(m));
+
+  expect(result).toEqual(loop(
+    {
+      ...initialState,
+      sending: false,
+      sendingError: null,
+      messages: { [m.conversationId]: [m] },
+    },
+    Cmd.action(persistActions.persistStore())
+  ));
+});
+
+test('FAIL_SEND_MESSAGE', () => {
+  const state = { ...initialState, sending: true, sendingError: null };
+  const error = new Error('foo bar error');
+
+  const result = reducer(state, actions.failSendMessage(error));
+
+  expect(result).toEqual({
+    ...initialState,
+    sending: false,
+    sendingError: formatError(error),
+  });
 });
