@@ -16,18 +16,20 @@ import { ActionCreators } from '../actions';
 import { Message } from '../types';
 import { getMessagesById } from '../types/ConversationStore';
 import { Colors } from '../constants';
+import WriteBox from './WriteBox';
 import type { StateT } from '../reducers';
 import type { T as MessagesT } from '../reducers/messages';
 
-const screenHeight = Dimensions.get('window').height;
+const screenHeight = Dimensions.get('window').height - 50;
+const screenWidth = Dimensions.get('window').width;
 
 const styles = StyleSheet.create({
   container: {
+  },
+  listContainer: {
     flexDirection: 'column',
     height: screenHeight,
-  },
-  list: {
-    marginTop: 0,
+    width: screenWidth,
   },
   flatList: {
     // Honnestly, I need to understand this magic value
@@ -118,12 +120,15 @@ export class PConversation extends Component {
 
     return (
       <View style={styles.container} >
-        <ReversedFlatList
-          data={getMessagesById(store, conversationId)}
-          renderItem={({item}) => PConversation.renderRow(item)}
-          keyExtractor={message => message.sid}
-          style={styles.flatList}
-        />
+        <View style={styles.listContainer} >
+          <ReversedFlatList
+            data={getMessagesById(store, conversationId)}
+            renderItem={({ item }) => PConversation.renderRow(item)}
+            keyExtractor={message => message.sid}
+            style={styles.flatList}
+          />
+        </View>
+        <WriteBox />
       </View>
     );
   }

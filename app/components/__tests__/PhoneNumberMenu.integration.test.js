@@ -24,12 +24,12 @@ import { initialState as aInitial } from '../../reducers/account';
 
 test('renders with an empty menu', () => {
   const menu = renderer.create(
-      <PPhoneNumberMenu
-        fetchedAccountNumbers={{ ...nInitial }}
-        account={{ ...aInitial }}
-        selectNumber={() => {}}
-      >
-      </PPhoneNumberMenu>
+    <PPhoneNumberMenu
+      fetchedAccountNumbers={{ ...nInitial }}
+      account={{ ...aInitial }}
+      selectNumber={() => {}}
+    >
+    </PPhoneNumberMenu>
   ).toJSON();
 
   expect(menu).toMatchSnapshot();
@@ -37,15 +37,15 @@ test('renders with an empty menu', () => {
 
 test('renders menu with a number', () => {
   const menu = renderer.create(
-      <PPhoneNumberMenu
-        fetchedAccountNumbers={{
-          ...nInitial,
-          numbers: [new PhoneNumber(phoneFixture.simple)],
-        }}
-        account={{ ...aInitial }}
-        selectNumber={() => {}}
-      >
-      </PPhoneNumberMenu>
+    <PPhoneNumberMenu
+      fetchedAccountNumbers={{
+        ...nInitial,
+        numbers: [new PhoneNumber(phoneFixture.simple)],
+      }}
+      account={{ ...aInitial }}
+      selectNumber={() => {}}
+    >
+    </PPhoneNumberMenu>
   ).toJSON();
 
   expect(menu).toMatchSnapshot();

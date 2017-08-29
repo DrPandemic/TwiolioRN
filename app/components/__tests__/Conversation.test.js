@@ -2,13 +2,15 @@
 
 import React from 'react';
 import renderer from 'react-test-renderer';
+import { Provider } from 'react-redux';
 
 jest.mock('../../store');
 
+import createLoopStore from '../../test_helpers/store_helper';
 import { PConversation } from '../Conversation';
 import messageFixture from '../../test_helpers/fixtures/received_message.json';
 import { Message } from '../../types';
-import { addMessages, getMessagesById } from '../../types/ConversationStore';
+import { addMessages } from '../../types/ConversationStore';
 import { initialState as mInitial } from '../../reducers/messages';
 
 test('renders a message', () => {
@@ -20,11 +22,12 @@ test('renders a message', () => {
 
 test('renders an empty conversation', () => {
   const list = renderer.create(
+    <Provider store={createLoopStore()}>
       <PConversation
         messages={{ ...mInitial }}
         location={{ state: 'foo' }}
-      >
-      </PConversation>
+      />
+    </Provider>
   ).toJSON();
 
   expect(list).toMatchSnapshot();
@@ -40,14 +43,15 @@ test('renders an non-empty conversation', () => {
   ]);
 
   const list = renderer.create(
+    <Provider store={createLoopStore(store)}>
       <PConversation
         messages={{
           ...mInitial,
           messages: store,
         }}
         location={{ state: message.conversationId }}
-      >
-      </PConversation>
+      />
+    </Provider>
   ).toJSON();
 
   expect(list).toMatchSnapshot();

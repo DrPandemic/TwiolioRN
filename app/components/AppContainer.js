@@ -38,6 +38,7 @@ class AppContainer extends Component {
   }
 
   componentDidMount(): void {
+    console.disableYellowBox = true;
     this.props.restoreStore();
   }
 
