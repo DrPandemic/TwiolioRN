@@ -57,6 +57,7 @@ export class PWriteBox extends Component {
 
   send() {
     this.props.sendMessage(this.props.to, this.props.from, this.state.text);
+    this.setState({ text: '' });
   }
 
   renderInput() {
@@ -67,6 +68,7 @@ export class PWriteBox extends Component {
         onChangeText={text => this.setState({ text })}
         placeholder={'Type an SMS message'}
         onSubmitEditing={() => { this.send(); }}
+        value={this.state.text}
       />
     );
   }
