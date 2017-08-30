@@ -44,7 +44,7 @@ const styles = StyleSheet.create({
 type PropsT = {
   account: AccountT,
   messages: MessagesT,
-  push: (string, any) => void,
+  push: (any) => void,
 };
 
 export class PConversationList extends Component {
@@ -56,8 +56,15 @@ export class PConversationList extends Component {
     this.onSelectConversation = this.onSelectConversation.bind(this);
   }
 
-  onSelectConversation(id: string): void {
-    this.props.push('/conversation', id);
+  onSelectConversation(message: Message): void {
+    this.props.push({
+      pathname: '/conversation',
+      state: {
+        conversationId: message.conversationId,
+        to: message.conversationUsers.other,
+        from: message.conversationUsers.us,
+      },
+    });
   }
 
   renderRow([message]: Array<Message>) {
@@ -65,7 +72,7 @@ export class PConversationList extends Component {
       <ListItem
         key={message.conversationId}
         title={message.conversationUsers.other}
-        onPress={() => this.onSelectConversation(message.conversationId)}
+        onPress={() => this.onSelectConversation(message)}
         containerStyle={styles.item}
         underlayColor={'#dedede'}
       />

@@ -25,7 +25,11 @@ const styles = StyleSheet.create({
 export class PConversationMenu extends Component {
   props: {
     goBack: () => void,
-    location: { state: any }
+    location: {
+      state: {
+        conversationId: string,
+      }
+    }
   }
 
   renderButton() {
@@ -46,7 +50,7 @@ export class PConversationMenu extends Component {
         {this.renderButton()}
         <Text
           style={styles.text}>
-          {this.props.location.state}
+          {this.props.location.state.conversationId}
         </Text>
       </View>
     );

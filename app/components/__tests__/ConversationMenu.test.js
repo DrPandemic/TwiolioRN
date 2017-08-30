@@ -36,7 +36,7 @@ test('renders a menu without an id', () => {
   const list = renderer.create(
     <PConversationMenu
       goBack={ () => {} }
-      location={{}}
+      location={{ state: { conversationId: 'foo' } }}
     >
     </PConversationMenu>
   ).toJSON();

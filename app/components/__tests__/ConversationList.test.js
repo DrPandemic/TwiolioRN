@@ -108,5 +108,12 @@ test('renders a row with correct redirect', () => {
   const renderedRow = conversationList.renderRow(row);
   renderedRow.props.onPress();
 
-  expect(spy).toBeCalledWith('/conversation', row[0].conversationId);
+  expect(spy).toBeCalledWith({
+    pathname: '/conversation',
+    state: {
+      conversationId: row[0].conversationId,
+      to: row[0].conversationUsers.other,
+      from: row[0].conversationUsers.us,
+    }
+  });
 });

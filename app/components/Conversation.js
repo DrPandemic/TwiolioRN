@@ -67,7 +67,13 @@ const styles = StyleSheet.create({
 
 type PropsT = {
   messages: MessagesT,
-  location: { state: any }
+  location: {
+    state: {
+      conversationId: string,
+      to: string,
+      from: string,
+    }
+  }
 }
 
 export class PConversation extends Component {
@@ -116,19 +122,23 @@ export class PConversation extends Component {
 
   render() {
     const store = this.props.messages.messages;
-    const conversationId = this.props.location.state;
+    const { conversationId, to, from } = this.props.location.state;
+    const messages = getMessagesById(store, conversationId);
 
     return (
       <View style={styles.container} >
         <View style={styles.listContainer} >
           <ReversedFlatList
-            data={getMessagesById(store, conversationId)}
+            data={messages}
             renderItem={({ item }) => PConversation.renderRow(item)}
             keyExtractor={message => message.sid}
             style={styles.flatList}
           />
         </View>
-        <WriteBox />
+        <WriteBox
+          to={to}
+          from={from}
+        />
       </View>
     );
   }

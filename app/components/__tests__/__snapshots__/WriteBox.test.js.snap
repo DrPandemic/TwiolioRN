@@ -14,6 +14,7 @@ exports[`renders a the box 1`] = `
 >
   <TextInput
     onChangeText={[Function]}
+    onSubmitEditing={[Function]}
     placeholder="Type an SMS message"
     returnKeyType="send"
     style={

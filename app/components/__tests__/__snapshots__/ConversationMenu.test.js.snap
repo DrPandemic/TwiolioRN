@@ -43,9 +43,7 @@ exports[`renders a menu with an id 1`] = `
         "marginLeft": 10,
       }
     }
-  >
-    foo
-  </Text>
+  />
 </View>
 `;
 
@@ -92,6 +90,8 @@ exports[`renders a menu without an id 1`] = `
         "marginLeft": 10,
       }
     }
-  />
+  >
+    foo
+  </Text>
 </View>
 `;

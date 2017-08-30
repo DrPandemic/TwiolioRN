@@ -12,7 +12,6 @@ import { bindActionCreators } from 'redux';
 import { Icon } from 'react-native-elements';
 
 import { ActionCreators } from '../actions';
-import type { StateT } from '../reducers';
 
 const screenWidth = Dimensions.get('window').width;
 
@@ -37,8 +36,9 @@ const styles = StyleSheet.create({
 });
 
 type PropsT = {
-  source: string,
-  destination: string,
+  sendMessage: (string, string, string) => void,
+  to: string,
+  from: string,
 }
 
 export class PWriteBox extends Component {
@@ -51,31 +51,50 @@ export class PWriteBox extends Component {
   constructor(props: PropsT) {
     super(props);
     this.state = { text: '' };
+
+    this.send = this.send.bind(this);
+  }
+
+  send() {
+    this.props.sendMessage(this.props.to, this.props.from, this.state.text);
+  }
+
+  renderInput() {
+    return (
+      <TextInput
+        style={styles.input}
+        returnKeyType={'send'}
+        onChangeText={text => this.setState({ text })}
+        placeholder={'Type an SMS message'}
+        onSubmitEditing={() => { this.send(); }}
+      />
+    );
+  }
+
+  renderButton() {
+    return (
+      <Icon
+        style={styles.icon}
+        name='send'
+        color='#aaa'
+        underlayColor='#00000000'
+        raised={true}
+        onPress={() => { this.send(); }}
+      />
+    );
   }
 
   render() {
     return (
       <View style={styles.container}>
-        <TextInput
-          style={styles.input}
-          returnKeyType={'send'}
-          onChangeText={text => this.setState({ text })}
-          placeholder={'Type an SMS message'}
-        />
-        <Icon
-          style={styles.icon}
-          name='send'
-          color='#aaa'
-          underlayColor='#ddd'
-          raised={true}
-          onPress={() => {alert();}}
-        />
+        {this.renderInput()}
+        {this.renderButton()}
       </View>
     );
   }
 }
 
-function mapStateToProps(state: StateT) {
+function mapStateToProps() {
   return {};
 }
 

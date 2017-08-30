@@ -212,6 +212,7 @@ exports[`renders an empty conversation 1`] = `
   >
     <TextInput
       onChangeText={[Function]}
+      onSubmitEditing={[Function]}
       placeholder="Type an SMS message"
       returnKeyType="send"
       style={
@@ -299,32 +300,7 @@ exports[`renders an non-empty conversation 1`] = `
     }
   >
     <RCTScrollView
-      data={
-        Array [
-          Message {
-            "body": "bar",
-            "dateCreated": 2017-05-12T02:46:30.000Z,
-            "dateSent": 2017-05-12T02:46:31.000Z,
-            "dateUpdated": 2017-05-12T02:46:31.000Z,
-            "direction": "outbound-api",
-            "from": "+1231231234",
-            "sid": "somesid5",
-            "status": "delivered",
-            "to": "+1231231235",
-          },
-          Message {
-            "body": "foo",
-            "dateCreated": 2017-05-12T02:46:30.000Z,
-            "dateSent": 2017-05-12T02:46:31.000Z,
-            "dateUpdated": 2017-05-12T02:46:31.000Z,
-            "direction": "inbound",
-            "from": "+1231231235",
-            "sid": "somesid0",
-            "status": "received",
-            "to": "+1231231234",
-          },
-        ]
-      }
+      data={Array []}
       disableVirtualization={false}
       getItem={[Function]}
       getItemCount={[Function]}
@@ -363,177 +339,7 @@ exports[`renders an non-empty conversation 1`] = `
       updateCellsBatchingPeriod={50}
       windowSize={21}
     >
-      <View>
-        <View
-          onLayout={[Function]}
-        >
-          <View
-            style={
-              Object {
-                "transform": Array [
-                  Object {
-                    "scaleY": -1,
-                  },
-                ],
-              }
-            }
-          >
-            <View
-              onLongPress={undefined}
-              onPress={undefined}
-              style={
-                Object {
-                  "margin": 10,
-                  "marginRight": 50,
-                }
-              }
-              underlayColor="white"
-            >
-              <View
-                style={
-                  Array [
-                    Object {
-                      "flexDirection": "row",
-                      "marginLeft": 10,
-                    },
-                    undefined,
-                  ]
-                }
-              >
-                <View
-                  style={
-                    Object {
-                      "flex": 1,
-                      "justifyContent": "center",
-                    }
-                  }
-                >
-                  <View
-                    style={undefined}
-                  >
-                    <View>
-                      <View
-                        style={
-                          Object {
-                            "alignSelf": "flex-start",
-                            "backgroundColor": "#d05ce3",
-                            "borderRadius": 10,
-                            "padding": 10,
-                          }
-                        }
-                      >
-                        <Text
-                          accessible={true}
-                          allowFontScaling={true}
-                          disabled={false}
-                          ellipsizeMode="tail"
-                          style={
-                            Object {
-                              "color": "#ffffff",
-                            }
-                          }
-                        >
-                          bar
-                        </Text>
-                      </View>
-                    </View>
-                  </View>
-                  <View
-                    style={undefined}
-                  >
-                    <View />
-                  </View>
-                </View>
-              </View>
-            </View>
-          </View>
-        </View>
-        <View
-          onLayout={[Function]}
-        >
-          <View
-            style={
-              Object {
-                "transform": Array [
-                  Object {
-                    "scaleY": -1,
-                  },
-                ],
-              }
-            }
-          >
-            <View
-              onLongPress={undefined}
-              onPress={undefined}
-              style={
-                Object {
-                  "margin": 10,
-                  "marginLeft": 50,
-                  "marginRight": 30,
-                }
-              }
-              underlayColor="white"
-            >
-              <View
-                style={
-                  Array [
-                    Object {
-                      "flexDirection": "row",
-                      "marginLeft": 10,
-                    },
-                    undefined,
-                  ]
-                }
-              >
-                <View
-                  style={
-                    Object {
-                      "flex": 1,
-                      "justifyContent": "center",
-                    }
-                  }
-                >
-                  <View
-                    style={undefined}
-                  >
-                    <View>
-                      <View
-                        style={
-                          Object {
-                            "alignSelf": "flex-end",
-                            "backgroundColor": "#fff",
-                            "borderRadius": 10,
-                            "padding": 10,
-                          }
-                        }
-                      >
-                        <Text
-                          accessible={true}
-                          allowFontScaling={true}
-                          disabled={false}
-                          ellipsizeMode="tail"
-                          style={
-                            Object {
-                              "textAlign": "right",
-                            }
-                          }
-                        >
-                          foo
-                        </Text>
-                      </View>
-                    </View>
-                  </View>
-                  <View
-                    style={undefined}
-                  >
-                    <View />
-                  </View>
-                </View>
-              </View>
-            </View>
-          </View>
-        </View>
-      </View>
+      <View />
     </RCTScrollView>
   </View>
   <View
@@ -549,6 +355,7 @@ exports[`renders an non-empty conversation 1`] = `
   >
     <TextInput
       onChangeText={[Function]}
+      onSubmitEditing={[Function]}
       placeholder="Type an SMS message"
       returnKeyType="send"
       style={
