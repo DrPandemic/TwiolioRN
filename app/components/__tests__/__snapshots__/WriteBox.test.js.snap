@@ -24,6 +24,7 @@ exports[`renders a the box 1`] = `
         "width": 750,
       }
     }
+    value=""
   />
   <View
     accessibilityComponentType={undefined}

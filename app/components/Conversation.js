@@ -6,6 +6,7 @@ import {
   StyleSheet,
   Text,
   View,
+  KeyboardAvoidingView
 } from 'react-native';
 import { ListItem } from 'react-native-elements';
 import { connect } from 'react-redux';
@@ -126,7 +127,7 @@ export class PConversation extends Component {
     const messages = getMessagesById(store, conversationId);
 
     return (
-      <View style={styles.container} >
+      <KeyboardAvoidingView style={styles.container} behavior="position">
         <View style={styles.listContainer} >
           <ReversedFlatList
             data={messages}
@@ -139,7 +140,7 @@ export class PConversation extends Component {
           to={to}
           from={from}
         />
-      </View>
+      </KeyboardAvoidingView>
     );
   }
 }
