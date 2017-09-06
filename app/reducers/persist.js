@@ -57,8 +57,7 @@ export const reducer = createReducer({
           args: [getStoredState],
         }),
         Cmd.action(actions.tick())
-      ]
-    ));
+      ]));
   },
   [types.SUCCESS_RESTORE_STORE](
     state: StateT,

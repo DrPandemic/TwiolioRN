@@ -5,6 +5,7 @@ import {
   restoreStore,
   scheduleTick,
 } from './persist';
+import { fetchContacts } from './contacts';
 
 export default {
   fetchNumbers,
@@ -13,4 +14,5 @@ export default {
   persistStore,
   restoreStore,
   scheduleTick,
+  fetchContacts,
 };

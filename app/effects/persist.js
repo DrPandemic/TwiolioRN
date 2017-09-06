@@ -11,6 +11,7 @@ export const config = {
   storage: FilesystemStorage,
   whitelist: [
     'messages',
+    'contacts',
   ],
   skipRestore: true,
 };
@@ -27,8 +28,7 @@ export function persistStore(
 export function restoreStore(
   getStoredState: (Object) => Promise<StateT>
 ): Promise<any> {
-  return getStoredState(config)
-    .then((state: StateT) => state);
+  return getStoredState(config);
 }
 
 export function scheduleTick(): Promise<TickT> {

@@ -18,6 +18,7 @@
 		"react": "^16.0.0-alpha.12",
 		"react-native": "^0.46.1",
 		"react-native-config": "^0.4.2",
+		"react-native-contacts": "^0.9.0",
 		"react-native-elements": "^0.15.0",
 		"react-native-popup-menu": "^0.8.0",
 		"react-native-reversed-flat-list": "^1.0.2",

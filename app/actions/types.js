@@ -1,6 +1,6 @@
 // @flow
 
-import { PhoneNumber, Message } from '../types';
+import { PhoneNumber, Message, Contact } from '../types';
 
 export const SET_FETCHED_ACCOUNT_NUMBERS = 'SET_FETCHED_ACCOUNT_NUMBERS';
 export const FETCH_ACCOUNT_NUMBERS = 'FETCH_ACCOUNT_NUMBERS';
@@ -27,6 +27,10 @@ export const FAIL_SCHEDULE_TICK = 'FAIL_SCHEDULE_TICK';
 export const SEND_MESSAGE = 'SEND_MESSAGE';
 export const SUCCESS_SEND_MESSAGE = 'SUCCESS_SEND_MESSAGE';
 export const FAIL_SEND_MESSAGE = 'FAIL_SEND_MESSAGE';
+
+export const FETCH_CONTACTS = 'FETCH_CONTACTS';
+export const SUCCESS_FETCH_CONTACTS = 'SUCCESS_FETCH_CONTACTS';
+export const FAIL_FETCH_CONTACTS = 'FAIL_FETCH_CONTACTS';
 
 export type FetchAccountNumbersT = {|
   type: 'FETCH_ACCOUNT_NUMBERS',
@@ -105,6 +109,18 @@ export type FailSendMessageT = {|
   error: any,
 |}
 
+export type FetchContactsT = {|
+  type: 'FETCH_CONTACTS',
+|}
+export type SuccessFetchContactsT = {|
+  type: 'SUCCESS_FETCH_CONTACTS',
+  contacts: Array<Contact>,
+|}
+export type FailFetchContactsT = {|
+  type: 'FAIL_FETCH_CONTACTS',
+  error: any,
+|}
+
 export type ActionT =
   | FetchAccountNumbersT
   | SuccessFetchAccountNumbersT
@@ -125,4 +141,7 @@ export type ActionT =
   | SendMessageT
   | SuccessSendMessageT
   | FailSendMessageT
+  | FetchContactsT
+  | SuccessFetchContactsT
+  | FailFetchContactsT
 ;
