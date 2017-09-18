@@ -1,5 +1,12 @@
 // @flow
 
+import {
+  PhoneNumberFormat as PNF,
+  PhoneNumberUtil
+} from 'google-libphonenumber';
+
+const phoneUtil = PhoneNumberUtil.getInstance();
+
 export type Email = {|
   label: string,
   email: string
@@ -7,7 +14,7 @@ export type Email = {|
 
 export type ContactPhoneNumber = {|
   label: string,
-  email: string
+  number: string
 |};
 
 export type PostalAddress = {|
@@ -40,9 +47,26 @@ export default class Contact {
     this.givenName = response.givenName;
     this.jobTitle = response.jobTitle;
     this.middleName = response.middleName;
-    this.phoneNumbers = response.phoneNumbers;
+    this.phoneNumbers = response.phoneNumbers.map(
+      p => ({
+        ...p,
+        number: phoneUtil.format(phoneUtil.parse(p.number, 'US'), PNF.E164),
+      })
+    );
     this.hasThumbnail = response.hasThumbnail;
     this.thumbnailPath = response.thumbnailPath;
     this.postalAddresses = response.postalAddresses;
   }
+}
+
+export function findContactsForNumber(
+  contacts: Array<Contact>,
+  number: string,
+): Array<Contact> {
+  const formattedNumber = phoneUtil.parse(number);
+  return contacts.filter(
+    c => c.phoneNumbers.filter(
+      n => phoneUtil.isNumberMatch(phoneUtil.parse(n.number), formattedNumber) >= 2
+    ).length > 0
+  );
 }

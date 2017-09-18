@@ -1,0 +1,48 @@
+{
+    "simple" : [{
+        "recordID": "1",
+        "company": "",
+        "emailAddresses": "",
+        "familyName": null,
+        "givenName": "Foo",
+        "jobTitle": "",
+        "middleName": null,
+        "phoneNumbers": [{
+            "label": "mobile",
+            "number": "+15142222222"
+        }],
+        "hasThumbnail": false,
+        "thumbnailPath": "",
+        "postalAddresses": []
+    },{
+        "recordID": "2",
+        "company": "",
+        "emailAddresses": "",
+        "familyName": null,
+        "givenName": "Bar",
+        "jobTitle": "",
+        "middleName": null,
+        "phoneNumbers": [{
+            "label": "mobile",
+            "number": "+15143333333"
+        }],
+        "hasThumbnail": false,
+        "thumbnailPath": "",
+        "postalAddresses": []
+    },{
+        "recordID": "3",
+        "company": "",
+        "emailAddresses": "",
+        "familyName": null,
+        "givenName": "Baz",
+        "jobTitle": "",
+        "middleName": null,
+        "phoneNumbers": [{
+            "label": "mobile",
+            "number": "+15143333333"
+        }],
+        "hasThumbnail": false,
+        "thumbnailPath": "",
+        "postalAddresses": []
+    }]
+}

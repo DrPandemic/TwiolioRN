@@ -14,6 +14,7 @@
 		"deep-equal": "^1.0.1",
 		"es6-symbol": "^3.1.1",
 		"es7-object-polyfill": "^0.0.5",
+		"google-libphonenumber": "^3.0.4",
 		"history": "^4.6.3",
 		"react": "^16.0.0-alpha.12",
 		"react-native": "^0.46.1",
