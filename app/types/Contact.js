@@ -5,6 +5,8 @@ import {
   PhoneNumberUtil
 } from 'google-libphonenumber';
 
+import { Message } from './';
+
 const phoneUtil = PhoneNumberUtil.getInstance();
 
 export type Email = {|
@@ -69,4 +71,14 @@ export function findContactsForNumber(
       n => phoneUtil.isNumberMatch(phoneUtil.parse(n.number), formattedNumber) >= 2
     ).length > 0
   );
+}
+
+export function getNameForMessage(
+  contacts: Array<Contact>,
+  message: Message,
+): string {
+  const number = message.conversationUsers.other;
+  const foundContacts = findContactsForNumber(contacts, number);
+
+  return foundContacts.length > 0 ? foundContacts[0].givenName : number;
 }

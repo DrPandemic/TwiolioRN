@@ -6,9 +6,14 @@ jest.mock('../../store');
 
 import { PConversationList } from '../ConversationList';
 import messageFixture from '../../test_helpers/fixtures/received_message.json';
-import { Message } from '../../types';
+import contactFixture from '../../test_helpers/fixtures/contacts.json';
+import { Contact, Message } from '../../types';
 import { addMessages, getConversations } from '../../types/ConversationStore';
 import { initialState } from '../../reducers';
+
+function createContacts(contacts: Array<any>): Array<Contact> {
+  return contacts.map(c => new Contact(c));
+}
 
 test('renders a row', () => {
   const store = addMessages({}, [
@@ -23,6 +28,10 @@ test('renders a row', () => {
     messages: {
       ...initialState.messages,
       messages: store,
+    },
+    contacts: {
+      ...initialState.contacts,
+      contacts: createContacts(contactFixture.simple),
     },
     push: () => {},
   });
@@ -45,6 +54,10 @@ test('renders rows', () => {
       ...initialState.messages,
       messages: store,
     },
+    contacts: {
+      ...initialState.contacts,
+      contacts: createContacts(contactFixture.simple),
+    },
     push: () => {},
   });
 
@@ -57,6 +70,7 @@ test('renders empty rows', () => {
   const conversationList = new PConversationList({
     account: { ...initialState.account },
     messages: { ...initialState.messages },
+    contacts: { ...initialState.contacts },
     push: () => {},
   });
 
@@ -82,6 +96,10 @@ test('renders rows with selected number', () => {
       ...initialState.messages,
       messages: store,
     },
+    contacts: {
+      ...initialState.contacts,
+      contacts: createContacts(contactFixture.simple),
+    },
     push: () => {},
   });
 
@@ -101,6 +119,10 @@ test('renders a row with correct redirect', () => {
     messages: {
       ...initialState.messages,
       messages: store,
+    },
+    contacts: {
+      ...initialState.contacts,
+      contacts: createContacts(contactFixture.simple),
     },
     push: spy,
   });

@@ -14,10 +14,12 @@ import { bindActionCreators } from 'redux';
 import { ActionCreators } from '../actions';
 import { Message } from '../types';
 import { getConversations, filterByUs } from '../types/ConversationStore';
+import { getNameForMessage } from '../types/Contact';
 import { Colors } from '../constants';
 import type { StateT } from '../reducers';
 import type { T as AccountT } from '../reducers/account';
 import type { T as MessagesT } from '../reducers/messages';
+import type { T as ContactT } from '../reducers/contacts';
 
 const screenHeight = Dimensions.get('window').height;
 
@@ -44,6 +46,7 @@ const styles = StyleSheet.create({
 type PropsT = {
   account: AccountT,
   messages: MessagesT,
+  contacts: ContactT,
   push: (any) => void,
 };
 
@@ -71,7 +74,7 @@ export class PConversationList extends Component {
     return (
       <ListItem
         key={message.conversationId}
-        title={message.conversationUsers.other}
+        title={getNameForMessage(this.props.contacts.contacts, message)}
         onPress={() => this.onSelectConversation(message)}
         containerStyle={styles.item}
         underlayColor={'#dedede'}
@@ -103,6 +106,7 @@ function mapStateToProps(state: StateT) {
   return {
     account: state.account,
     messages: state.messages,
+    contacts: state.contacts,
   };
 }
 

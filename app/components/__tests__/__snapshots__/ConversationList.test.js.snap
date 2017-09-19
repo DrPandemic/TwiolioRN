@@ -96,7 +96,7 @@ exports[`renders a row 1`] = `
             ]
           }
         >
-          +1231231235
+          Booing
         </Text>
       </View>
       <View
@@ -436,7 +436,7 @@ exports[`renders rows 1`] = `
                       ]
                     }
                   >
-                    +1231231235
+                    Booing
                   </Text>
                 </View>
                 <View
@@ -1080,7 +1080,7 @@ exports[`renders rows with selected number 1`] = `
                       ]
                     }
                   >
-                    +1231231235
+                    Booing
                   </Text>
                 </View>
                 <View

@@ -2,8 +2,11 @@
 
 import Contact, {
   findContactsForNumber,
+  getNameForMessage,
 } from '../Contact';
+import { Message } from '../';
 import fixture from '../../test_helpers/fixtures/contacts.json';
+import messageFixture from '../../test_helpers/fixtures/received_message.json';
 
 function createContacts(contacts: Array<any>): Array<Contact> {
   return contacts.map(c => new Contact(c));
@@ -34,4 +37,22 @@ test('is able to get back multiple contacts', () => {
   expect(foundContacts).toHaveLength(2);
   expect(foundContacts[0].givenName).toEqual('Bar');
   expect(foundContacts[1].givenName).toEqual('Baz');
+});
+
+test('is able to get back a name', () => {
+  const contacts = createContacts(fixture.simple);
+  const message = new Message(messageFixture.simple);
+
+  const name = getNameForMessage(contacts, message);
+
+  expect(name).toEqual('Booing');
+});
+
+test('is able to get back a name even when no contact match', () => {
+  const contacts = createContacts(fixture.simple);
+  const message = new Message(messageFixture.simpleInverse);
+
+  const name = getNameForMessage(contacts, message);
+
+  expect(name).toEqual(message.conversationUsers.other);
 });
