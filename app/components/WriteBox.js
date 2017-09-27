@@ -19,7 +19,7 @@ const styles = StyleSheet.create({
   container: {
     position: 'absolute',
     bottom: 0,
-    height: 80,
+    height: 50,
     zIndex: 2,
     flexDirection: 'row',
   },

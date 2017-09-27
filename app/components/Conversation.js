@@ -6,7 +6,6 @@ import {
   StyleSheet,
   Text,
   View,
-  KeyboardAvoidingView
 } from 'react-native';
 import { ListItem } from 'react-native-elements';
 import { connect } from 'react-redux';
@@ -21,20 +20,18 @@ import WriteBox from './WriteBox';
 import type { StateT } from '../reducers';
 import type { T as MessagesT } from '../reducers/messages';
 
-const screenHeight = Dimensions.get('window').height - 50;
-const screenWidth = Dimensions.get('window').width;
+const { width } = Dimensions.get('window');
 
 const styles = StyleSheet.create({
-  container: {
-  },
   listContainer: {
+    flex: 1,
     flexDirection: 'column',
-    height: screenHeight,
-    width: screenWidth,
+    width,
   },
   flatList: {
-    // Honnestly, I need to understand this magic value
-    marginBottom: 80,
+    flex: 1,
+    // Size of the write box
+    marginBottom: 50,
     backgroundColor: Colors.background,
   },
   ourMessage: {
@@ -127,7 +124,7 @@ export class PConversation extends Component {
     const messages = getMessagesById(store, conversationId);
 
     return (
-      <KeyboardAvoidingView style={styles.container} behavior="position">
+      <View>
         <View style={styles.listContainer} >
           <ReversedFlatList
             data={messages}
@@ -140,7 +137,7 @@ export class PConversation extends Component {
           to={to}
           from={from}
         />
-      </KeyboardAvoidingView>
+      </View>
     );
   }
 }

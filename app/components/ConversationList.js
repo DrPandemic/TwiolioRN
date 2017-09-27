@@ -10,6 +10,8 @@ import {
 import { List, ListItem } from 'react-native-elements';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
+import ActionButton from 'react-native-action-button';
+import Icon from 'react-native-vector-icons/MaterialIcons';
 
 import { ActionCreators } from '../actions';
 import { Message } from '../types';
@@ -21,13 +23,13 @@ import type { T as AccountT } from '../reducers/account';
 import type { T as MessagesT } from '../reducers/messages';
 import type { T as ContactT } from '../reducers/contacts';
 
-const screenHeight = Dimensions.get('window').height;
+const { width } = Dimensions.get('window');
 
 const styles = StyleSheet.create({
   container: {
+    width,
     flexDirection: 'column',
     backgroundColor: Colors.background,
-    height: screenHeight,
   },
   list: {
     marginTop: 0,
@@ -40,6 +42,16 @@ const styles = StyleSheet.create({
   },
   flatList: {
     marginBottom: 30,
+  },
+  actionButton: {
+    position: 'absolute',
+    bottom: 0,
+    right: 0,
+  },
+  actionButtonIcon: {
+    fontSize: 20,
+    height: 22,
+    color: Colors.primary.text,
   },
 });
 
@@ -97,6 +109,7 @@ export class PConversationList extends Component {
             style={styles.flatList}
           />
         </List>
+        <ActionButton style={styles.actionButton} buttonColor={Colors.primary.normal} />
       </View>
     );
   }

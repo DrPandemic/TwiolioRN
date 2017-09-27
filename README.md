@@ -32,7 +32,9 @@ the codebase.
   - [ ] Display unacknowledged sent messages
 - [ ] Don't lose received message when a single page fail
 - [ ] Start new conversation
-- [ ] Use contacts to display names
+  - [ ] From a number
+  - [ ] From a contact
+- [x] Use contacts to display names
 - [ ] System notifications
   - [ ] Use a background job 
 - [ ] Reduce network usage

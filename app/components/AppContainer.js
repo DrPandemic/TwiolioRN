@@ -15,6 +15,8 @@ import { Colors } from '../constants';
 
 const styles = StyleSheet.create({
   container: {
+    flex: 1,
+    flexDirection: 'column',
   },
   nav: {
     flexDirection: 'row',
@@ -22,6 +24,10 @@ const styles = StyleSheet.create({
     backgroundColor: Colors.primary.normal,
     elevation: 5,
   },
+  content: {
+    flex: 1,
+    flexDirection: 'row',
+  }
 });
 
 function mapStateToProps() {
@@ -52,8 +58,10 @@ class AppContainer extends Component {
           <Route path="/conversation" component={ConversationMenu}/>
         </View>
 
-        <Route exact path="/" component={ConversationList}/>
-        <Route path="/conversation" component={Conversation}/>
+        <View style={styles.content}>
+          <Route exact path="/" component={ConversationList}/>
+          <Route path="/conversation" component={Conversation}/>
+        </View>
       </View>
     );
   }
