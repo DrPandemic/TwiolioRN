@@ -6,7 +6,7 @@ exports[`renders a the box 1`] = `
     Object {
       "bottom": 0,
       "flexDirection": "row",
-      "height": 80,
+      "height": 50,
       "position": "absolute",
       "zIndex": 2,
     }
