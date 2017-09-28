@@ -10,6 +10,7 @@ import { ActionCreators } from '../actions';
 import Conversation from './Conversation';
 import PhoneNumberMenu from './PhoneNumberMenu';
 import ConversationMenu from './ConversationMenu';
+import SimpleMenu from './SimpleMenu';
 import ConversationList from './ConversationList';
 import NewConversation from './NewConvervsation';
 import { Colors } from '../constants';
@@ -57,6 +58,8 @@ class AppContainer extends Component {
         <View style={styles.nav}>
           <Route exact path="/" component={PhoneNumberMenu}/>
           <Route path="/conversation" component={ConversationMenu}/>
+          <Route path="/newConversation" component={SimpleMenu}/>
+          <Route path="/newConversationSource" component={SimpleMenu}/>
         </View>
 
         <View style={styles.content}>
