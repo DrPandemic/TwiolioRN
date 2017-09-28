@@ -11,6 +11,7 @@ import Conversation from './Conversation';
 import PhoneNumberMenu from './PhoneNumberMenu';
 import ConversationMenu from './ConversationMenu';
 import ConversationList from './ConversationList';
+import NewConversation from './NewConvervsation';
 import { Colors } from '../constants';
 
 const styles = StyleSheet.create({
@@ -61,6 +62,7 @@ class AppContainer extends Component {
         <View style={styles.content}>
           <Route exact path="/" component={ConversationList}/>
           <Route path="/conversation" component={Conversation}/>
+          <Route path="/newConversation" component={NewConversation}/>
         </View>
       </View>
     );

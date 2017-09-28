@@ -11,7 +11,6 @@ import { List, ListItem } from 'react-native-elements';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import ActionButton from 'react-native-action-button';
-import Icon from 'react-native-vector-icons/MaterialIcons';
 
 import { ActionCreators } from '../actions';
 import { Message } from '../types';
@@ -69,6 +68,7 @@ export class PConversationList extends Component {
     super(props);
 
     this.onSelectConversation = this.onSelectConversation.bind(this);
+    this.onButtonPress = this.onButtonPress.bind(this);
   }
 
   onSelectConversation(message: Message): void {
@@ -94,6 +94,12 @@ export class PConversationList extends Component {
     );
   }
 
+  onButtonPress() {
+    this.props.push({
+      pathname: '/newConversation',
+    });
+  }
+
   render() {
     const messages = getConversations(filterByUs(
       this.props.messages.messages,
@@ -109,7 +115,11 @@ export class PConversationList extends Component {
             style={styles.flatList}
           />
         </List>
-        <ActionButton style={styles.actionButton} buttonColor={Colors.primary.normal} />
+        <ActionButton
+          style={styles.actionButton}
+          buttonColor={Colors.primary.normal}
+          onPress={() => this.onButtonPress()}
+        />
       </View>
     );
   }
