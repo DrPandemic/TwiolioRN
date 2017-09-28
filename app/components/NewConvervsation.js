@@ -59,10 +59,7 @@ export class PNewConversation extends Component {
   onSelectContact(row: PhoneNumberWithContact): void {
     this.props.push({
       pathname: '/newConversationSource',
-      state: {
-        contact: row.contact,
-        number: row.phoneNumber,
-      },
+      state: row,
     });
   }
 
@@ -70,7 +67,7 @@ export class PNewConversation extends Component {
     return (
       <ListItem
         key={row.contact.recordID}
-        title={row.number}
+        title={row.phoneNumber}
         onPress={() => this.onSelectContact(row)}
         containerStyle={styles.item}
         underlayColor={'#dedede'}
@@ -88,7 +85,7 @@ export class PNewConversation extends Component {
           <FlatList
             data={numbers}
             renderItem={({ item }) => this.renderRow(item)}
-            keyExtractor={([number: PhoneNumberWithContact]) => number.phoneNumber}
+            keyExtractor={(number: PhoneNumberWithContact) => number.phoneNumber}
             style={styles.flatList}
           />
         </List>

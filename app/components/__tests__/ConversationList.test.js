@@ -139,3 +139,23 @@ test('renders a row with correct redirect', () => {
     }
   });
 });
+
+test('new conversation button redirects', () => {
+  const spy = jest.fn();
+  const conversationList = new PConversationList({
+    account: { ...initialState.account },
+    messages: {
+      ...initialState.messages,
+    },
+    contacts: {
+      ...initialState.contacts,
+      contacts: createContacts(contactFixture.simple),
+    },
+    push: spy,
+  });
+
+  const renderedContent = conversationList.render();
+  renderedContent.props.children[1].props.onPress();
+
+  expect(spy).toBeCalledWith({ pathname: '/newConversation' });
+});
