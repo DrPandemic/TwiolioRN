@@ -3,6 +3,7 @@
 import Contact, {
   findContactsForNumber,
   getNameForMessage,
+  expandPhoneNumbers,
 } from '../Contact';
 import { Message } from '../';
 import fixture from '../../test_helpers/fixtures/contacts.json';
@@ -55,4 +56,25 @@ test('is able to get back a name even when no contact match', () => {
   const name = getNameForMessage(contacts, message);
 
   expect(name).toEqual(message.conversationUsers.other);
+});
+
+
+test('expandPhoneNumbers works', () => {
+  const contacts = createContacts(fixture.multipleNumbers);
+
+  const numbers = expandPhoneNumbers(contacts);
+
+  expect(numbers).toHaveLength(3);
+  expect(numbers).toContainEqual({
+    contact: fixture.multipleNumbers[0],
+    phoneNumber: fixture.multipleNumbers[0].phoneNumbers[0].number,
+  });
+  expect(numbers).toContainEqual({
+    contact: fixture.multipleNumbers[1],
+    phoneNumber: fixture.multipleNumbers[1].phoneNumbers[0].number,
+  });
+  expect(numbers).toContainEqual({
+    contact: fixture.multipleNumbers[1],
+    phoneNumber: fixture.multipleNumbers[1].phoneNumbers[1].number,
+  });
 });

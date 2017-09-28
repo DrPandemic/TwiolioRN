@@ -6,6 +6,7 @@ import {
 } from 'google-libphonenumber';
 
 import { Message } from './';
+import { flatMap } from '../lib/array';
 
 const phoneUtil = PhoneNumberUtil.getInstance();
 
@@ -61,6 +62,11 @@ export default class Contact {
   }
 }
 
+export type PhoneNumberWithContact = {
+  contact: Contact,
+  phoneNumber: string
+};
+
 export function findContactsForNumber(
   contacts: Array<Contact>,
   number: string,
@@ -81,4 +87,11 @@ export function getNameForMessage(
   const foundContacts = findContactsForNumber(contacts, number);
 
   return foundContacts.length > 0 ? foundContacts[0].givenName : number;
+}
+
+export function expandPhoneNumbers(contacts: Array<Contact>): Array<PhoneNumberWithContact> {
+  return flatMap(contacts,
+    contact => contact.phoneNumbers.map(
+      n => ({ contact, phoneNumber: n.number })
+    ));
 }
