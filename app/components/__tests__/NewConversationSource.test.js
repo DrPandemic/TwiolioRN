@@ -4,10 +4,9 @@ import renderer from 'react-test-renderer';
 
 jest.mock('../../store');
 
-import { PNewConversation } from '../NewConversation';
-import contactFixture from '../../test_helpers/fixtures/contacts.json';
+import { PNewConversationSource } from '../NewConversationSource';
+import fixtures from '../../test_helpers/fixtures/received_phone_number.json';
 import { Contact } from '../../types';
-import { expandPhoneNumbers } from '../../types/Contact';
 import { initialState } from '../../reducers';
 
 function createContacts(contacts: Array<any>): Array<Contact> {
@@ -15,11 +14,8 @@ function createContacts(contacts: Array<any>): Array<Contact> {
 }
 
 test('renders a row', () => {
-  const newConversation = new PNewConversation({
-    contacts: {
-      ...initialState.contacts,
-      contacts: createContacts([contactFixture.simple[0]]),
-    },
+  const newConversation = new PNewConversationSource({
+    numbers: [fixtures.simple],
     push: () => {},
   });
 
@@ -29,11 +25,8 @@ test('renders a row', () => {
 });
 
 test('renders rows', () => {
-  const newConversation = new PNewConversation({
-    contacts: {
-      ...initialState.contacts,
-      contacts: createContacts(contactFixture.simple),
-    },
+  const newConversation = new PNewConversationSource({
+    numbers: [fixtures.simple, fixtures.other],
     push: () => {},
   });
 
@@ -43,11 +36,8 @@ test('renders rows', () => {
 });
 
 test('renders empty rows', () => {
-  const newConversation = new PNewConversation({
-    contacts: {
-      ...initialState.contacts,
-      contacts: [],
-    },
+  const newConversation = new PNewConversationSource({
+    numbers: [],
     push: () => {},
   });
 
@@ -57,10 +47,11 @@ test('renders empty rows', () => {
 });
 
 test('renders a row with correct redirect', () => {
+  expect(false).toBeTruthy();
   const spy = jest.fn();
   const contacts = createContacts([contactFixture.simple[0]]);
   const contact = expandPhoneNumbers(contacts)[0];
-  const newConversation = new PNewConversation({
+  const newConversation = new PNewConversationSource({
     contacts: {
       ...initialState.contacts,
       contacts,

@@ -13,7 +13,8 @@ import PhoneNumberMenu from './PhoneNumberMenu';
 import ConversationMenu from './ConversationMenu';
 import SimpleMenu from './SimpleMenu';
 import ConversationList from './ConversationList';
-import NewConversation from './NewConvervsation';
+import NewConversation from './NewConversation';
+import NewConversationSource from './NewConversationSource';
 import { Colors } from '../constants';
 
 const styles = StyleSheet.create({
@@ -67,6 +68,7 @@ class AppContainer extends Component {
           <PropsRoute exact path="/" component={ConversationList}/>
           <PropsRoute path="/conversation" component={Conversation}/>
           <PropsRoute path="/newConversation" component={NewConversation}/>
+          <PropsRoute path="/newConversationSource" component={NewConversationSource}/>
         </View>
       </View>
     );

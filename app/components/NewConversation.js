@@ -12,8 +12,6 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
 import { ActionCreators } from '../actions';
-import { Contact } from '../types';
-import { getConversations, filterByUs } from '../types/ConversationStore';
 import { expandPhoneNumbers } from '../types/Contact';
 import { Colors } from '../constants';
 import type { StateT } from '../reducers';
