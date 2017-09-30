@@ -2,10 +2,11 @@
 
 import React, { Component } from 'react';
 import { View, StyleSheet } from 'react-native';
-import { AndroidBackButton, Route, withRouter } from 'react-router-native';
+import { AndroidBackButton, withRouter } from 'react-router-native';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
+import PropsRoute from './PropsRoute';
 import { ActionCreators } from '../actions';
 import Conversation from './Conversation';
 import PhoneNumberMenu from './PhoneNumberMenu';
@@ -56,16 +57,16 @@ class AppContainer extends Component {
         <AndroidBackButton />
 
         <View style={styles.nav}>
-          <Route exact path="/" component={PhoneNumberMenu}/>
-          <Route path="/conversation" component={ConversationMenu}/>
-          <Route path="/newConversation" component={SimpleMenu}/>
-          <Route path="/newConversationSource" component={SimpleMenu}/>
+          <PropsRoute exact path="/" component={PhoneNumberMenu}/>
+          <PropsRoute path="/conversation" component={ConversationMenu}/>
+          <PropsRoute path="/newConversation" component={SimpleMenu} text="Recipient"/>
+          <PropsRoute path="/newConversationSource" component={SimpleMenu} text="Sender"/>
         </View>
 
         <View style={styles.content}>
-          <Route exact path="/" component={ConversationList}/>
-          <Route path="/conversation" component={Conversation}/>
-          <Route path="/newConversation" component={NewConversation}/>
+          <PropsRoute exact path="/" component={ConversationList}/>
+          <PropsRoute path="/conversation" component={Conversation}/>
+          <PropsRoute path="/newConversation" component={NewConversation}/>
         </View>
       </View>
     );

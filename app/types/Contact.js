@@ -60,6 +60,10 @@ export default class Contact {
     this.thumbnailPath = response.thumbnailPath;
     this.postalAddresses = response.postalAddresses;
   }
+
+  get name(): string {
+    return [this.givenName, this.middleName, this.familyName].filter(e => e !== '').join(' ');
+  }
 }
 
 export type PhoneNumberWithContact = {

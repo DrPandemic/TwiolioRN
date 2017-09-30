@@ -66,8 +66,7 @@ export class PNewConversation extends Component {
   renderRow(row: PhoneNumberWithContact) {
     return (
       <ListItem
-        key={row.contact.recordID}
-        title={row.phoneNumber}
+        title={`${row.contact.name} - ${row.phoneNumber}`}
         onPress={() => this.onSelectContact(row)}
         containerStyle={styles.item}
         underlayColor={'#dedede'}
@@ -85,7 +84,7 @@ export class PNewConversation extends Component {
           <FlatList
             data={numbers}
             renderItem={({ item }) => this.renderRow(item)}
-            keyExtractor={(number: PhoneNumberWithContact) => number.phoneNumber}
+            keyExtractor={(row: PhoneNumberWithContact) => [row.contact.recordID, row.phoneNumber].join('')}
             style={styles.flatList}
           />
         </List>

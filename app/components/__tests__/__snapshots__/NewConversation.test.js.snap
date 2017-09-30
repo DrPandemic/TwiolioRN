@@ -171,7 +171,7 @@ exports[`renders a row 1`] = `
                       ]
                     }
                   >
-                    +15142222222
+                    Foo   - +15142222222
                   </Text>
                 </View>
                 <View
@@ -477,7 +477,7 @@ exports[`renders rows 1`] = `
                       ]
                     }
                   >
-                    +15142222222
+                    Foo   - +15142222222
                   </Text>
                 </View>
                 <View
@@ -587,7 +587,7 @@ exports[`renders rows 1`] = `
                       ]
                     }
                   >
-                    +15143333333
+                    Bar   - +15143333333
                   </Text>
                 </View>
                 <View
@@ -697,7 +697,7 @@ exports[`renders rows 1`] = `
                       ]
                     }
                   >
-                    +15143333333
+                    Baz   - +15143333333
                   </Text>
                 </View>
                 <View
@@ -807,7 +807,7 @@ exports[`renders rows 1`] = `
                       ]
                     }
                   >
-                    +1231231235
+                    Booing   - +1231231235
                   </Text>
                 </View>
                 <View
