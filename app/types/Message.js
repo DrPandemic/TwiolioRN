@@ -15,6 +15,7 @@ export default class Message {
   dateSent: Date;
   status: string;
   direction: string;
+  empty: boolean;
 
   constructor(response: any) {
     this.sid = response.sid;
@@ -26,6 +27,17 @@ export default class Message {
     this.dateSent = new Date(response.date_sent);
     this.status = response.status;
     this.direction = response.direction;
+    this.empty = false;
+  }
+
+  static createEmpty(conversationUsers: ConversationUsers) {
+    const message = new Message({});
+    message.empty = true;
+    message.from = conversationUsers.other;
+    message.to = conversationUsers.us;
+    message.direction = 'inbound';
+
+    return message;
   }
 
   static restore(data: any): Message {

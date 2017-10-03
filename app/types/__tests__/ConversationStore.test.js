@@ -2,6 +2,7 @@
 
 import {
   addMessages,
+  addEmptyConversation,
   filterByUs,
   getConversations,
   getMessages,
@@ -67,6 +68,14 @@ test('is able to get back a single message after many saves', () => {
   expect(messages3).toEqual(expect.arrayContaining([m0, m3]));
 });
 
+test('addEmptyConversation', () => {
+  const conversationUsers = { us: fixture.simple.to, other: fixture.simple.from };
+  const store0 = addEmptyConversation({}, conversationUsers);
+  const messages = getMessages(store0, conversationUsers);
+
+  expect(messages).toHaveLength(0);
+});
+
 test('filterByUs', () => {
   const m0 = new Message(fixture.simple);
   const m1 = new Message(fixture.simpleInverse);
@@ -102,6 +111,24 @@ test('filterByUs with null us', () => {
     m0.conversationId,
     m1.conversationId,
     m2.conversationId,
+  ]));
+});
+
+test('filterByUs with an empty conversation', () => {
+  const conversationUsers = { us: '+123', other: '+777' };
+  const m0 = new Message(fixture.simple);
+  const m1 = new Message(fixture.simpleInverse);
+  const m2 = new Message(fixture.simpleOtherFrom);
+  const m3 = new Message(fixture.simpleOutbound);
+  const store0 = addMessages({}, [m0, m1, m2, m3]);
+  const store1 = addEmptyConversation(store0, conversationUsers);
+
+  const store2 = filterByUs(store1, conversationUsers.us);
+
+  expect(Object.keys(store1)).toHaveLength(4);
+  expect(Object.keys(store2)).toHaveLength(1);
+  expect(Object.keys(store2)).toEqual(expect.arrayContaining([
+    Message.getConversationId(conversationUsers)
   ]));
 });
 

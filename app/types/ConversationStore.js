@@ -16,8 +16,20 @@ ConversationStoreT {
   // This could be an performance issue at some point
   return {
     ...store,
-    [id]: [message, ...(store[id] || []).filter(m => m.sid !== message.sid)]
+    [id]: [message, ...(store[id] || [])
+      .filter(m => m.sid !== message.sid && !message.empty)]
       .sort((a: Message, b: Message) => a.compare(b))
+  };
+}
+
+export function addEmptyConversation(
+  store: ConversationStoreT,
+  conversationUsers: ConversationUsers
+): ConversationStoreT {
+  const message = Message.createEmpty(conversationUsers);
+  return {
+    ...store,
+    [Message.getConversationId(conversationUsers)]: [message],
   };
 }
 
@@ -32,7 +44,8 @@ export function getMessagesById(
   store: ConversationStoreT,
   conversationId: string
 ): Array<Message> {
-  return store[conversationId] || [];
+  return (store[conversationId] || [])
+    .filter(m => !m.empty);
 }
 
 export function getMessages(
@@ -51,7 +64,7 @@ export function getConversations(
       const b = bList[bList.length - 1];
       const cmp = a.compare(b);
 
-      return cmp === 0 ? 0 : (cmp === 1 ? -1 : 1);
+      return cmp * -1;
     });
 }
 
@@ -65,21 +78,21 @@ export function filterByUs(
   }
 
   return Object.entries(store)
-               .filter(
-                 ([k, [v]]: [string, Array<Message>]) =>
-                   v.conversationUsers.us === us)
-               .reduce(
-                 (acc, [k: string, v: Array<Message>]) => ({ ...acc, [k]: v }),
-                 {}
-               );
+    .filter(
+      ([k, [v]]: [string, Array<Message>]) =>
+        v.conversationUsers.us === us)
+    .reduce(
+      (acc, [k: string, v: Array<Message>]) => ({ ...acc, [k]: v }),
+      {}
+    );
 }
 
 // Called when restoring the state.
 // The input is like a store but without classes.
-export function restore(conversations: any): ConversationStoreT {
+export function restore(conversations: { [string]: Array<any> }): ConversationStoreT {
   try {
     let store = {};
-    for (const messages of Object.values(conversations)) {
+    for (const messages: Array<any> of Object.values(conversations)) {
       store = addMessages(store, messages.map(m => Message.restore(m)));
     }
     return store;
