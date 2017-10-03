@@ -33,7 +33,7 @@ the codebase.
 - [ ] Don't lose received message when a single page fail
 - [ ] Start new conversation
   - [ ] From a number
-  - [ ] From a contact
+  - [x] From a contact
 - [x] Use contacts to display names
 - [ ] System notifications
   - [ ] Use a background job 
