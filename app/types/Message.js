@@ -10,9 +10,9 @@ export default class Message {
   body: string;
   to: string;
   from: string;
-  dateCreated: Date;
-  dateUpdated: Date;
-  dateSent: Date;
+  dateCreated: ?Date;
+  dateUpdated: ?Date;
+  dateSent: ?Date;
   status: string;
   direction: string;
   empty: boolean;
@@ -22,9 +22,9 @@ export default class Message {
     this.body = response.body;
     this.to = response.to;
     this.from = response.from;
-    this.dateCreated = new Date(response.date_created);
-    this.dateUpdated = new Date(response.date_updated);
-    this.dateSent = new Date(response.date_sent);
+    this.dateCreated = response.date_created ? new Date(response.date_created) : null;
+    this.dateUpdated = response.date_updated ? new Date(response.date_updated) : null;
+    this.dateSent = response.date_sent ? new Date(response.date_sent) : null;
     this.status = response.status;
     this.direction = response.direction;
     this.empty = false;
