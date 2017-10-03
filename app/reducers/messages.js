@@ -4,7 +4,12 @@ import { loop, Cmd } from 'redux-loop';
 import equal from 'deep-equal';
 
 import * as types from '../actions/types';
-import { addMessages, addMessage, restore } from '../types/ConversationStore';
+import {
+  addMessages,
+  addEmptyConversation,
+  addMessage,
+  restore,
+} from '../types/ConversationStore';
 import { getApi } from '../lib/api';
 import createReducer from '../lib/createReducer';
 import effects from '../effects';
@@ -124,6 +129,19 @@ export const reducer = createReducer({
       ...state,
       sendingError: action.error,
       sending: false,
+    };
+  },
+
+  [types.START_NEW_CONVERSATION](
+    state: StateT,
+    { sender, recipient }: types.StartNewConversationT,
+  ) {
+    return {
+      ...state,
+      messages: addEmptyConversation(state.messages, {
+        us: sender.number,
+        other: recipient.phoneNumber,
+      }),
     };
   },
 });

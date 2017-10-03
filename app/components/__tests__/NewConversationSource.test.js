@@ -6,17 +6,13 @@ jest.mock('../../store');
 
 import { PNewConversationSource } from '../NewConversationSource';
 import fixtures from '../../test_helpers/fixtures/received_phone_number.json';
-import { Contact } from '../../types';
-import { initialState } from '../../reducers';
-
-function createContacts(contacts: Array<any>): Array<Contact> {
-  return contacts.map(c => new Contact(c));
-}
+import { PhoneNumber } from '../../types';
 
 test('renders a row', () => {
   const newConversation = new PNewConversationSource({
     numbers: [fixtures.simple],
-    push: () => {},
+    recipient: fixtures.simple,
+    startNewConversation: () => {},
   });
 
   expect(
@@ -27,7 +23,8 @@ test('renders a row', () => {
 test('renders rows', () => {
   const newConversation = new PNewConversationSource({
     numbers: [fixtures.simple, fixtures.other],
-    push: () => {},
+    recipient: fixtures.simple,
+    startNewConversation: () => {},
   });
 
   expect(
@@ -38,7 +35,8 @@ test('renders rows', () => {
 test('renders empty rows', () => {
   const newConversation = new PNewConversationSource({
     numbers: [],
-    push: () => {},
+    recipient: fixtures.simple,
+    startNewConversation: () => {},
   });
 
   expect(
@@ -47,23 +45,17 @@ test('renders empty rows', () => {
 });
 
 test('renders a row with correct redirect', () => {
-  expect(false).toBeTruthy();
   const spy = jest.fn();
-  const contacts = createContacts([contactFixture.simple[0]]);
-  const contact = expandPhoneNumbers(contacts)[0];
+  const number = new PhoneNumber(fixtures.other);
+
   const newConversation = new PNewConversationSource({
-    contacts: {
-      ...initialState.contacts,
-      contacts,
-    },
-    push: spy,
+    numbers: [number],
+    recipient: fixtures.simple,
+    startNewConversation: spy,
   });
 
-  const renderedContent = newConversation.renderRow(contact);
+  const renderedContent = newConversation.renderRow(number);
   renderedContent.props.onPress();
 
-  expect(spy).toBeCalledWith({
-    pathname: '/newConversationSource',
-    state: contact,
-  });
+  expect(spy).toBeCalledWith(number, fixtures.simple);
 });

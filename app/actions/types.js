@@ -1,6 +1,7 @@
 // @flow
 
 import { PhoneNumber, Message, Contact } from '../types';
+import type { PhoneNumberWithContact } from '../types/Contact';
 
 export const SET_FETCHED_ACCOUNT_NUMBERS = 'SET_FETCHED_ACCOUNT_NUMBERS';
 export const FETCH_ACCOUNT_NUMBERS = 'FETCH_ACCOUNT_NUMBERS';
@@ -31,6 +32,8 @@ export const FAIL_SEND_MESSAGE = 'FAIL_SEND_MESSAGE';
 export const FETCH_CONTACTS = 'FETCH_CONTACTS';
 export const SUCCESS_FETCH_CONTACTS = 'SUCCESS_FETCH_CONTACTS';
 export const FAIL_FETCH_CONTACTS = 'FAIL_FETCH_CONTACTS';
+
+export const START_NEW_CONVERSATION = 'START_NEW_CONVERSATION';
 
 export type FetchAccountNumbersT = {|
   type: 'FETCH_ACCOUNT_NUMBERS',
@@ -121,6 +124,12 @@ export type FailFetchContactsT = {|
   error: any,
 |}
 
+export type StartNewConversationT = {|
+  type: 'START_NEW_CONVERSATION',
+  sender: PhoneNumber,
+  recipient: PhoneNumberWithContact,
+|}
+
 export type ActionT =
   | FetchAccountNumbersT
   | SuccessFetchAccountNumbersT
@@ -144,4 +153,5 @@ export type ActionT =
   | FetchContactsT
   | SuccessFetchContactsT
   | FailFetchContactsT
+  | StartNewConversationT
 ;

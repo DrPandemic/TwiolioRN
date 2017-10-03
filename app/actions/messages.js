@@ -1,8 +1,9 @@
 // @flow
 
 import * as types from './types';
-import { Message } from '../types';
+import { Message, PhoneNumber } from '../types';
 import formatError from '../lib/errors';
+import type { PhoneNumberWithContact } from '../types/Contact';
 
 export function fetchMessages(): types.FetchMessagesT {
   return {
@@ -49,5 +50,16 @@ types.FailSendMessageT {
   return {
     type: types.FAIL_SEND_MESSAGE,
     error: formatError(error),
+  };
+}
+
+export function startNewConversation(
+  sender: PhoneNumber,
+  recipient: PhoneNumberWithContact,
+): types.StartNewConversationT {
+  return {
+    type: types.START_NEW_CONVERSATION,
+    sender,
+    recipient,
   };
 }

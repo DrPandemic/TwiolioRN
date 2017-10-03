@@ -27,9 +27,10 @@ export function addEmptyConversation(
   conversationUsers: ConversationUsers
 ): ConversationStoreT {
   const message = Message.createEmpty(conversationUsers);
+  const key = Message.getConversationId(conversationUsers);
   return {
     ...store,
-    [Message.getConversationId(conversationUsers)]: [message],
+    [key]: store[key] || [message],
   };
 }
 

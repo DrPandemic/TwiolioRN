@@ -12,11 +12,10 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
 import { ActionCreators } from '../actions';
-import { expandPhoneNumbers } from '../types/Contact';
 import { Colors } from '../constants';
 import type { StateT } from '../reducers';
-import type { T as ContactT } from '../reducers/contacts';
-import type { PhoneNumber } from '../types/PhoneNumber';
+import PhoneNumber from '../types/PhoneNumber';
+import type { PhoneNumberWithContact } from '../types/Contact';
 
 const { width } = Dimensions.get('window');
 
@@ -42,7 +41,8 @@ const styles = StyleSheet.create({
 
 type PropsT = {
   numbers: Array<PhoneNumber>,
-  push: (any) => void,
+  recipient: PhoneNumberWithContact,
+  startNewConversation: (PhoneNumber, PhoneNumberWithContact) => void,
 };
 
 export class PNewConversationSource extends Component {
@@ -55,7 +55,7 @@ export class PNewConversationSource extends Component {
   }
 
   onSelectContact(row: PhoneNumber): void {
-    alert(JSON.stringify(row));
+    this.props.startNewConversation(row, this.props.recipient);
   }
 
   renderRow(row: PhoneNumber) {
@@ -89,6 +89,7 @@ export class PNewConversationSource extends Component {
 function mapStateToProps(state: StateT) {
   return {
     numbers: state.fetchedAccountNumbers.numbers,
+    recipient: state.router.location.state,
   };
 }
 
