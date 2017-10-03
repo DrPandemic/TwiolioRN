@@ -3,8 +3,8 @@
 import React, { Component } from 'react';
 import { View, StyleSheet } from 'react-native';
 import { AndroidBackButton, withRouter } from 'react-router-native';
-import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
 
 import PropsRoute from './PropsRoute';
 import { ActionCreators } from '../actions';

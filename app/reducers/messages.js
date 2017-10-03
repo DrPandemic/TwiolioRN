@@ -2,6 +2,7 @@
 
 import { loop, Cmd } from 'redux-loop';
 import equal from 'deep-equal';
+import { push, go } from 'react-router-redux';
 
 import * as types from '../actions/types';
 import {
@@ -136,12 +137,26 @@ export const reducer = createReducer({
     state: StateT,
     { sender, recipient }: types.StartNewConversationT,
   ) {
-    return {
+    return loop({
       ...state,
       messages: addEmptyConversation(state.messages, {
         us: sender.number,
         other: recipient.phoneNumber,
       }),
-    };
+    },
+    Cmd.list([
+      Cmd.action(go(-2)),
+      Cmd.action(push({
+        pathname: '/conversation',
+        state: {
+          conversationId: Message.getConversationId(
+            { us: sender.number, other: recipient.phoneNumber }
+          ),
+          to: recipient.phoneNumber,
+          from: sender.number,
+        },
+      }))
+    ], { sequence: true }
+    ));
   },
 });

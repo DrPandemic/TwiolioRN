@@ -13,7 +13,7 @@ const composeEnhancers = composeWithDevTools(
   { realtime: true, port: 8000, hostname: 'localhost' }
 );
 const enhancer = composeEnhancers(
-  applyMiddleware(routerMiddleware(history)),
   install(),
+  applyMiddleware(routerMiddleware(history)),
 );
 export const store = createStore(reducer, initialState, enhancer);
